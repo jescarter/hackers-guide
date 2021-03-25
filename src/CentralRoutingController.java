@@ -2,6 +2,8 @@ package src;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 /**
  * the central routing controller to handle and routing information to and from the views
@@ -34,6 +36,15 @@ public class CentralRoutingController {
     public CheckBox cardBox;
 
     public Button doneButton;
+    
+    //game picker
+    public Label gameTitle;
+    public Button getRecommendationButton;
+    public Button disLikeButton;
+    public Button likeButton;
+    public Button doNotKnowButton;
+    public ImageView gameCoverArtImageView;
+
     //when the user clicks the done button pass the checkboxes to a model to handle it
     public void userHasClickedTheDoneButton(){
         StartScreenController.handleUserStartCheckBoxes();
