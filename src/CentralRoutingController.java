@@ -4,7 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
 /**
- *
+ * the central routing controller to handle and routing information to and from the views
  * last updated 03/25/2021
  * Author(s) Ian Holder,
  */
@@ -34,6 +34,9 @@ public class CentralRoutingController {
     public CheckBox cardBox;
 
     public Button doneButton;
-
+    //when the user clicks the done button pass the checkboxes to a model to handle it
+    public void userHasClickedTheDoneButton(){
+        StartScreenController.handleUserStartCheckBoxes();
+    }
 
 }

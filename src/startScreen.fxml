@@ -11,7 +11,7 @@
 
 <!--the format for the start screen that should show if the application is run for the first time
 Last Updated 03/25/2021
- Author Ian Holder-->
+ Author(s) Ian Holder-->
 
 <AnchorPane prefHeight="800.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.CentralRoutingController">
    <padding>
@@ -63,7 +63,7 @@ Last Updated 03/25/2021
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Button fx:id="doneButton" alignment="CENTER" mnemonicParsing="false" text="Done" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+            <Button fx:id="doneButton" alignment="CENTER" mnemonicParsing="false" onAction="#userHasClickedTheDoneButton" text="Done" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </children>

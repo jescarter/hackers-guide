@@ -24,7 +24,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("startScreen.fxml"));
         primaryStage.setTitle("Game Genie");
-        primaryStage.setScene(new Scene(root,450,800));
+        primaryStage.setScene(new Scene(root,600,800));
         primaryStage.show();
 
     }
