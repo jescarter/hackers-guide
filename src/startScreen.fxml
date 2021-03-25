@@ -38,29 +38,26 @@ Last Updated 03/25/2021
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
          <children>
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="1" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="2" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="3" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="4" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <CheckBox fx:id="actionBox" mnemonicParsing="false" text="Action" GridPane.rowIndex="1" />
+            <CheckBox fx:id="shooterBox" mnemonicParsing="false" text="Shooter" GridPane.rowIndex="2" />
+            <CheckBox fx:id="indieBox" mnemonicParsing="false" text="Indie" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <CheckBox fx:id="casualBox" mnemonicParsing="false" text="Casual" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <CheckBox fx:id="adventureBox" mnemonicParsing="false" text="Adventure" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <CheckBox fx:id="rpgBox" mnemonicParsing="false" text="RPG" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <CheckBox fx:id="strategyBox" mnemonicParsing="false" text="Strategy" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <CheckBox fx:id="simulationBox" mnemonicParsing="false" text="Simulation" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <CheckBox fx:id="puzzleBox" mnemonicParsing="false" text="Puzzle" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <CheckBox fx:id="arcadeBox" mnemonicParsing="false" text="Arcade" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <CheckBox fx:id="platformerBox" mnemonicParsing="false" text="Platformer" GridPane.rowIndex="3" />
+            <CheckBox fx:id="racingBox" mnemonicParsing="false" text="Racing" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <CheckBox fx:id="sportsBox" mnemonicParsing="false" text="Sports" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <CheckBox fx:id="massivelyMultiplayerBox" mnemonicParsing="false" text="Massively Multiplayer" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <CheckBox fx:id="fightingBox" mnemonicParsing="false" text="Fighting" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <CheckBox fx:id="familyBox" mnemonicParsing="false" text="Family" GridPane.rowIndex="4" />
+            <CheckBox fx:id="boardGamesBox" mnemonicParsing="false" text="Board Games" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <CheckBox fx:id="educationalBox" mnemonicParsing="false" text="Educational" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <CheckBox fx:id="cardBox" mnemonicParsing="false" text="Card" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             <Label alignment="CENTER" text="Select All Applicable Genres" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets />
