@@ -1,5 +1,6 @@
 package src;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
 /**
@@ -31,6 +32,8 @@ public class CentralRoutingController {
     public CheckBox boardGamesBox;
     public CheckBox educationalBox;
     public CheckBox cardBox;
+
+    public Button doneButton;
 
 
 }
