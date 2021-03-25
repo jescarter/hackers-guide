@@ -5,6 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 
+/**
+ *
+ * last updated 03/25/2021
+ * Author(s) Ian Holder,
+ */
+
 public class Main extends Application {
 
     public static void main(String[] args) {
