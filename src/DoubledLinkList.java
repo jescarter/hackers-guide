@@ -34,7 +34,7 @@ public class DoubledLinkList {
             while (current != null){
                 if(current.nodeTitle == _nodeTitle){
                     current.preferenceValue = current.preferenceValue + 1;
-                    order();
+                    orderAscending();
                 }
                 current = current.next;
             }
@@ -68,6 +68,7 @@ public class DoubledLinkList {
                 if(current.nodeTitle == _nodeTitle){
                     if(current.preferenceValue > 1){
                         current.preferenceValue = current.preferenceValue - 1;
+                        orderDescending();
                     }else{
                         remove(current);
                     }
@@ -82,14 +83,26 @@ public class DoubledLinkList {
         _nodeForRemoval.previous.next = _nodeForRemoval.next;
     }
 
-    protected void order(){
+    protected void orderAscending(){
         Node current = tail;
         if(current != head) {
             while (current != null) {
                 if (current.preferenceValue > current.previous.preferenceValue) {
-                    swap(current.next, current);
+                    swap(current.previous, current);
                 }
                 current = current.previous;
+            }
+        }
+    }
+
+    protected void orderDescending(){
+        Node current = head;
+        if(current != tail) {
+            while (current != null) {
+                if (current.preferenceValue < current.next.preferenceValue) {
+                    swap(current, current.next);
+                }
+                current = current.next;
             }
         }
     }
