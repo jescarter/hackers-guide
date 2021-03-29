@@ -3,6 +3,7 @@ package src;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 
 /**
@@ -43,11 +44,20 @@ public class CentralRoutingController {
     public Button disLikeButton;
     public Button likeButton;
     public Button doNotKnowButton;
+
     public ImageView gameCoverArtImageView;
+
+    //game recommendation
+    public Label recommendationGameTitle;
+    public ImageView recommendationGameCoverArt;
+    public Button doneWithRecommendationButton;
+    public ListView recommendationListView;
 
     //when the user clicks the done button pass the checkboxes to a model to handle it
     public void userHasClickedTheDoneButton(){
-        StartScreenController.handleUserStartCheckBoxes();
+        StartScreenController.handleUserStartCheckBoxes(actionBox, indieBox, adventureBox, rpgBox, strategyBox,
+                shooterBox,casualBox, simulationBox,puzzleBox,arcadeBox,platformerBox,racingBox,sportsBox,
+                massivelyMultiplayerBox,fightingBox,familyBox,boardGamesBox,educationalBox,cardBox);
     }
 
 }

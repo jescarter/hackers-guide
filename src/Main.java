@@ -13,6 +13,7 @@ import javafx.stage.Stage;
  */
 
 public class Main extends Application {
+    private Stage primaryStage;
 
     public static void main(String[] args) {
         launch(args);
@@ -22,10 +23,16 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        this.primaryStage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("startScreen.fxml"));
         primaryStage.setTitle("Game Genie");
         primaryStage.setScene(new Scene(root,Utility.stageWidth(),Utility.stageHeight()));
         primaryStage.show();
 
+    }
+
+    public void changeScene(String _scenefxml) throws Exception{
+        Parent pane = FXMLLoader.load(getClass().getResource(_scenefxml));
+        primaryStage.getScene().setRoot(pane);
     }
 }
