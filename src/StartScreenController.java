@@ -9,7 +9,6 @@ import javafx.scene.control.CheckBox;
  */
 
 public class StartScreenController {
-
     public static void handleUserStartCheckBoxes(CheckBox _actionBox, CheckBox _indieBox, CheckBox _adventureBox,
                                                  CheckBox _rpgBox, CheckBox _strategyBox, CheckBox _shooterBox,
                                                  CheckBox _casualBox, CheckBox _simulationBox, CheckBox _puzzleBox,
@@ -23,4 +22,8 @@ public class StartScreenController {
                 _fightingBox,_familyBox,_boardGamesBox, _educationalBox,_cardBox);
     }
 
+    //public void changeScene(String _scenefxml) throws Exception{
+   //     Parent pane = FXMLLoader.load(getClass().getResource(_scenefxml));
+   //     primaryStage.getScene().setRoot(pane);
+   // }
 }

@@ -1,26 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b265ea58-941f-4ed5-b2b2-6b5781012547" name="Default Changelist" comment="moved Emily's api translators into the scr package">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hackers-guide.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/hackers-guide/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/hackers-guide/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/hackers-guide/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/hackers-guide/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/hackers-guide/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/hackers-guide/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/hackers-guide/hackers-guide.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/hackers-guide/src/gamePickerScreen.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/hackers-guide/src/gameRecommendationScreen.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/hackers-guide/src/startScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="b265ea58-941f-4ed5-b2b2-6b5781012547" name="Default Changelist" comment="I hope that it should be working, having to add a external javafx lib">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/hackers-guide/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/hackers-guide/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DoubledLinkList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DoubledLinkList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameInfoTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameInfoTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GenreTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GenreTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StartScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StartScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utility.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,8 +60,10 @@
       <recent name="src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ianal\Documents\GitHub\hackers-guide\lib" />
       <recent name="C:\Users\ianal\Documents\GitHub\hackers-guide\src" />
+      <recent name="C:\Users\ianal\Documents\GitHub\hackers-guide\veiws" />
+      <recent name="C:\Users\ianal\Documents\GitHub\hackers-guide" />
+      <recent name="C:\Users\ianal\Documents\GitHub\hackers-guide\lib" />
     </key>
   </component>
   <component name="RunManager">
@@ -84,13 +75,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -113,7 +106,8 @@
       <workItem from="1617041458132" duration="1512000" />
       <workItem from="1617043602749" duration="2508000" />
       <workItem from="1617048203216" duration="45000" />
-      <workItem from="1617048358133" duration="5939000" />
+      <workItem from="1617048358133" duration="9316000" />
+      <workItem from="1617115206183" duration="8578000" />
     </task>
     <task id="LOCAL-00001" summary="Added basic fxml beginning point">
       <created>1616684591966</created>
@@ -185,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617042388302</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="I hope that it should be working, having to add a external javafx lib">
+      <created>1617057365158</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1617057365159</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,6 +215,7 @@
     <MESSAGE value="added a user class with a doubled link list have the start screen work" />
     <MESSAGE value="created two ordering functions for the doubled link list for adding nodes and removing" />
     <MESSAGE value="moved Emily's api translators into the scr package" />
-    <option name="LAST_COMMIT_MESSAGE" value="moved Emily's api translators into the scr package" />
+    <MESSAGE value="I hope that it should be working, having to add a external javafx lib" />
+    <option name="LAST_COMMIT_MESSAGE" value="I hope that it should be working, having to add a external javafx lib" />
   </component>
 </project>

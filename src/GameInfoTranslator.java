@@ -1,19 +1,17 @@
-package src;
-
-/*
+package src;/*
 Last updated: 24 March, 2021
 This class will call on the RAWG API, prompt the user to enter a video game search query, and display the most relevant results.
 Authors: Emily Crabtree
 */
 
-import java.util.Scanner;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Scanner;
 
 
 public class GameInfoTranslator {

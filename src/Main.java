@@ -13,7 +13,9 @@ import javafx.stage.Stage;
  */
 
 public class Main extends Application {
-    private Stage primaryStage;
+    private final double STAGEWIDTH = 600.0;
+    private final double STAGEHEIGHT = 800.0;
+    Stage primaryStage;
 
     public static void main(String[] args) {
         launch(args);
@@ -26,13 +28,9 @@ public class Main extends Application {
         this.primaryStage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("startScreen.fxml"));
         primaryStage.setTitle("Game Genie");
-        primaryStage.setScene(new Scene(root,Utility.stageWidth(),Utility.stageHeight()));
+        primaryStage.setScene(new Scene(root,STAGEWIDTH,STAGEHEIGHT));
         primaryStage.show();
 
     }
 
-    public void changeScene(String _scenefxml) throws Exception{
-        Parent pane = FXMLLoader.load(getClass().getResource(_scenefxml));
-        primaryStage.getScene().setRoot(pane);
-    }
 }

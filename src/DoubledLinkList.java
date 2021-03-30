@@ -2,7 +2,7 @@ package src;
 
 /**
  * a doubled link list to store and order the values from user input
- * last updated 03/28/2021
+ * last updated 03/30/2021
  * Author(s) Ian Holder,
  */
 
@@ -10,8 +10,8 @@ public class DoubledLinkList {
     class Node{
         String nodeTitle;
         int preferenceValue;
-        Node previous;
-        Node next;
+        Node previous = null;
+        Node next = null;
 
         public Node(String _nodeTitle, int _preferenceValue){
             nodeTitle = _nodeTitle;
@@ -28,6 +28,7 @@ public class DoubledLinkList {
             head = tail = newNode;
             head.previous = null;
             tail.next = null;
+            printList();
         }else if(listContains(_nodeTitle)){
             Node current = head;
 
@@ -37,12 +38,14 @@ public class DoubledLinkList {
                     orderAscending();
                 }
                 current = current.next;
+                printList();
             }
         }else{
             tail.next = newNode;
             newNode.previous = tail;
             tail = newNode;
             tail.next = null;
+            printList();
         }
     }
 
@@ -85,34 +88,44 @@ public class DoubledLinkList {
 
     protected void orderAscending(){
         Node current = tail;
-        if(current != head) {
-            while (current != null) {
+
+            while (current != head) {
                 if (current.preferenceValue > current.previous.preferenceValue) {
                     swap(current.previous, current);
                 }
                 current = current.previous;
             }
-        }
+
     }
 
     protected void orderDescending(){
         Node current = head;
-        if(current != tail) {
-            while (current != null) {
-                if (current.preferenceValue < current.next.preferenceValue) {
-                    swap(current, current.next);
-                }
-                current = current.next;
+
+        while (current != tail) {
+            if (current.preferenceValue < current.next.preferenceValue) {
+                swap(current, current.next);
             }
+            current = current.next;
         }
+
     }
 
-    //switch the position of two nodes in the list
+    //switch the position of two nodes in the list that are next to each other
     protected void swap(Node _lesserValue, Node _greaterValue){
-        _greaterValue.previous = _lesserValue.previous;
-        _greaterValue.next.previous = _lesserValue;
-        _greaterValue.next = _lesserValue;
-        _lesserValue.previous = _greaterValue;
+        Node tempNode = new Node(_lesserValue.nodeTitle, _lesserValue.preferenceValue);
+
+        _lesserValue.nodeTitle = _greaterValue.nodeTitle;
+        _lesserValue.preferenceValue = _greaterValue.preferenceValue;
+        _greaterValue.nodeTitle = tempNode.nodeTitle;
+        _greaterValue.preferenceValue = tempNode.preferenceValue;
+    }
+
+    protected void printList(){
+        Node current = head;
+        while (current != null){
+            System.out.println(current.nodeTitle);
+            current = current.next;
+        }
     }
 
 
