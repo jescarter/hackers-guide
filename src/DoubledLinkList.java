@@ -33,7 +33,7 @@ public class DoubledLinkList {
             Node current = head;
 
             while (current != null){
-                if(current.nodeTitle == _nodeTitle){
+                if(current.nodeTitle.equals(_nodeTitle)){
                     current.preferenceValue = current.preferenceValue + 1;
                     orderAscending();
                 }
@@ -54,7 +54,7 @@ public class DoubledLinkList {
         Node current = head;
 
         while(current != null){
-            if(current.nodeTitle == _searchingNodeTitle){
+            if(current.nodeTitle.equals(_searchingNodeTitle)){
                 return true;
             }
             current = current.next;
@@ -68,7 +68,7 @@ public class DoubledLinkList {
             Node current = head;
 
             while(current != null){
-                if(current.nodeTitle == _nodeTitle){
+                if(current.nodeTitle.equals(_nodeTitle)){
                     if(current.preferenceValue > 1){
                         current.preferenceValue = current.preferenceValue - 1;
                         orderDescending();
