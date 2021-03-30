@@ -20,10 +20,7 @@ public class StartScreenController {
         User.checkBoxHandler(_actionBox,_indieBox,_adventureBox,_rpgBox,_strategyBox,_shooterBox,_casualBox,
                 _simulationBox,_puzzleBox,_arcadeBox, _platformerBox,_racingBox,_sportsBox,_massivelyMultiplayerBox,
                 _fightingBox,_familyBox,_boardGamesBox, _educationalBox,_cardBox);
+
     }
 
-    //public void changeScene(String _scenefxml) throws Exception{
-   //     Parent pane = FXMLLoader.load(getClass().getResource(_scenefxml));
-   //     primaryStage.getScene().setRoot(pane);
-   // }
 }
