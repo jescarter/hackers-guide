@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<!--the format for the start screen that should show if the application is run for the first time
+Last Updated 03/25/2021
+ Author(s) Ian Holder-->
+
+<AnchorPane prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.CentralRoutingController">
+   <children>
+      <GridPane alignment="CENTER" hgap="5.0" layoutX="112.0" layoutY="199.0" prefHeight="800.0" prefWidth="450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <CheckBox fx:id="actionBox" mnemonicParsing="false" text="Action" GridPane.rowIndex="1" />
+            <CheckBox fx:id="shooterBox" mnemonicParsing="false" text="Shooter" GridPane.rowIndex="2" />
+            <CheckBox fx:id="indieBox" mnemonicParsing="false" text="Indie" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <CheckBox fx:id="casualBox" mnemonicParsing="false" text="Casual" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <CheckBox fx:id="adventureBox" mnemonicParsing="false" text="Adventure" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <CheckBox fx:id="rpgBox" mnemonicParsing="false" text="RPG" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <CheckBox fx:id="strategyBox" mnemonicParsing="false" text="Strategy" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <CheckBox fx:id="simulationBox" mnemonicParsing="false" text="Simulation" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <CheckBox fx:id="puzzleBox" mnemonicParsing="false" text="Puzzle" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <CheckBox fx:id="arcadeBox" mnemonicParsing="false" text="Arcade" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <CheckBox fx:id="platformerBox" mnemonicParsing="false" text="Platformer" GridPane.rowIndex="3" />
+            <CheckBox fx:id="racingBox" mnemonicParsing="false" text="Racing" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <CheckBox fx:id="sportsBox" mnemonicParsing="false" text="Sports" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <CheckBox fx:id="massivelyMultiplayerBox" mnemonicParsing="false" text="Massively Multiplayer" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <CheckBox fx:id="fightingBox" mnemonicParsing="false" text="Fighting" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <CheckBox fx:id="familyBox" mnemonicParsing="false" text="Family" GridPane.rowIndex="4" />
+            <CheckBox fx:id="boardGamesBox" mnemonicParsing="false" text="Board Games" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <CheckBox fx:id="educationalBox" mnemonicParsing="false" text="Educational" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <CheckBox fx:id="cardBox" mnemonicParsing="false" text="Card" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Label alignment="CENTER" text="Select All Applicable Genres" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Label>
+            <Button fx:id="doneButton" alignment="CENTER" mnemonicParsing="false" onAction="#userHasClickedTheDoneButton" text="Done" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+         </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </GridPane>
+   </children>
+</AnchorPane>

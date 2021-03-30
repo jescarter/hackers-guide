@@ -9,7 +9,6 @@ import javafx.scene.control.CheckBox;
  */
 
 public class StartScreenController {
-
     public static void handleUserStartCheckBoxes(CheckBox _actionBox, CheckBox _indieBox, CheckBox _adventureBox,
                                                  CheckBox _rpgBox, CheckBox _strategyBox, CheckBox _shooterBox,
                                                  CheckBox _casualBox, CheckBox _simulationBox, CheckBox _puzzleBox,
@@ -21,6 +20,7 @@ public class StartScreenController {
         User.checkBoxHandler(_actionBox,_indieBox,_adventureBox,_rpgBox,_strategyBox,_shooterBox,_casualBox,
                 _simulationBox,_puzzleBox,_arcadeBox, _platformerBox,_racingBox,_sportsBox,_massivelyMultiplayerBox,
                 _fightingBox,_familyBox,_boardGamesBox, _educationalBox,_cardBox);
+
     }
 
 }
