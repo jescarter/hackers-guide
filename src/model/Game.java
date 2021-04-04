@@ -1,4 +1,4 @@
-package src;
+package src.model;
 
 /**
  * Create game objects with api data to be used for views
