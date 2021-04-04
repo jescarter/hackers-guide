@@ -1,6 +1,7 @@
-package src;
+package src.controller;
 
 import javafx.scene.control.CheckBox;
+import src.model.User;
 
 /**
  * A controller that is going to pass the start screen information to a model to handle it
