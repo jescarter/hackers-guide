@@ -13,4 +13,3 @@ public class User {
     public static DoubledLinkList userTags = new DoubledLinkList();
 
 }
-
