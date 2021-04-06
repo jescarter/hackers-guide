@@ -1,7 +1,11 @@
-package src.controller;
+package Controller;
 
+import GameGenie.GameGenieController;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import src.model.User;
+
+import static Model.User.userGenres;
 
 /**
  * A controller that is going to pass the start screen information to a model to handle it
@@ -10,18 +14,108 @@ import src.model.User;
  */
 
 public class StartScreenController {
-    public static void handleUserStartCheckBoxes(CheckBox _actionBox, CheckBox _indieBox, CheckBox _adventureBox,
-                                                 CheckBox _rpgBox, CheckBox _strategyBox, CheckBox _shooterBox,
-                                                 CheckBox _casualBox, CheckBox _simulationBox, CheckBox _puzzleBox,
-                                                 CheckBox _arcadeBox, CheckBox _platformerBox, CheckBox _racingBox,
-                                                 CheckBox _sportsBox, CheckBox _massivelyMultiplayerBox,
-                                                 CheckBox _fightingBox, CheckBox _familyBox, CheckBox _boardGamesBox,
-                                                 CheckBox _educationalBox, CheckBox _cardBox) {
-        //a class that will handle the start check boxes to load into the user genera link list
-        User.checkBoxHandler(_actionBox,_indieBox,_adventureBox,_rpgBox,_strategyBox,_shooterBox,_casualBox,
-                _simulationBox,_puzzleBox,_arcadeBox, _platformerBox,_racingBox,_sportsBox,_massivelyMultiplayerBox,
-                _fightingBox,_familyBox,_boardGamesBox, _educationalBox,_cardBox);
+    @FXML
+    private CheckBox actionBox;
+    @FXML
+    private CheckBox shooterBox;
+    @FXML
+    private CheckBox indieBox;
+    @FXML
+    private CheckBox casualBox;
+    @FXML
+    private CheckBox adventureBox;
+    @FXML
+    private CheckBox rpgBox;
+    @FXML
+    private CheckBox strategyBox;
+    @FXML
+    private CheckBox simulationBox;
+    @FXML
+    private CheckBox puzzleBox;
+    @FXML
+    private CheckBox arcadeBox;
+    @FXML
+    private CheckBox platformerBox;
+    @FXML
+    private CheckBox racingBox;
+    @FXML
+    private CheckBox sportsBox;
+    @FXML
+    private CheckBox massivelyMultiplayerBox;
+    @FXML
+    private CheckBox fightingBox;
+    @FXML
+    private CheckBox familyBox;
+    @FXML
+    private CheckBox boardGamesBox;
+    @FXML
+    private CheckBox educationalBox;
+    @FXML
+    private CheckBox cardBox;
 
+    public Button doneButton;
+
+
+    @FXML void handleUserStartCheckBoxes() {
+        if (this.actionBox.isSelected()) {
+            userGenres.addElement("Action", 1);
+        }
+        if (this.indieBox.isSelected()) {
+            userGenres.addElement("Indie", 1);
+        }
+        if (this.adventureBox.isSelected()) {
+            userGenres.addElement("Adventure", 1);
+        }
+        if (this.rpgBox.isSelected()) {
+            userGenres.addElement("RPG", 1);
+        }
+        if (this.strategyBox.isSelected()) {
+            userGenres.addElement("Strategy", 1);
+        }
+        if (this.shooterBox.isSelected()) {
+            userGenres.addElement("Shooter", 1);
+        }
+        if (this.casualBox.isSelected()) {
+            userGenres.addElement("Casual", 1);
+        }
+        if (this.simulationBox.isSelected()) {
+            userGenres.addElement("Simulation", 1);
+        }
+        if (this.puzzleBox.isSelected()) {
+            userGenres.addElement("Puzzle", 1);
+        }
+        if (this.arcadeBox.isSelected()) {
+            userGenres.addElement("Arcade", 1);
+        }
+        if (this.platformerBox.isSelected()) {
+            userGenres.addElement("Platformer", 1);
+        }
+        if (this.racingBox.isSelected()) {
+            userGenres.addElement("Racing", 1);
+        }
+        if (this.sportsBox.isSelected()) {
+            userGenres.addElement("Sports", 1);
+        }
+        if (this.massivelyMultiplayerBox.isSelected()) {
+            userGenres.addElement("Massively Multiplayer", 1);
+        }
+        if (this.fightingBox.isSelected()) {
+            userGenres.addElement("Fighting", 1);
+        }
+        if (this.familyBox.isSelected()) {
+            userGenres.addElement("Family", 1);
+        }
+        if (this.boardGamesBox.isSelected()) {
+            userGenres.addElement("Board Games", 1);
+        }
+        if (this.educationalBox.isSelected()) {
+            userGenres.addElement("Educational", 1);
+        }
+        if (this.cardBox.isSelected()) {
+            userGenres.addElement("Card", 1);
+        }
+        GameGenieController.getInstance().changeSceneIntoGamePicker();
     }
+
 
 }

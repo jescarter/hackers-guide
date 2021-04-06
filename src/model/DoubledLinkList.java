@@ -1,4 +1,4 @@
-package src.model;
+package Model;
 
 /**
  * a doubled link list to store and order the values from user input
@@ -7,40 +7,44 @@ package src.model;
  */
 
 public class DoubledLinkList {
-    class Node{
+    class Node {
         String nodeTitle;
         int preferenceValue;
         Node previous = null;
         Node next = null;
 
-        public Node(String _nodeTitle, int _preferenceValue){
+        public Node(String _nodeTitle, int _preferenceValue) {
             nodeTitle = _nodeTitle;
             preferenceValue = _preferenceValue;
         }
     }
-    Node head,tail = null;
 
-    public void addNode(String _nodeTitle){
-        Node newNode = new Node(_nodeTitle, 1);
+    Node head = null;
+    Node tail = null;
+
+    public void addElement(String _nodeTitle, int _preferenceValue) {
+        Node newNode = new Node(_nodeTitle, _preferenceValue);
 
         //check if the list is empty
-        if(head == null){
+        if (head == null) {
             head = tail = newNode;
             head.previous = null;
             tail.next = null;
             printList();
-        }else if(listContains(_nodeTitle)){
+        } else if (listContains(_nodeTitle)) {
             Node current = head;
+            Boolean found = false;
 
-            while (current != null){
-                if(current.nodeTitle.equals(_nodeTitle)){
-                    current.preferenceValue = current.preferenceValue + 1;
+            while (current != null && !found) {
+                if (current.nodeTitle.equals(_nodeTitle)) {
+                    current.preferenceValue = current.preferenceValue + newNode.preferenceValue;
                     orderAscending();
+                    found = true;
                 }
                 current = current.next;
                 printList();
             }
-        }else{
+        } else {
             tail.next = newNode;
             newNode.previous = tail;
             tail = newNode;
@@ -50,11 +54,11 @@ public class DoubledLinkList {
     }
 
     //search the list for if there is a node with the same title
-    protected boolean listContains(String _searchingNodeTitle){
+    protected boolean listContains(String _searchingNodeTitle) {
         Node current = head;
 
-        while(current != null){
-            if(current.nodeTitle.equals(_searchingNodeTitle)){
+        while (current != null) {
+            if (current.nodeTitle.equals(_searchingNodeTitle)) {
                 return true;
             }
             current = current.next;
@@ -63,16 +67,17 @@ public class DoubledLinkList {
         return false;
     }
 
-    public void removeNode(String _nodeTitle){
-        if(listContains(_nodeTitle)){
+    //need to rewrite
+    public void removeNode(String _nodeTitle) {
+        if (listContains(_nodeTitle)) {
             Node current = head;
 
-            while(current != null){
-                if(current.nodeTitle.equals(_nodeTitle)){
-                    if(current.preferenceValue > 1){
+            while (current != null) {
+                if (current.nodeTitle.equals(_nodeTitle)) {
+                    if (current.preferenceValue > 1) {
                         current.preferenceValue = current.preferenceValue - 1;
                         orderDescending();
-                    }else{
+                    } else {
                         remove(current);
                     }
                 }
@@ -81,24 +86,24 @@ public class DoubledLinkList {
         }
     }
 
-    protected void remove(Node _nodeForRemoval){
+    protected void remove(Node _nodeForRemoval) {
         _nodeForRemoval.next.previous = _nodeForRemoval.previous;
         _nodeForRemoval.previous.next = _nodeForRemoval.next;
     }
 
-    protected void orderAscending(){
+    protected void orderAscending() {
         Node current = tail;
 
-            while (current != head) {
-                if (current.preferenceValue > current.previous.preferenceValue) {
-                    swap(current.previous, current);
-                }
-                current = current.previous;
+        while (current != head) {
+            if (current.preferenceValue > current.previous.preferenceValue) {
+                swap(current.previous, current);
             }
+            current = current.previous;
+        }
 
     }
 
-    protected void orderDescending(){
+    protected void orderDescending() {
         Node current = head;
 
         while (current != tail) {
@@ -111,7 +116,7 @@ public class DoubledLinkList {
     }
 
     //switch the position of two nodes in the list that are next to each other
-    protected void swap(Node _lesserValue, Node _greaterValue){
+    protected void swap(Node _lesserValue, Node _greaterValue) {
         Node tempNode = new Node(_lesserValue.nodeTitle, _lesserValue.preferenceValue);
 
         _lesserValue.nodeTitle = _greaterValue.nodeTitle;
@@ -120,9 +125,10 @@ public class DoubledLinkList {
         _greaterValue.preferenceValue = tempNode.preferenceValue;
     }
 
-    protected void printList(){
+    //to help debug
+    protected void printList() {
         Node current = head;
-        while (current != null){
+        while (current != null) {
             System.out.println(current.nodeTitle);
             current = current.next;
         }
