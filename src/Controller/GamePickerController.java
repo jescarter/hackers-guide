@@ -72,10 +72,10 @@ public class GamePickerController {
     }
 
     public void getNextGame(){
-        if(currentGame == null){
-            setCurrentGame( new Game("Actions", 000,"E.T.", new String[]{"BAD"}, 06, 3,
-                    "https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Etvideogamecover.jpg/220px-Etvideogamecover.jpg"));
-        }
+            if(gameQueue.isEmpty()){
+                gameQueue = Load.getGameQueue();
+            }
+            setCurrentGame((Game)gameQueue.poll());
     }
 
     public void getRecommendationClicked(){

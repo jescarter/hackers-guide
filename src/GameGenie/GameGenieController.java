@@ -43,7 +43,6 @@ public class GameGenieController {
 
     //make the GameGenieController a singleton
     public static GameGenieController getInstance(){
-
         if(controller == null){
             controller = new GameGenieController();
         }

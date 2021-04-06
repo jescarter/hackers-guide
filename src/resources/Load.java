@@ -18,6 +18,13 @@ public class Load {
 
     public static GameQueue getGameQueue(){
         //placeholder
-        return new GameQueue();
+        GameQueue queue = new GameQueue();
+        queue.add(new Game("Actions", 000,"E.T.", new String[]{"BAD"}, 06, 3,
+                "https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Etvideogamecover.jpg/220px-Etvideogamecover.jpg"));
+        queue.add(new Game("Actions", 000,"SomeThing 1", new String[]{"BAD"}, 06, 3,
+                "https://lh3.googleusercontent.com/proxy/ioX3st70qwYbVmKtj40GizOUTfjKHmD-AJQbcuOZ1IqXy8FnJ54EYwt0Mrcswd2zoHd7L37zZDdjsgilbrc1OMEIx_-tlORuAvJ5fADSHpSpRDKtrnIqSwtTqDuv"));
+        queue.add(new Game("Actions", 000,"Something 2", new String[]{"BAD"}, 06, 3,
+                "http://cdn.shopify.com/s/files/1/0376/5420/0459/files/Nothing_Blog_-_Graph_Image_2x_c9a4ec76-256c-400d-979d-6349ca93f3f4.png?v=1611747534"));
+        return queue;
     }
 }
