@@ -1,7 +1,7 @@
 package src.model;
 /*
 Last updated: 6 April, 2021
-This class will call on the RAWG API and display all possible genres.
+This class will call on the RAWG API and display all possible tags.
 Authors: Emily Crabtree
 */
 
@@ -14,13 +14,14 @@ import org.json.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class GenreTranslator {
+public class TagsTranslator {
 
     //=================  GETTERS ===============
-    public static void getGenres () {
+    public static void getTags () {
 
+        // https://api.rawg.io/api/platforms?key=bebda822617e46b9bd3c5af8402b1a24
         // Create a HTTP Connection.
-        String baseUrl = "https://api.rawg.io/api/genres?key=";
+        String baseUrl = "https://api.rawg.io/api/tags?key=";
         String apiKey = "bebda822617e46b9bd3c5af8402b1a24";
         String urlString = baseUrl + apiKey;
 
@@ -34,7 +35,7 @@ public class GenreTranslator {
             // Examine the response code.
             int status = con.getResponseCode();
             if (status != 200) {
-                System.out.printf("Error: Could not load genres: " + status);
+                System.out.printf("Error: Could not load tags: " + status);
             } else {
                 // Parsing input stream into a text string.
                 BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
@@ -48,13 +49,13 @@ public class GenreTranslator {
                 con.disconnect();
                 // Parse that object into a usable Java JSON object and into a JSON array.
                 JSONObject obj = new JSONObject(content.toString());
-                JSONArray genres_array = obj.getJSONArray("results");
+                JSONArray tags_array = obj.getJSONArray("results");
 
                 // Print out the results.
-                System.out.println("Genres: ");
-                for (int i = 0; i < genres_array.length(); i++){
-                    JSONObject obj_genres = genres_array.getJSONObject(i);
-                    System.out.println(obj_genres.getString("name") + ", ID: " + obj_genres.getString("id"));
+                System.out.println("Tags: ");
+                for (int i = 0; i < tags_array.length(); i++){
+                    JSONObject obj_tags = tags_array.getJSONObject(i);
+                    System.out.println(obj_tags.getString("name") + ", ID: " + obj_tags.getString("id"));
                 }
             }
         } catch (Exception ex) {
