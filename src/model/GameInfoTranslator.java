@@ -16,7 +16,6 @@ import org.json.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-
 public class GameInfoTranslator {
 
     //=================  GETTERS ===============
@@ -25,7 +24,6 @@ public class GameInfoTranslator {
         System.out.println("Enter a video game search query: ");
         String query = input.nextLine();
         query = query.replace(" ", "-");
-
 
         // https://api.rawg.io/api/platforms?key=bebda822617e46b9bd3c5af8402b1a24
         // Create a HTTP Connection.
