@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import resources.GameQueue;
+import resources.Load;
 
 import static Model.User.*;
 
@@ -36,6 +37,7 @@ public class GamePickerController {
     protected ImageView gameCoverArtImageView;
 
     @FXML public void initialize(){
+        gameQueue = Load.getGameQueue();
         getNextGame();
     }
 
