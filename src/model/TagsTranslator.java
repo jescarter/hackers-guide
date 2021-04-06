@@ -14,7 +14,6 @@ import org.json.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-
 public class TagsTranslator {
 
     //=================  GETTERS ===============
@@ -53,7 +52,7 @@ public class TagsTranslator {
                 JSONArray tags_array = obj.getJSONArray("results");
 
                 // Print out the results.
-                System.out.print("Tags: ");
+                System.out.println("Tags: ");
                 for (int i = 0; i < tags_array.length(); i++){
                     JSONObject obj_tags = tags_array.getJSONObject(i);
                     System.out.println(obj_tags.getString("name") + ", ID: " + obj_tags.getString("id"));
