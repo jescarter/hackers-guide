@@ -41,15 +41,15 @@ public class GamePickerController {
 
     public void DislikeClicked(ActionEvent actionEvent) {
         for (String tag : currentGame.getTags()) {
-            dislikedTags.addNode(tag);
+            userTags.addString(tag, -1);
         }
         getNextGame();
     }
 
     public void LikeClicked(ActionEvent actionEvent) {
-        userGenres.addNode(currentGame.getGenre());
+        userGenres.addString(currentGame.getGenre(), 1);
         for (String tag : currentGame.getTags()) {
-            likedTags.addNode(tag);
+            userTags.addString(tag,1);
         }
         getNextGame();
     }

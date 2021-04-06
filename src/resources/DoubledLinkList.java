@@ -22,8 +22,8 @@ public class DoubledLinkList {
     Node head = null;
     Node tail = null;
 
-    public void addNode(String _nodeTitle) {
-        Node newNode = new Node(_nodeTitle, 1);
+    public void addString(String _nodeTitle, int _preferenceValue) {
+        Node newNode = new Node(_nodeTitle, _preferenceValue);
 
         //check if the list is empty
         if (head == null) {
@@ -37,7 +37,7 @@ public class DoubledLinkList {
 
             while (current != null && !found) {
                 if (current.nodeTitle.equals(_nodeTitle)) {
-                    current.preferenceValue = current.preferenceValue + 1;
+                    current.preferenceValue = current.preferenceValue + newNode.preferenceValue;
                     orderAscending();
                     found = true;
                 }
@@ -67,6 +67,7 @@ public class DoubledLinkList {
         return false;
     }
 
+    //need to rewrite
     public void removeNode(String _nodeTitle) {
         if (listContains(_nodeTitle)) {
             Node current = head;

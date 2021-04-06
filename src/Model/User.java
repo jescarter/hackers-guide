@@ -10,7 +10,6 @@ import resources.DoubledLinkList;
 
 public class User {
     public static DoubledLinkList userGenres = new DoubledLinkList();
-    public static DoubledLinkList likedTags = new DoubledLinkList();
-    public static DoubledLinkList dislikedTags = new DoubledLinkList();
+    public static DoubledLinkList userTags = new DoubledLinkList();
 
 }
