@@ -1,4 +1,5 @@
-package src.model;/*
+package Model;
+/*
 Last updated: 24 March, 2021
 This class will call on the RAWG API, prompt the user to enter a video game search query, and display the most relevant results.
 Authors: Emily Crabtree

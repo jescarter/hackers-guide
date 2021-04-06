@@ -72,10 +72,10 @@ public class GamePickerController {
     }
 
     public void getNextGame(){
-            if(gameQueue == null || gameQueue.isEmpty()){
-                gameQueue = Load.getGameQueue();
-            }
-            setCurrentGame((Game)gameQueue.poll());
+        if(gameQueue == null || gameQueue.isEmpty()){
+            gameQueue = Load.getGameQueue();
+        }
+        setCurrentGame((Game)gameQueue.poll());
     }
 
     public void getRecommendationClicked(){

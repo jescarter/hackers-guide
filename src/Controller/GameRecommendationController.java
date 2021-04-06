@@ -35,3 +35,4 @@ public class GameRecommendationController {
         GameGenieController.getInstance().changeSceneIntoGamePicker();
     }
 }
+

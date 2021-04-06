@@ -1,4 +1,13 @@
-package src.model;
+package Model;
+
+import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.FileAttribute;
 
 /**
  * Create game objects with api data to be used for views
@@ -7,25 +16,35 @@ package src.model;
  */
 
 public class Game {
-    String genre;
-    int genreID;
-    String title;
-    String[] tags;
-    int metacriticScore;
-    int playtime;
+    protected String genre;
+    protected int genreID;
+    protected String title;
+    protected String[] tags;
+    protected int metacriticScore;
+    protected int playtime;
+    protected URL gameCoverURL;
+    protected Path coverFilePath;
 
-    public void game(String _genre, int _genreID, String _title, String[] _tags, int _metacriticScore, int _playtime){
+    public Game(String _genre, int _genreID, String _title, String[] _tags, int _metacriticScore, int _playtime, String _gameCoverURL) {
         genre = _genre;
         genreID = _genreID;
         title = _title;
         tags = _tags;
         metacriticScore = _metacriticScore;
         playtime = _playtime;
+        try {
+            coverFilePath = Files.createTempFile("tmp", ".jpg");
+            gameCoverURL = new URL(_gameCoverURL);
+            InputStream inputStream = gameCoverURL.openStream();
+            Files.copy(inputStream, coverFilePath, StandardCopyOption.REPLACE_EXISTING);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     //=================  GETTERS ===============
 
-    public String getTitle(){
+    public String getTitle() {
         return title;
     }
 
@@ -49,4 +68,24 @@ public class Game {
         return tags;
     }
 
+    public Path getCoverFilePath() {
+        return coverFilePath;
+    }
+
+    public URL getGameCoverURL() {
+        return gameCoverURL;
+    }
+
+    //=================  SETTERS ===============
+    public void setCoverFilePath(){
+        Path newPath;
+        try {
+            newPath = Files.createTempFile(title, ".jpg");
+            InputStream inputStream = gameCoverURL.openStream();
+            Files.copy(inputStream, newPath, StandardCopyOption.REPLACE_EXISTING);
+            coverFilePath = newPath;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
