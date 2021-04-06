@@ -1,47 +1,66 @@
-package src.model;/*
-Last updated: 24 March, 2021
+package src.model;
+/*
+Last updated: 6 April, 2021
 This class will call on the RAWG API and display all possible genres.
 Authors: Emily Crabtree
 */
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import org.json.*;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.Scanner;
 
 public class GenreTranslator {
+
+    //=================  GETTERS ===============
     public static void getGenres () {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Would you like to see the available video game genres? (Y/N)");
-        String answer = input.nextLine();
-        if (answer.equals("Y")){
-            try{
-                HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create("https://rawg-video-games-database.p.rapidapi.com/genres"))
-                        .header("x-rapidapi-key", "d5dbc65664mshead682c1774a2bfp18189bjsnfc136a7d5b0d")
-                        .header("x-rapidapi-host", "rawg-video-games-database.p.rapidapi.com")
-                        .method("GET", HttpRequest.BodyPublishers.noBody())
-                        .build();
-                HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-                // Parse object into a usable Java JSON object.
-                JSONObject obj = new JSONObject(response.body());
-                JSONArray genre_array = obj.getJSONArray("JSON");
 
+        // Create a HTTP Connection.
+        String baseUrl = "https://api.rawg.io/api/genres?key=";
+        String apiKey = "bebda822617e46b9bd3c5af8402b1a24";
+        String urlString = baseUrl + apiKey;
 
-                System.out.print("Available genres: ");
-                for (int i = 0; i < genre_array.length(); i++){
-                    JSONObject genres = genre_array.getJSONObject(i);
-                    System.out.println(genres.getString("name"));
+        URL url;
+        try {
+            // Make the connection.
+            url = new URL(urlString);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+
+            // Examine the response code.
+            int status = con.getResponseCode();
+            if (status != 200) {
+                System.out.printf("Error: Could not load genres: " + status);
+            } else {
+                // Parsing input stream into a text string.
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuffer content = new StringBuffer();
+                while ((inputLine = in.readLine()) != null) {
+                    content.append(inputLine);
                 }
+                // Close the connections.
+                in.close();
+                con.disconnect();
+                // Parse that object into a usable Java JSON object and into a JSON array.
+                JSONObject obj = new JSONObject(content.toString());
+                JSONArray genres_array = obj.getJSONArray("results");
 
-            } catch (Exception ex) {
-                System.out.println("Error.");
+                // Print out the results.
+                System.out.print("Genres: ");
+                for (int i = 0; i < genres_array.length(); i++){
+                    JSONObject obj_genres = genres_array.getJSONObject(i);
+                    System.out.println(obj_genres.getString("name") + ", ID: " + obj_genres.getString("id"));
+                }
             }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex);
+            return;
         }
-        else return;
     }
 }
