@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import resources.Load;
 
@@ -25,6 +26,9 @@ public class GameRecommendationController {
 
     @FXML public void initialize(){
         currentGame = Load.getRecommendation();
+        recommendationGameTitle.setText(currentGame.getTitle());
+        recommendationGameCoverArt.setImage(new Image("File:" + currentGame.getCoverFilePath().toString()));
+        //recommendationListView.setItems();
     }
 
     public void doneClicked(){

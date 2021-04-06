@@ -37,7 +37,7 @@ public class GamePickerController {
     protected ImageView gameCoverArtImageView;
 
     @FXML public void initialize(){
-        gameQueue = Load.getGameQueue();
+        //gameQueue = Load.getGameQueue();
         getNextGame();
     }
 
@@ -72,7 +72,7 @@ public class GamePickerController {
     }
 
     public void getNextGame(){
-            if(gameQueue.isEmpty()){
+            if(gameQueue == null || gameQueue.isEmpty()){
                 gameQueue = Load.getGameQueue();
             }
             setCurrentGame((Game)gameQueue.poll());
