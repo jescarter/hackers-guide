@@ -1,5 +1,7 @@
 package Model;
 
+import resources.DoubledLinkList;
+
 /**
  * the user to hold user selections and
  * last updated 03/28/2021
