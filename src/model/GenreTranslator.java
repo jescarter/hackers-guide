@@ -14,7 +14,6 @@ import org.json.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-
 public class GenreTranslator {
 
     //=================  GETTERS ===============
@@ -52,7 +51,7 @@ public class GenreTranslator {
                 JSONArray genres_array = obj.getJSONArray("results");
 
                 // Print out the results.
-                System.out.print("Genres: ");
+                System.out.println("Genres: ");
                 for (int i = 0; i < genres_array.length(); i++){
                     JSONObject obj_genres = genres_array.getJSONObject(i);
                     System.out.println(obj_genres.getString("name") + ", ID: " + obj_genres.getString("id"));
