@@ -22,7 +22,7 @@ public class DoubledLinkList {
     Node head = null;
     Node tail = null;
 
-    public void addString(String _nodeTitle, int _preferenceValue) {
+    public void addElement(String _nodeTitle, int _preferenceValue) {
         Node newNode = new Node(_nodeTitle, _preferenceValue);
 
         //check if the list is empty

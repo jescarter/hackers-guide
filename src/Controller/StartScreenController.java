@@ -58,61 +58,61 @@ public class StartScreenController {
 
     @FXML void handleUserStartCheckBoxes() {
         if (this.actionBox.isSelected()) {
-            userGenres.addString("Action", 1);
+            userGenres.addElement("Action", 1);
         }
         if (this.indieBox.isSelected()) {
-            userGenres.addString("Indie", 1);
+            userGenres.addElement("Indie", 1);
         }
         if (this.adventureBox.isSelected()) {
-            userGenres.addString("Adventure", 1);
+            userGenres.addElement("Adventure", 1);
         }
         if (this.rpgBox.isSelected()) {
-            userGenres.addString("RPG", 1);
+            userGenres.addElement("RPG", 1);
         }
         if (this.strategyBox.isSelected()) {
-            userGenres.addString("Strategy", 1);
+            userGenres.addElement("Strategy", 1);
         }
         if (this.shooterBox.isSelected()) {
-            userGenres.addString("Shooter", 1);
+            userGenres.addElement("Shooter", 1);
         }
         if (this.casualBox.isSelected()) {
-            userGenres.addString("Casual", 1);
+            userGenres.addElement("Casual", 1);
         }
         if (this.simulationBox.isSelected()) {
-            userGenres.addString("Simulation", 1);
+            userGenres.addElement("Simulation", 1);
         }
         if (this.puzzleBox.isSelected()) {
-            userGenres.addString("Puzzle", 1);
+            userGenres.addElement("Puzzle", 1);
         }
         if (this.arcadeBox.isSelected()) {
-            userGenres.addString("Arcade", 1);
+            userGenres.addElement("Arcade", 1);
         }
         if (this.platformerBox.isSelected()) {
-            userGenres.addString("Platformer", 1);
+            userGenres.addElement("Platformer", 1);
         }
         if (this.racingBox.isSelected()) {
-            userGenres.addString("Racing", 1);
+            userGenres.addElement("Racing", 1);
         }
         if (this.sportsBox.isSelected()) {
-            userGenres.addString("Sports", 1);
+            userGenres.addElement("Sports", 1);
         }
         if (this.massivelyMultiplayerBox.isSelected()) {
-            userGenres.addString("Massively Multiplayer", 1);
+            userGenres.addElement("Massively Multiplayer", 1);
         }
         if (this.fightingBox.isSelected()) {
-            userGenres.addString("Fighting", 1);
+            userGenres.addElement("Fighting", 1);
         }
         if (this.familyBox.isSelected()) {
-            userGenres.addString("Family", 1);
+            userGenres.addElement("Family", 1);
         }
         if (this.boardGamesBox.isSelected()) {
-            userGenres.addString("Board Games", 1);
+            userGenres.addElement("Board Games", 1);
         }
         if (this.educationalBox.isSelected()) {
-            userGenres.addString("Educational", 1);
+            userGenres.addElement("Educational", 1);
         }
         if (this.cardBox.isSelected()) {
-            userGenres.addString("Card", 1);
+            userGenres.addElement("Card", 1);
         }
         GameGenieController.getInstance().changeSceneIntoGamePicker();
     }
