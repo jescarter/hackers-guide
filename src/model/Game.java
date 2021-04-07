@@ -1,16 +1,15 @@
 package src.model;
+/**
+ * A class representing a game object to store API data to be used by views.
+ * last updated 03/30/2021
+ * Author(s) Ian Holder,
+ */
 
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-
-/**
- * Create game objects with api data to be used for views
- * last updated 03/30/2021
- * Author(s) Ian Holder,
- */
 
 public class Game {
     protected String genre;

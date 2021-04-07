@@ -1,4 +1,9 @@
 package src.controllers;
+/**
+ * A controller for the game picker view, that will show games to the user.
+ * last updated 04/06/2021
+ * Author(s) Ian Holder,
+ */
 
 import src.gameGenie.GameGenieController;
 import src.model.Game;
@@ -10,14 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import src.resources.GameQueue;
 import src.resources.Load;
-
 import static src.model.User.*;
-
-/**
- * Controller for the game picker fxml, that will show games
- * last updated 04/06/2021
- * Author(s) Ian Holder,
- */
 
 public class GamePickerController {
     private Game currentGame;

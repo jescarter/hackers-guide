@@ -1,14 +1,13 @@
 package src.resources;
+/**
+ * A utility class for the game picker view to show games.
+ * last updated 04/06/2021
+ * Author(s) Ian Holder,
+ */
 
 import java.util.AbstractQueue;
 import java.util.Iterator;
 import java.util.LinkedList;
-
-/**
- * helper method for the game picker view to show games
- * last updated 04/06/2021
- * Author(s) Ian Holder,
- */
 
 public class GameQueue<Game> extends AbstractQueue<Game> {
     private LinkedList<Game> elements;

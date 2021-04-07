@@ -20,6 +20,7 @@ public class User {
     }
 
     public void addViewedGame(int _gameID, String _gameTitle) {
+        //Add the viewed game to the user's list of previously viewed games.
         this.viewedGames.putIfAbsent(_gameID, _gameTitle);
     }
 

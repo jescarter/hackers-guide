@@ -1,4 +1,9 @@
 package src.controllers;
+/**
+ * A controller that will pass the start screen information to a model to handle it.
+ * last updated 03/25/2021
+ * Author(s) Ian Holder,
+ */
 
 import src.gameGenie.GameGenieController;
 import javafx.fxml.FXML;
@@ -6,12 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
 import static src.model.User.userGenres;
-
-/**
- * A controller that is going to pass the start screen information to a model to handle it
- * last updated 03/25/2021
- * Author(s) Ian Holder,
- */
 
 public class StartScreenController {
     @FXML

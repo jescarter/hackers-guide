@@ -1,4 +1,9 @@
 package src.controllers;
+/**
+ * Controller for the game recommendation view, that will show recommended games.
+ * last updated 04/06/2021
+ * Author(s) Ian Holder,
+ */
 
 import src.gameGenie.GameGenieController;
 import src.model.Game;
@@ -9,12 +14,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import src.resources.Load;
-
-/**
- * Controller for the game recommendation fxml, that will show games
- * last updated 04/06/2021
- * Author(s) Ian Holder,
- */
 
 public class GameRecommendationController {
     private Game currentGame;

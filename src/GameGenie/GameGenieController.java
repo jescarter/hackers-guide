@@ -1,15 +1,14 @@
 package src.gameGenie;
+/**
+ * A controller to set the state of the application and change between views.
+ * last updated 04/02/2021
+ * Author(s) Ian Holder,
+ */
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-/**
- * an application controller
- * last updated 04/02/2021
- * Author(s) Ian Holder,
- */
 
 public class GameGenieController {
     private Stage primaryStage;
