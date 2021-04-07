@@ -1,11 +1,11 @@
-package Controller;
+package src.controllers;
 
-import GameGenie.GameGenieController;
+import src.gameGenie.GameGenieController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
-import static Model.User.userGenres;
+import static src.model.User.userGenres;
 
 /**
  * A controller that is going to pass the start screen information to a model to handle it

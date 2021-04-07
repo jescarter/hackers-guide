@@ -1,4 +1,4 @@
-package src.controller;
+package src.controllers;
 
 import src.gameGenie.GameGenieController;
 import src.model.Game;
