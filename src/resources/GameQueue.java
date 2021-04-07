@@ -1,7 +1,8 @@
-package resources;
+package src.resources;
 
-import java.util.*;
-import Model.Game;
+import java.util.AbstractQueue;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 /**
  * helper method for the game picker view to show games

@@ -1,14 +1,14 @@
-package Controller;
+package src.controller;
 
-import GameGenie.GameGenieController;
-import Model.Game;
+import src.gameGenie.GameGenieController;
+import src.model.Game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import resources.Load;
+import src.resources.Load;
 
 /**
  * Controller for the game recommendation fxml, that will show games

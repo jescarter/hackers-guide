@@ -13,7 +13,7 @@
 Last Updated 03/25/2021
  Author(s) Ian Holder-->
 
-<AnchorPane prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StartScreenController">
+<AnchorPane prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controller.StartScreenController">
     <children>
         <GridPane alignment="CENTER" hgap="5.0" layoutX="112.0" layoutY="199.0" prefHeight="800.0" prefWidth="450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>

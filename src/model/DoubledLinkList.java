@@ -1,4 +1,4 @@
-package Model;
+package src.model;
 
 /**
  * a doubled link list to store and order the values from user input

@@ -1,4 +1,4 @@
-package GameGenie;
+package src.gameGenie;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,7 +16,7 @@ public class GameGenieController {
     private static GameGenieController controller = null;
 
     GameGenieController() {
-        this.primaryStage = null;
+        this.primaryStage = new Stage();
     }
 
     //will creat a new scene from an inputted file name and update the stage
@@ -34,11 +34,11 @@ public class GameGenieController {
 
     //the loading protocol from start to game picker
     public void changeSceneIntoGamePicker(){
-        updateStage("/gamePickerScreen.fxml");
+        updateStage("/src/gamePickerScreen.fxml");
     }
 
     public void changeSceneIntoGameRecommendation(){
-        updateStage("/gameRecommendationScreen.fxml");
+        updateStage("/src/gameRecommendationScreen.fxml");
     }
 
     //make the GameGenieController a singleton
@@ -52,7 +52,7 @@ public class GameGenieController {
     public void setPrimaryStage(Stage _stage){
         this.primaryStage = _stage;
         primaryStage.setTitle("Game Genie");
-        updateStage("/startScreen.fxml");
+        updateStage("/src/startScreen.fxml");
         primaryStage.show();
     }
 }

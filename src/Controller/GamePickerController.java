@@ -1,17 +1,17 @@
-package Controller;
+package src.controller;
 
-import GameGenie.GameGenieController;
-import Model.Game;
+import src.gameGenie.GameGenieController;
+import src.model.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import resources.GameQueue;
-import resources.Load;
+import src.resources.GameQueue;
+import src.resources.Load;
 
-import static Model.User.*;
+import static src.model.User.*;
 
 /**
  * Controller for the game picker fxml, that will show games
