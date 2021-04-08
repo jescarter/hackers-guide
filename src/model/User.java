@@ -1,6 +1,6 @@
 package Model;
 
-import resources.DoubledLinkList;
+import Resources.DoubledLinkList;
 
 /**
  * the user to hold user selections and

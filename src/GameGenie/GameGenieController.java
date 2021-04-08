@@ -1,13 +1,12 @@
 package GameGenie;
 
 import Model.Game;
-import Model.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import resources.GameQueue;
-import resources.Load;
+import Resources.GameQueue;
+import Resources.Load;
 
 /**
  * an application controller,that will handle scene transitions and loading in user data

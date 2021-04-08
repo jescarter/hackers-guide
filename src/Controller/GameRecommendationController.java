@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import resources.Load;
+import Resources.Load;
 
 /**
  * Controller for the game recommendation fxml, that will show games

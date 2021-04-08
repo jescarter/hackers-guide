@@ -1,4 +1,4 @@
-package resources;
+package Resources;
 
 import Model.Game;
 

@@ -1,7 +1,6 @@
-package resources;
+package Resources;
 
 import java.util.*;
-import Model.Game;
 
 /**
  * helper method for the game picker view to show games

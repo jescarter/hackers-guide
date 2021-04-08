@@ -8,10 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import resources.GameQueue;
-import resources.Load;
 
-import static GameGenie.GameGenieController.getGamePickerGame;
 import static Model.User.*;
 
 /**
