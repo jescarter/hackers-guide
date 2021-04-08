@@ -1,10 +1,10 @@
-package Resources;
+package resources;
 
-import Model.Game;
+import model.Game;
 
 /**
  * helper class for game recommendations and game picker
- * last updated 04/06/2021
+ * last updated 04/08/2021
  * Author(s) Ian Holder,
  */
 

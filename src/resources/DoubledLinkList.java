@@ -1,8 +1,8 @@
-package Resources;
+package resources;
 
 /**
  * a doubled link list to store and order the values from user input
- * last updated 03/30/2021
+ * last updated 04/08/2021
  * Author(s) Ian Holder,
  */
 
