@@ -26,8 +26,6 @@ public class GameInfoTranslator {
         String query = input.nextLine();
         query = query.replace(" ", "-");
 
-
-        // https://api.rawg.io/api/platforms?key=bebda822617e46b9bd3c5af8402b1a24
         // Create a HTTP Connection.
         String baseUrl = "https://api.rawg.io/api";
         String callAction = ("/games/" + query + "?key=");
