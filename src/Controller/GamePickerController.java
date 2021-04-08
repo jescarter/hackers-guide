@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import resources.GameQueue;
 import resources.Load;
 
+import static GameGenie.GameGenieController.getGamePickerGame;
 import static Model.User.*;
 
 /**
@@ -21,8 +22,6 @@ import static Model.User.*;
 
 public class GamePickerController {
     private Game currentGame;
-    //TODO move to GameGenieController to stay in scope during scene transitions
-    private GameQueue gameQueue;
 
     @FXML
     protected Label gameTitle;
@@ -73,10 +72,7 @@ public class GamePickerController {
     }
 
     public void getNextGame(){
-        if(gameQueue == null || gameQueue.isEmpty()){
-            gameQueue = Load.getGameQueue();
-        }
-        setCurrentGame((Game)gameQueue.poll());
+        setCurrentGame(GameGenieController.getGamePickerGame());
     }
 
     public void getRecommendationClicked(){

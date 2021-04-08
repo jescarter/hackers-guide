@@ -30,8 +30,23 @@ public class DoubledLinkList {
             head = tail = newNode;
             head.previous = null;
             tail.next = null;
-            printList();
-        } else if (listContains(_nodeTitle)) {
+        } else if(searchAndPlace(newNode)){
+            //does nothing the method will search a place the node if it can't the place the node on the tail
+        }else{
+            tail.next = newNode;
+            newNode.previous = tail;
+            tail = newNode;
+            tail.next = null;
+        }
+        if(_preferenceValue > 0){
+            orderAscending();
+        }else{
+            orderDescending();
+        }
+        printList();
+
+        /**
+        else if (listContains(_nodeTitle)) {
             Node current = head;
             Boolean found = false;
 
@@ -56,6 +71,21 @@ public class DoubledLinkList {
             tail.next = null;
             printList();
         }
+         */
+    }
+
+    protected boolean searchAndPlace(Node _node){
+        Node current = head;
+        Boolean found = false;
+        while (current != null && !found) {
+            if (current.nodeTitle.equals(_node.nodeTitle)) {
+                current.preferenceValue = current.preferenceValue + _node.preferenceValue;
+                found = true;
+            }
+            current = current.next;
+            printList();
+        }
+        return found;
     }
 
     //search the list for if there is a node with the same title TODO change to return the node searched for or a tagged invalid node
@@ -110,7 +140,7 @@ public class DoubledLinkList {
     protected void printList() {
         Node current = head;
         while (current != null) {
-            System.out.println(current.nodeTitle);
+            System.out.println(current.nodeTitle + " " + current.preferenceValue);
             current = current.next;
         }
     }

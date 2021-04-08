@@ -1,12 +1,16 @@
 package GameGenie;
 
+import Model.Game;
+import Model.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import resources.GameQueue;
+import resources.Load;
 
 /**
- * an application controller
+ * an application controller,that will handle scene transitions and loading in user data
  * last updated 04/02/2021
  * Author(s) Ian Holder,
  */
@@ -14,6 +18,7 @@ import javafx.stage.Stage;
 public class GameGenieController {
     private Stage primaryStage;
     private static GameGenieController controller = null;
+    private static GameQueue gameQueue;
 
     GameGenieController() {
         this.primaryStage = null;
@@ -37,6 +42,7 @@ public class GameGenieController {
         updateStage("/gamePickerScreen.fxml");
     }
 
+    //loading into the game recommendation screen
     public void changeSceneIntoGameRecommendation(){
         updateStage("/gameRecommendationScreen.fxml");
     }
@@ -49,10 +55,22 @@ public class GameGenieController {
         return controller;
     }
 
+    public static Game getGamePickerGame(){
+        if(gameQueue == null || gameQueue.isEmpty()){
+            gameQueue = Load.getGameQueue();
+        }
+        return (Game)gameQueue.poll();
+    }
+
     public void setPrimaryStage(Stage _stage){
         this.primaryStage = _stage;
         primaryStage.setTitle("Game Genie");
-        updateStage("/startScreen.fxml");
+        //if there is no data loaded into the user at application start
+        if(!Load.userDataLoaded()) {
+            updateStage("/startScreen.fxml");
+        }else{
+            updateStage("/gamePickerScreen.fxml");
+        }
         primaryStage.show();
     }
 }
