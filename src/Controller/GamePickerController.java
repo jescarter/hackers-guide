@@ -13,7 +13,7 @@ import static Model.User.*;
 
 /**
  * Controller for the game picker fxml, that will show games
- * last updated 04/06/2021
+ * last updated 04/08/2021
  * Author(s) Ian Holder,
  */
 

@@ -8,7 +8,7 @@ import java.nio.file.StandardCopyOption;
 
 /**
  * Create game objects with api data to be used for views
- * last updated 03/30/2021
+ * last updated 04/08/2021
  * Author(s) Ian Holder,
  */
 
