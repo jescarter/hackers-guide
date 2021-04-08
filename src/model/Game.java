@@ -15,7 +15,7 @@ import java.nio.file.attribute.FileAttribute;
  * Author(s) Ian Holder,
  */
 
-//TODO add missing parameters to the game object like game id
+
 public class Game {
     protected String genre;
     protected String releaseDate;
@@ -26,9 +26,10 @@ public class Game {
     protected int metacriticScore;
     protected URL gameCoverURL;
     protected Path coverFilePath;
+    protected int gameID;
 
     public Game(String _genre, int _genreID, String _title, String[] _tags, int _metacriticScore, String _gameCoverURL,
-                String _releaseDate, String[] _platforms) {
+                String _releaseDate, String[] _platforms, int _gameID) {
         genre = _genre;
         genreID = _genreID;
         title = _title;
@@ -36,6 +37,7 @@ public class Game {
         metacriticScore = _metacriticScore;
         releaseDate = _releaseDate;
         platforms = _platforms;
+        gameID = _gameID;
 
         try {
             coverFilePath = Files.createTempFile("tmp", ".jpg");

@@ -19,7 +19,7 @@ public class Load {
     public static Game getRecommendation(){
         //current palace holder
         return new Game("Shooter", 004,"Half-Life", new String[]{"Singleplayer"}, 86,
-                "https://upload.wikimedia.org/wikipedia/en/f/fa/Half-Life_Cover_Art.jpg", "1995", new String[]{"PC"});
+                "https://upload.wikimedia.org/wikipedia/en/f/fa/Half-Life_Cover_Art.jpg", "1995", new String[]{"PC"},123);
     }
 
     //TODO that will populate the game queue with games from the API
@@ -27,11 +27,11 @@ public class Load {
         //placeholder
         GameQueue queue = new GameQueue();
         queue.add(new Game("Action", 000,"E.T. the Extra-Terrestrial", new String[]{"BAD"}, 06,
-                "https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Etvideogamecover.jpg/220px-Etvideogamecover.jpg", "2001", new String[]{"Atari 2600"}));
+                "https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Etvideogamecover.jpg/220px-Etvideogamecover.jpg", "2001", new String[]{"Atari 2600"}, 001));
         queue.add(new Game("Casual", 001,"Animal Crossing: New Horizons", new String[]{"Fun"}, 93,
-                "https://animal-crossing.com/new-horizons/assets/img/share-fb.jpg", "2020", new String[]{"Switch"}));
+                "https://animal-crossing.com/new-horizons/assets/img/share-fb.jpg", "2020", new String[]{"Switch"}, 789));
         queue.add(new Game("RPG", 003,"BioShock", new String[]{"FPS"}, 80,
-                "https://upload.wikimedia.org/wikipedia/en/6/6d/BioShock_cover.jpg", "2008", new String[]{"PS3", "PC"}));
+                "https://upload.wikimedia.org/wikipedia/en/6/6d/BioShock_cover.jpg", "2008", new String[]{"PS3", "PC"}, 456));
         return queue;
     }
 }
