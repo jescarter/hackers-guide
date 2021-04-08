@@ -1,6 +1,7 @@
 package src.model;
+
 /*
-Last updated: 6 April, 2021
+Last updated: 8 April, 2021
 This class will call on the RAWG API, prompt the user to enter a video game search query, and display the most relevant results.
 Authors: Emily Crabtree
 */
@@ -24,6 +25,7 @@ public class GameInfoTranslator {
         System.out.println("Enter a video game search query: ");
         String query = input.nextLine();
         query = query.replace(" ", "-");
+
 
         // https://api.rawg.io/api/platforms?key=bebda822617e46b9bd3c5af8402b1a24
         // Create a HTTP Connection.
@@ -61,7 +63,7 @@ public class GameInfoTranslator {
                 String name = obj.getString("name_original");
                 String date = obj.getString("released");
                 String description = obj.getString("description");
-                String rating = obj.getString("rating");
+                String rating = obj.getString("metacritic");
                 String imageURL = obj.getString("background_image");
                 String websiteURL = obj.getString("website");
 
