@@ -21,6 +21,7 @@ import static Model.User.*;
 
 public class GamePickerController {
     private Game currentGame;
+    //TODO move to GameGenieController to stay in scope during scene transitions
     private GameQueue gameQueue;
 
     @FXML

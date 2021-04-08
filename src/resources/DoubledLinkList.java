@@ -38,7 +38,12 @@ public class DoubledLinkList {
             while (current != null && !found) {
                 if (current.nodeTitle.equals(_nodeTitle)) {
                     current.preferenceValue = current.preferenceValue + newNode.preferenceValue;
-                    orderAscending();
+                    //ensure the order of the list is valid
+                    if(newNode.preferenceValue == 1) {
+                        orderAscending();
+                    }else{
+                        orderDescending();
+                    }
                     found = true;
                 }
                 current = current.next;
@@ -53,7 +58,7 @@ public class DoubledLinkList {
         }
     }
 
-    //search the list for if there is a node with the same title
+    //search the list for if there is a node with the same title TODO change to return the node searched for or a tagged invalid node
     protected boolean listContains(String _searchingNodeTitle) {
         Node current = head;
 
@@ -65,30 +70,6 @@ public class DoubledLinkList {
         }
         //if the list is empty or the list doesn't have a node that has a matching title
         return false;
-    }
-
-    //need to rewrite
-    public void removeNode(String _nodeTitle) {
-        if (listContains(_nodeTitle)) {
-            Node current = head;
-
-            while (current != null) {
-                if (current.nodeTitle.equals(_nodeTitle)) {
-                    if (current.preferenceValue > 1) {
-                        current.preferenceValue = current.preferenceValue - 1;
-                        orderDescending();
-                    } else {
-                        remove(current);
-                    }
-                }
-                current = current.next;
-            }
-        }
-    }
-
-    protected void remove(Node _nodeForRemoval) {
-        _nodeForRemoval.next.previous = _nodeForRemoval.previous;
-        _nodeForRemoval.previous.next = _nodeForRemoval.next;
     }
 
     protected void orderAscending() {
