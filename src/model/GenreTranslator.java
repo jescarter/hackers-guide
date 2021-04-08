@@ -1,6 +1,7 @@
 package src.model;
+
 /*
-Last updated: 6 April, 2021
+Last updated: 8 April, 2021
 This class will call on the RAWG API and display all possible genres.
 Authors: Emily Crabtree
 */
