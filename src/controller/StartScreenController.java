@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
-import static model.User.userGenres;
+import static model.User.addGenreLike;
 
 /**
  * A controller that is going to pass the start screen information to a model to handle it
@@ -58,61 +58,61 @@ public class StartScreenController {
 
     @FXML void handleUserStartCheckBoxes() {
         if (this.actionBox.isSelected()) {
-            userGenres.addElement("Action", 1);
+            addGenreLike("Action");
         }
         if (this.indieBox.isSelected()) {
-            userGenres.addElement("Indie", 1);
+            addGenreLike("Indie");
         }
         if (this.adventureBox.isSelected()) {
-            userGenres.addElement("Adventure", 1);
+            addGenreLike("Adventure");
         }
         if (this.rpgBox.isSelected()) {
-            userGenres.addElement("RPG", 1);
+            addGenreLike("RPG");
         }
         if (this.strategyBox.isSelected()) {
-            userGenres.addElement("Strategy", 1);
+            addGenreLike("Strategy");
         }
         if (this.shooterBox.isSelected()) {
-            userGenres.addElement("Shooter", 1);
+            addGenreLike("Shooter");
         }
         if (this.casualBox.isSelected()) {
-            userGenres.addElement("Casual", 1);
+            addGenreLike("Casual");
         }
         if (this.simulationBox.isSelected()) {
-            userGenres.addElement("Simulation", 1);
+            addGenreLike("Simulation");
         }
         if (this.puzzleBox.isSelected()) {
-            userGenres.addElement("Puzzle", 1);
+            addGenreLike("Puzzle");
         }
         if (this.arcadeBox.isSelected()) {
-            userGenres.addElement("Arcade", 1);
+            addGenreLike("Arcade");
         }
         if (this.platformerBox.isSelected()) {
-            userGenres.addElement("Platformer", 1);
+            addGenreLike("Platformer");
         }
         if (this.racingBox.isSelected()) {
-            userGenres.addElement("Racing", 1);
+            addGenreLike("Racing");
         }
         if (this.sportsBox.isSelected()) {
-            userGenres.addElement("Sports", 1);
+            addGenreLike("Sports");
         }
         if (this.massivelyMultiplayerBox.isSelected()) {
-            userGenres.addElement("Massively Multiplayer", 1);
+            addGenreLike("Massively Multiplayer");
         }
         if (this.fightingBox.isSelected()) {
-            userGenres.addElement("Fighting", 1);
+            addGenreLike("Fighting");
         }
         if (this.familyBox.isSelected()) {
-            userGenres.addElement("Family", 1);
+            addGenreLike("Family");
         }
         if (this.boardGamesBox.isSelected()) {
-            userGenres.addElement("Board Games", 1);
+            addGenreLike("Board Games");
         }
         if (this.educationalBox.isSelected()) {
-            userGenres.addElement("Educational", 1);
+            addGenreLike("Educational");
         }
         if (this.cardBox.isSelected()) {
-            userGenres.addElement("Card", 1);
+            addGenreLike("Card");
         }
         GameGenieController.getInstance().changeSceneIntoGamePicker();
     }

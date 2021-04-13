@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import model.UserRatedGame;
 
 import static model.User.*;
 
@@ -34,22 +35,16 @@ public class GamePickerController {
     protected ImageView gameCoverArtImageView;
 
     @FXML public void initialize(){
-        //gameQueue = Load.getGameQueue();
         getNextGame();
     }
 
     public void DislikeClicked(ActionEvent actionEvent) {
-        for (String tag : currentGame.getTags()) {
-            userTags.addElement(tag, -1);
-        }
+        UserRatedGame.Disliked(currentGame);
         getNextGame();
     }
 
     public void LikeClicked(ActionEvent actionEvent) {
-        userGenres.addElement(currentGame.getGenre(), 1);
-        for (String tag : currentGame.getTags()) {
-            userTags.addElement(tag,1);
-        }
+        UserRatedGame.Liked(currentGame);
         getNextGame();
     }
 
