@@ -12,15 +12,11 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-        //GameInfoTranslator.getVideoGameInfo();
-        //GenreTranslator.getGenres();
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         GameGenieController.getInstance().setPrimaryStage(primaryStage);
-
-
     }
 
 }

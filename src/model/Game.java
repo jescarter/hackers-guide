@@ -8,13 +8,13 @@ import java.nio.file.StandardCopyOption;
 
 /**
  * Create game objects with api data to be used for views
- * last updated 04/08/2021
+ * last updated 04/18/2021
  * Author(s) Ian Holder,
  */
 
 
 public class Game {
-    protected String genre;
+    protected String[] genre;
     protected String releaseDate;
     protected int genreID;
     protected String title;
@@ -25,7 +25,7 @@ public class Game {
     protected Path coverFilePath;
     protected int gameID;
 
-    public Game(String _genre, int _genreID, String _title, String[] _tags, int _metacriticScore, String _gameCoverURL,
+    public Game(String[] _genre, int _genreID, String _title, String[] _tags, int _metacriticScore, String _gameCoverURL,
                 String _releaseDate, String[] _platforms, int _gameID) {
         genre = _genre;
         genreID = _genreID;
@@ -49,31 +49,46 @@ public class Game {
     //=================  GETTERS ===============
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getGameGenreString(){
+        String s = "";
+        for (String i:this.genre) {
+            s += i;
+            if(this.genre.length > 1){
+                s += " ,";
+            }
+        }
+        return s;
+    }
+
+    public String[] getGenre() {
+        return this.genre;
     }
 
     public int getGenreID() {
-        return genreID;
+        return this.genreID;
     }
 
     public int getMetacriticScore() {
-        return metacriticScore;
+        return this.metacriticScore;
     }
 
     public String[] getTags() {
-        return tags;
+        return this.tags;
+    }
+
+    public String getReleaseDate(){
+        return this.releaseDate;
     }
 
     public Path getCoverFilePath() {
-        return coverFilePath;
+        return this.coverFilePath;
     }
 
     public URL getGameCoverURL() {
-        return gameCoverURL;
+        return this.gameCoverURL;
     }
 
     //=================  SETTERS ===============

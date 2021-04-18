@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,38 +12,35 @@
 Last Updated 03/25/2021
  Author(s) Ian Holder-->
 
-<AnchorPane prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameRecommendationController">
+<AnchorPane prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameRecommendationController">
     <children>
-        <VBox alignment="TOP_CENTER" layoutX="220.0" layoutY="154.0" prefHeight="800.0" prefWidth="600.0" spacing="10.0"
-              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-              AnchorPane.topAnchor="0.0">
+        <VBox alignment="TOP_CENTER" layoutX="220.0" layoutY="154.0" prefHeight="800.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label fx:id="recommendationGameTitle" text="Recommendation Title"/>
+                <Label fx:id="recommendationGameTitle" text="Recommendation Title" />
                 <SplitPane dividerPositions="0.4180602006688963" prefHeight="400.0" prefWidth="600.0">
                     <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="283.0">
                             <children>
-                                <ImageView fx:id="recommendationGameCoverArt" fitHeight="370.0" fitWidth="200.0"
-                                           layoutX="24.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true"/>
+                                <ImageView fx:id="recommendationGameCoverArt" fitHeight="398.0" fitWidth="247.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
                             </children>
                         </AnchorPane>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                             <children>
-                                <VBox alignment="CENTER_LEFT" layoutX="97.0" layoutY="55.0" prefHeight="398.4"
-                                      prefWidth="345.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
-                                <ListView fx:id="recommendationListView" prefHeight="398.4" prefWidth="345.6"
-                                          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+                                <VBox alignment="CENTER" layoutX="97.0" layoutY="55.0" prefHeight="398.4" prefWidth="345.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label fx:id="gameTitleLabel" alignment="CENTER" text="GameTitle" />
+                              <Label fx:id="gameReleaseDate" alignment="CENTER" layoutX="156.0" layoutY="200.0" text="GameReleaseDate" />
+                              <Label fx:id="gameGenre" text="GameGenre" />
+                              <Label fx:id="gameMetacritic" text="GameMetacritic" />
+                           </children></VBox>
                             </children>
                         </AnchorPane>
                     </items>
                 </SplitPane>
-                <Button fx:id="doneWithRecommendationButton" mnemonicParsing="false" onAction="#doneClicked" text="Done"/>
+                <Button fx:id="doneWithRecommendationButton" mnemonicParsing="false" onAction="#doneClicked" text="Done" />
             </children>
             <padding>
-                <Insets top="10.0"/>
+                <Insets top="10.0" />
             </padding>
         </VBox>
     </children>

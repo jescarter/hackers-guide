@@ -10,7 +10,9 @@ import static model.User.*;
 
 public class UserRatedGame {
     public static void Liked(Game _game){
-        addGenreLike(_game.genre);
+        for (String genre: _game.genre) {
+            addGenreLike(genre);
+        }
         for (String tag: _game.tags) {
             addTagLiked(tag);
         }

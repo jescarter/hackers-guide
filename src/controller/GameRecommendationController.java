@@ -19,16 +19,29 @@ import resources.Load;
 public class GameRecommendationController {
     private Game currentGame;
 
-    public Label recommendationGameTitle;
-    public ImageView recommendationGameCoverArt;
-    public ListView recommendationListView;
-    public Button doneWithRecommendationButton;
+    @FXML
+    private Label gameTitleLabel;
+    @FXML
+    private Label gameReleaseDate;
+    @FXML
+    private Label gameGenre;
+    @FXML
+    private Label gameMetacritic;
+    @FXML
+    private Label recommendationGameTitle;
+    @FXML
+    private ImageView recommendationGameCoverArt;
+    @FXML
+    private Button doneWithRecommendationButton;
 
     @FXML public void initialize(){
         currentGame = Load.getRecommendation();
         recommendationGameTitle.setText(currentGame.getTitle());
         recommendationGameCoverArt.setImage(new Image("File:" + currentGame.getCoverFilePath().toString()));
-        //recommendationListView.setItems();
+        gameTitleLabel.setText("Title: " + currentGame.getTitle());
+        gameReleaseDate.setText("Release Date: " + currentGame.getReleaseDate());
+        gameGenre.setText("Genre: " + currentGame.getGameGenreString());
+        gameMetacritic.setText("Metacritic Score: " + currentGame.getMetacriticScore());
     }
 
     public void doneClicked(){
