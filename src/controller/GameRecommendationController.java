@@ -5,14 +5,13 @@ import model.Game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import resources.Load;
 
 /**
  * Controller for the game recommendation fxml, that will show games
- * last updated 04/06/2021
+ * last updated 04/18/2021
  * Author(s) Ian Holder,
  */
 
