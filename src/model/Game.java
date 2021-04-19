@@ -98,7 +98,7 @@ public class Game {
             newPath = Files.createTempFile(title, ".jpg");
             InputStream inputStream = gameCoverURL.openStream();
             Files.copy(inputStream, newPath, StandardCopyOption.REPLACE_EXISTING);
-            coverFilePath = newPath;
+            this.coverFilePath = newPath;
         }catch (Exception e){
             e.printStackTrace();
         }
