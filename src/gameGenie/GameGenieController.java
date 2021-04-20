@@ -1,23 +1,26 @@
-package game_genie;
+package gameGenie;
 
+/**
+ * an application controller,that will handle scene transitions and loading in user data
+ * last updated 04/20/2021
+ * Author(s) Ian Holder,
+ */
+
+import javafx.scene.control.CheckBox;
 import model.Game;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import resources.GameQueue;
-import resources.Load;
-
-/**
- * an application controller,that will handle scene transitions and loading in user data
- * last updated 04/08/2021
- * Author(s) Ian Holder,
- */
+import java.util.Objects;
+import static gameGenie.GameController.getGameQueue;
+import static gameGenie.UserController.userDataLoaded;
 
 public class GameGenieController {
     private Stage primaryStage;
     private static GameGenieController controller = null;
-    private static GameQueue gameQueue;
+    private static GameQueue<Game> gameQueue;
 
     GameGenieController() {
         this.primaryStage = null;
@@ -31,7 +34,6 @@ public class GameGenieController {
             Scene scene = new Scene(pane);
             primaryStage.setScene(scene);
         } catch (Exception e) {
-            System.out.println(e.toString());
             e.printStackTrace();
         }
     }
@@ -54,22 +56,43 @@ public class GameGenieController {
         return controller;
     }
 
+    public static void handleStartCheckBoxes(CheckBox[] _startCheckBoxes){
+        UserController.handleCheckBoxes(_startCheckBoxes);
+    }
+
     public static Game getGamePickerGame(){
         if(gameQueue == null || gameQueue.isEmpty()){
-            gameQueue = Load.getGameQueue();
+            gameQueue = getGameQueue();
         }
-        return (Game)gameQueue.poll();
+        return gameQueue.peek();
+    }
+
+    public static void userLikedGame(){
+        UserController.Liked(Objects.requireNonNull(gameQueue.poll()));
+    }
+
+    public static void userDislikedGame(){
+        UserController.Disliked(Objects.requireNonNull(gameQueue.poll()));
+    }
+
+    public static void userDoesNotKnow(){
+        gameQueue.poll();
+    }
+
+    public static Game getRecommendation(){
+        return GameController.getRecommendation();
     }
 
     public void setPrimaryStage(Stage _stage){
         this.primaryStage = _stage;
         primaryStage.setTitle("Game Genie");
         //if there is no data loaded into the user at application start
-        if(!Load.userDataLoaded()) {
+        if(!userDataLoaded()) {
             updateStage("/startScreen.fxml");
         }else{
             updateStage("/gamePickerScreen.fxml");
         }
         primaryStage.show();
     }
+
 }

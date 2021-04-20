@@ -1,19 +1,20 @@
-package controller;
-
-import game_genie.GameGenieController;
-import model.Game;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import resources.Load;
+package viewControllers;
 
 /**
  * Controller for the game recommendation fxml, that will show games
  * last updated 04/18/2021
  * Author(s) Ian Holder,
  */
+
+import gameGenie.GameGenieController;
+import model.Game;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+
 
 public class GameRecommendationController {
     private Game currentGame;
@@ -34,7 +35,7 @@ public class GameRecommendationController {
     private Button doneWithRecommendationButton;
 
     @FXML public void initialize(){
-        currentGame = Load.getRecommendation();
+        currentGame = GameGenieController.getRecommendation();
         recommendationGameTitle.setText(currentGame.getTitle());
         recommendationGameCoverArt.setImage(new Image("File:" + currentGame.getCoverFilePath().toString()));
         gameTitleLabel.setText("Title: " + currentGame.getTitle());

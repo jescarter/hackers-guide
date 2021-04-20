@@ -1,6 +1,12 @@
-package controller;
+package viewControllers;
 
-import game_genie.GameGenieController;
+/**
+ * Controller for the game picker fxml, that will show games
+ * last updated 04/08/2021
+ * Author(s) Ian Holder,
+ */
+
+import gameGenie.GameGenieController;
 import model.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,15 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import model.UserRatedGame;
-
-import static model.User.*;
-
-/**
- * Controller for the game picker fxml, that will show games
- * last updated 04/08/2021
- * Author(s) Ian Holder,
- */
 
 public class GamePickerController {
     private Game currentGame;
@@ -39,16 +36,17 @@ public class GamePickerController {
     }
 
     public void DislikeClicked(ActionEvent actionEvent) {
-        UserRatedGame.Disliked(currentGame);
+        GameGenieController.userDislikedGame();
         getNextGame();
     }
 
     public void LikeClicked(ActionEvent actionEvent) {
-        UserRatedGame.Liked(currentGame);
+        GameGenieController.userLikedGame();
         getNextGame();
     }
 
     public void DoNotKnowClicked(ActionEvent actionEvent){
+        GameGenieController.userDoesNotKnow();
         getNextGame();
     }
 
