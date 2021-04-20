@@ -15,7 +15,6 @@ import java.nio.file.StandardCopyOption;
 public class Game {
     protected String[] genre;
     protected String releaseDate;
-    protected int genreID;
     protected String title;
     protected String[] tags;
     protected String[] platforms;
@@ -24,10 +23,9 @@ public class Game {
     protected Path coverFilePath;
     protected int gameID;
 
-    public Game(String[] _genre, int _genreID, String _title, String[] _tags, int _metacriticScore, String _gameCoverURL,
+    public Game(String[] _genre, String _title, String[] _tags, int _metacriticScore, String _gameCoverURL,
                 String _releaseDate, String[] _platforms, int _gameID) {
         this.genre = _genre;
-        this.genreID = _genreID;
         this.title = _title;
         this.tags = _tags;
         this.metacriticScore = _metacriticScore;
@@ -92,10 +90,6 @@ public class Game {
 
     public String[] getGenre() {
         return this.genre;
-    }
-
-    public int getGenreID() {
-        return this.genreID;
     }
 
     public int getGameID(){
