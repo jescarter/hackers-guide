@@ -21,6 +21,12 @@ import org.json.JSONObject;
 public class GamesByGenreTranslator {
 
     //=================  GETTERS ===============
+    //placeholder stub
+    public static Game[] getGames(String _genre){
+        Game[] toBeReturned = new Game[10];
+        return toBeReturned;
+    }
+
     public static void getGames () {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter a genre: ");
