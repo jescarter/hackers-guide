@@ -1,8 +1,8 @@
 package src.model;
 
 /*
-Last updated: 8 April, 2021
-This class will call on the RAWG API and display all possible genres.
+Last updated: 20 April, 2021
+This class will call on the RAWG API and display all possible genres and their ID.
 Authors: Emily Crabtree
 */
 
@@ -18,12 +18,15 @@ import org.json.JSONObject;
 public class GenreTranslator {
 
     //=================  GETTERS ===============
-    public static void getGenres () {
+    protected static void getGenres () {
 
         // Create a HTTP Connection.
         String baseUrl = "https://api.rawg.io/api/genres?key=";
         String apiKey = "bebda822617e46b9bd3c5af8402b1a24";
         String urlString = baseUrl + apiKey;
+        
+        // Create genre array to be later filled.
+        String[] genre = new String[20];
 
         URL url;
         try {
@@ -51,11 +54,10 @@ public class GenreTranslator {
                 JSONObject obj = new JSONObject(content.toString());
                 JSONArray genres_array = obj.getJSONArray("results");
 
-                // Print out the results.
-                System.out.println("Genres: ");
+                // Print out the results by parsing through genres_array, turning each result into an object, and displaying.
                 for (int i = 0; i < genres_array.length(); i++){
                     JSONObject obj_genres = genres_array.getJSONObject(i);
-                    System.out.println(obj_genres.getString("name") + ", ID: " + obj_genres.getString("id"));
+                    genre[i] = obj_genres.getString("name");
                 }
             }
         } catch (Exception ex) {
