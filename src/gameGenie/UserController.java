@@ -8,7 +8,7 @@ package gameGenie;
 
 import javafx.scene.control.CheckBox;
 import model.Game;
-import model.SaveTranslator;
+import model.SaveDataTranslator;
 import model.User;
 import resources.Util;
 
@@ -46,11 +46,11 @@ public class UserController {
 
     //call the Save translator to load in save file
     public static boolean userDataLoaded(){
-        return SaveTranslator.loadUserData();
+        return SaveDataTranslator.loadUserData();
     }
 
     //on close request save the user data
     public static void programClose() {
-        SaveTranslator.saveUserData();
+        SaveDataTranslator.saveUserData();
     }
 }

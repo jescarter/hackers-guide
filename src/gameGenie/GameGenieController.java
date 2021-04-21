@@ -15,8 +15,6 @@ import javafx.stage.Stage;
 import resources.GameQueue;
 import java.util.Objects;
 import static gameGenie.GameController.getGameQueue;
-import static gameGenie.UserController.userDataLoaded;
-import static model.SaveTranslator.loadUserData;
 
 public class GameGenieController {
     //the window is held by the game genie controller
