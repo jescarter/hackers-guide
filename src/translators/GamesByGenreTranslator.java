@@ -1,4 +1,4 @@
-package model;
+package translators;
 
 /*
 Last updated: 8 April, 2021
@@ -12,6 +12,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import model.Game;
 import org.json.*;
 
 import org.json.JSONArray;

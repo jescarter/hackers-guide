@@ -1,14 +1,13 @@
-package model;
-
-import resources.DoubledLinkList;
-
-import java.util.HashMap;
+package translators;
 
 /**
- * to create or read JSONs to/from a file
+ * to create or read JSONs to/from
  * last updated 04/21/2021
  * Author(s) Ian Holder,
  */
+
+import model.User;
+import java.util.HashMap;
 
 public class SaveDataTranslator {
     //called on application close to wrap user data into a JSON to be passed to file storage

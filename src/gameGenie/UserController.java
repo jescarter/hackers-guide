@@ -8,7 +8,7 @@ package gameGenie;
 
 import javafx.scene.control.CheckBox;
 import model.Game;
-import model.SaveDataTranslator;
+import translators.SaveDataTranslator;
 import model.User;
 import resources.Util;
 

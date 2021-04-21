@@ -7,7 +7,7 @@ package gameGenie;
  */
 
 import model.Game;
-import model.GamesByGenreTranslator;
+import translators.GamesByGenreTranslator;
 import model.User;
 import resources.GameQueue;
 

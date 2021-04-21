@@ -1,4 +1,4 @@
-package model;
+package translators;
 
 /*
 Last updated: 8 April, 2021

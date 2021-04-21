@@ -1,4 +1,4 @@
-package model;
+package translators;
 /*
 Last updated: 6 April, 2021
 This class will call on the RAWG API and display all possible tags.
