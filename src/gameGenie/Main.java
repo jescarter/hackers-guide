@@ -1,7 +1,7 @@
 package gameGenie;
 
 /**
- * last updated 04/20/2021
+ * last updated 04/21/2021
  * Author(s) Ian Holder,
  */
 
@@ -19,9 +19,10 @@ public class Main extends Application {
         GameGenieController.getInstance().setPrimaryStage(primaryStage);
     }
 
+    //on close route through the game genie controller that the application is closing
     @Override
     public void stop(){
-        UserController.programClose();
+        GameGenieController.applicationClosing();
         System.out.println("File Saved");
     }
 
