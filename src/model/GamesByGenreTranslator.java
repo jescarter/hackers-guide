@@ -39,7 +39,7 @@ public class GamesByGenreTranslator {
 
         // Create a HTTP Connection.
         String baseUrl = "https://api.rawg.io/api";
-        String callAction = ("/games?genre%20=%20" + genreQuery + "?key=");
+        String callAction = ("/games?genre%20=%20" + genreQuery + "&key=");
         String apiKey = "6346c4bd4d004ac58323138cd49d65cb";
         String urlString = baseUrl + callAction + apiKey;
 
