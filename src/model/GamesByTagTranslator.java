@@ -1,8 +1,8 @@
 package src.model;
 
 /*
-Last updated: 8 April, 2021
-This class will call on the RAWG API, prompt the user to enter a video game search query, and display the most relevant results.
+Last updated: 20 April, 2021
+This class will call on the RAWG API, prompt the user to enter a video game tag, and display the most relevant results for 20 games.
 Authors: Emily Crabtree
 */
 
@@ -21,15 +21,26 @@ import org.json.JSONObject;
 public class GamesByTagTranslator {
 
     //=================  GETTERS ===============
-    public static void getGames () {
+    protected static void getGames () {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter a tag: ");
-        String tag = input.nextLine();
-        tag = tag.replace(" ", "-");
+        String tagQuery = input.nextLine();
+        tagQuery = tagQuery.replace(" ", "-");
+
+        // Create arrays and initialize variables to be later filled.
+        String[] genre = new String[20];
+        String[] tags = new String[20];
+        String[] platforms = new String[20];
+        String title;
+        String releaseDate;
+        String description;
+        String metacriticScore;
+        String gameCoverURL;
+        String gameID;
 
         // Create a HTTP Connection.
         String baseUrl = "https://api.rawg.io/api";
-        String callAction = ("/games?tag%20=%20" + tag + "?key=");
+        String callAction = ("/games?tag%20=%20" + tagQuery + "?key=");
         String apiKey = "bebda822617e46b9bd3c5af8402b1a24";
         String urlString = baseUrl + callAction + apiKey;
 
@@ -55,38 +66,40 @@ public class GamesByTagTranslator {
                 // Close the connections.
                 in.close();
                 con.disconnect();
-                // Parse that object into a usable Java JSON object.
+
+                // Parse that object into a usable Java JSON object or array.
                 JSONObject obj = new JSONObject(content.toString());
                 JSONArray games_array = obj.getJSONArray("results");
 
+                // Create game object by parsing through the array. Display the wanted results.
                 for (int i = 0; i < games_array.length(); i++){
                     JSONObject games = games_array.getJSONObject(i);
-                    System.out.println("Game " + (i + 1) + ": " + games.getString("name"));
-                    System.out.println("Game ID: " + games.getString("id"));
-                    System.out.println("Release date: " + games.getString("released"));
-                    System.out.println("Rating: " + games.getString("metacritic"));
-                    System.out.println("Image: " + games.getString("background_image"));
+                    title = ((i + 1) + games.getString("name"));
+                    gameID = games.getString("id");
+                    releaseDate = games.getString("released");
+                    metacriticScore = games.getString("metacritic");
+                    gameCoverURL = games.getString("background_image");
 
+                    // Create genres array from game object, parsing through the array to create genre object. Display wanted results.
                     JSONArray games_genres = games.getJSONArray("genres");
-                    System.out.println("Genres: ");
                     for (int j = 0; j < games_genres.length(); j++){
                         JSONObject genres = games_genres.getJSONObject(j);
-                        System.out.println(genres.getString("name"));
+                        genre[i] = genres.getString("name");
                     }
 
+                    // Create tags array from game object, parsing through the array to create tag object. Display wanted results.
                     JSONArray games_tags = games.getJSONArray("tags");
-                    System.out.println("Tags: ");
                     for (int j = 0; j < games_tags.length(); j++){
-                        JSONObject tags = games_tags.getJSONObject(j);
-                        System.out.println(tags.getString("name"));
+                        JSONObject tag = games_tags.getJSONObject(j);
+                        tags[i] = tag.getString("name");
                     }
 
+                    // Create platforms array from game object, parsing through the array to create platform object. Display wanted results.
                     JSONArray parent_platforms = games.getJSONArray("parent_platforms");
-                    System.out.println("Platforms: ");
                     for (int j = 0; j < parent_platforms.length(); j++){
                         JSONObject obj_platforms = parent_platforms.getJSONObject(j);
-                        JSONObject platforms = obj_platforms.getJSONObject("platform");
-                        System.out.println(platforms.getString("name"));
+                        JSONObject platform = obj_platforms.getJSONObject("platform");
+                        platforms[i] = platform.getString("name");
                     }
                 }
             }
