@@ -41,7 +41,7 @@ public class GameInfoTranslator {
         // Create a HTTP Connection.
         String baseUrl = "https://api.rawg.io/api";
         String callAction = ("/games/" + query + "?key=");
-        String apiKey = "bebda822617e46b9bd3c5af8402b1a24";
+        String apiKey = "6346c4bd4d004ac58323138cd49d65cb";
         String urlString = baseUrl + callAction + apiKey;
 
         URL url;
