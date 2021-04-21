@@ -1,27 +1,22 @@
-package Controller;
+package viewControllers;
 
-import GameGenie.GameGenieController;
-import Model.Game;
+/**
+ * Controller for the game picker fxml, that will show games
+ * last updated 04/08/2021
+ * Author(s) Ian Holder,
+ */
+
+import gameGenie.GameGenieController;
+import model.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import resources.GameQueue;
-import resources.Load;
-
-import static Model.User.*;
-
-/**
- * Controller for the game picker fxml, that will show games
- * last updated 04/06/2021
- * Author(s) Ian Holder,
- */
 
 public class GamePickerController {
     private Game currentGame;
-    private GameQueue gameQueue;
 
     @FXML
     protected Label gameTitle;
@@ -37,26 +32,21 @@ public class GamePickerController {
     protected ImageView gameCoverArtImageView;
 
     @FXML public void initialize(){
-        //gameQueue = Load.getGameQueue();
         getNextGame();
     }
 
     public void DislikeClicked(ActionEvent actionEvent) {
-        for (String tag : currentGame.getTags()) {
-            userTags.addElement(tag, -1);
-        }
+        GameGenieController.userDislikedGame();
         getNextGame();
     }
 
     public void LikeClicked(ActionEvent actionEvent) {
-        userGenres.addElement(currentGame.getGenre(), 1);
-        for (String tag : currentGame.getTags()) {
-            userTags.addElement(tag,1);
-        }
+        GameGenieController.userLikedGame();
         getNextGame();
     }
 
     public void DoNotKnowClicked(ActionEvent actionEvent){
+        GameGenieController.userDoesNotKnow();
         getNextGame();
     }
 
@@ -72,10 +62,7 @@ public class GamePickerController {
     }
 
     public void getNextGame(){
-        if(gameQueue == null || gameQueue.isEmpty()){
-            gameQueue = Load.getGameQueue();
-        }
-        setCurrentGame((Game)gameQueue.poll());
+        setCurrentGame(GameGenieController.getGamePickerGame());
     }
 
     public void getRecommendationClicked(){

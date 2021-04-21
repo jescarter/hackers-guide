@@ -1,8 +1,8 @@
-package Model;
+package translators;
 
 /*
 Last updated: 8 April, 2021
-This class will call on the RAWG API, prompt the user to enter a video game tag, and display the most relevant results for 20 games.
+This class will call on the RAWG API, prompt the user to enter a video game genre, and display the most relevant results for 20 games.
 Authors: Emily Crabtree
 */
 
@@ -12,24 +12,32 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import model.Game;
 import org.json.*;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 
-public class GamesByTagTranslator {
+public class GamesByGenreTranslator {
 
     //=================  GETTERS ===============
+    //placeholder stub
+    public static Game[] getGames(String _genre){
+        Game[] toBeReturned = new Game[10];
+        return toBeReturned;
+    }
+
     public static void getGames () {
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter a tag: ");
-        String tag = input.nextLine();
-        tag = tag.replace(" ", "-");
+        System.out.println("Enter a genre: ");
+        String genre = input.nextLine();
+        genre = genre.replace(" ", "-");
 
         // Create a HTTP Connection.
         String baseUrl = "https://api.rawg.io/api";
-        String callAction = ("/games?tag%20=%20" + tag + "?key=");
+        String callAction = ("/games?genre%20=%20" + genre + "?key=");
         String apiKey = "bebda822617e46b9bd3c5af8402b1a24";
         String urlString = baseUrl + callAction + apiKey;
 

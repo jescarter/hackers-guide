@@ -1,9 +1,7 @@
-package Model;
-package src.model;
-
+package translators;
 /*
-Last updated: 8  April, 2021
-This class will call on the RAWG API and display all possible tags and their ID.
+Last updated: 6 April, 2021
+This class will call on the RAWG API and display all possible tags.
 Authors: Emily Crabtree
 */
 
@@ -11,7 +9,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import org.json.*;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,6 +18,7 @@ public class TagsTranslator {
     //=================  GETTERS ===============
     public static void getTags () {
 
+        // https://api.rawg.io/api/platforms?key=bebda822617e46b9bd3c5af8402b1a24
         // Create a HTTP Connection.
         String baseUrl = "https://api.rawg.io/api/tags?key=";
         String apiKey = "bebda822617e46b9bd3c5af8402b1a24";

@@ -1,13 +1,15 @@
 package resources;
 
+import java.util.HashMap;
+
 /**
  * a doubled link list to store and order the values from user input
- * last updated 03/30/2021
+ * last updated 04/08/2021
  * Author(s) Ian Holder,
  */
 
 public class DoubledLinkList {
-    class Node {
+    private static class Node {
         String nodeTitle;
         int preferenceValue;
         Node previous = null;
@@ -26,75 +28,46 @@ public class DoubledLinkList {
         Node newNode = new Node(_nodeTitle, _preferenceValue);
 
         //check if the list is empty
-        if (head == null) {
-            head = tail = newNode;
-            head.previous = null;
-            tail.next = null;
-            printList();
-        } else if (listContains(_nodeTitle)) {
-            Node current = head;
-            Boolean found = false;
-
-            while (current != null && !found) {
-                if (current.nodeTitle.equals(_nodeTitle)) {
-                    current.preferenceValue = current.preferenceValue + newNode.preferenceValue;
-                    orderAscending();
-                    found = true;
-                }
-                current = current.next;
-                printList();
-            }
-        } else {
-            tail.next = newNode;
-            newNode.previous = tail;
-            tail = newNode;
-            tail.next = null;
-            printList();
+        if (this.head == null) {
+            this.head = this.tail = newNode;
+            this.head.previous = null;
+            this.tail.next = null;
+            //if the node can't be found in the list, then put on the end
+        } else if(!searchAndPlace(newNode)){
+            this.tail.next = newNode;
+            newNode.previous = this.tail;
+            this.tail = newNode;
+            this.tail.next = null;
         }
+        if(_preferenceValue > 0){
+            orderAscending();
+        }else{
+            orderDescending();
+        }
+        printList();
+
     }
 
-    //search the list for if there is a node with the same title
-    protected boolean listContains(String _searchingNodeTitle) {
-        Node current = head;
-
-        while (current != null) {
-            if (current.nodeTitle.equals(_searchingNodeTitle)) {
-                return true;
+    //if the list is not empty it will transverse the list to try and find a node with the same string title
+    private boolean searchAndPlace(Node _node){
+        Node current = this.head;
+        boolean found = false;
+        while (current != null && !found) {
+            if (current.nodeTitle.equals(_node.nodeTitle)) {
+                current.preferenceValue = current.preferenceValue + _node.preferenceValue;
+                found = true;
             }
             current = current.next;
+            printList();
         }
-        //if the list is empty or the list doesn't have a node that has a matching title
-        return false;
+        return found;
     }
 
-    //need to rewrite
-    public void removeNode(String _nodeTitle) {
-        if (listContains(_nodeTitle)) {
-            Node current = head;
+    //if an element is added/value incremented order from tail up
+    private void orderAscending() {
+        Node current = this.tail;
 
-            while (current != null) {
-                if (current.nodeTitle.equals(_nodeTitle)) {
-                    if (current.preferenceValue > 1) {
-                        current.preferenceValue = current.preferenceValue - 1;
-                        orderDescending();
-                    } else {
-                        remove(current);
-                    }
-                }
-                current = current.next;
-            }
-        }
-    }
-
-    protected void remove(Node _nodeForRemoval) {
-        _nodeForRemoval.next.previous = _nodeForRemoval.previous;
-        _nodeForRemoval.previous.next = _nodeForRemoval.next;
-    }
-
-    protected void orderAscending() {
-        Node current = tail;
-
-        while (current != head) {
+        while (current != this.head) {
             if (current.preferenceValue > current.previous.preferenceValue) {
                 swap(current.previous, current);
             }
@@ -103,8 +76,9 @@ public class DoubledLinkList {
 
     }
 
-    protected void orderDescending() {
-        Node current = head;
+    //order from head down if a value is decremented
+    private void orderDescending() {
+        Node current = this.head;
 
         while (current != tail) {
             if (current.preferenceValue < current.next.preferenceValue) {
@@ -115,8 +89,8 @@ public class DoubledLinkList {
 
     }
 
-    //switch the position of two nodes in the list that are next to each other
-    protected void swap(Node _lesserValue, Node _greaterValue) {
+    //switch the values of two nodes
+    private void swap(Node _lesserValue, Node _greaterValue) {
         Node tempNode = new Node(_lesserValue.nodeTitle, _lesserValue.preferenceValue);
 
         _lesserValue.nodeTitle = _greaterValue.nodeTitle;
@@ -127,12 +101,36 @@ public class DoubledLinkList {
 
     //to help debug
     protected void printList() {
-        Node current = head;
+        Node current = this.head;
         while (current != null) {
-            System.out.println(current.nodeTitle);
+            System.out.println(current.nodeTitle + " " + current.preferenceValue);
             current = current.next;
         }
     }
 
+    //================= GETTERS ===============
+    public String greatestValue(){
+        return this.head.nodeTitle;
+    }
 
+    public String lowestValue(){
+        return this.tail.nodeTitle;
+    }
+
+    //for data storage allow for the link lists to be turned into hash maps
+    public HashMap<String,Integer> toMap(){
+        HashMap<String,Integer> toReturn = new HashMap<>();
+        Node current = this.head;
+
+        while(current != this.tail){
+            toReturn.put(current.nodeTitle, current.preferenceValue);
+            current = current.next;
+        }
+        return toReturn;
+    }
+
+    //================= SETTERS ===============
+    public void fromMap(HashMap<String,Integer> _inputMap){
+
+    }
 }
