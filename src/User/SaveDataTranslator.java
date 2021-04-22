@@ -8,7 +8,7 @@ package User;
 
 import java.util.HashMap;
 
-public class SaveDataTranslator {
+public class SaveDataTranslator implements SaveDataTranslatorInterface{
     //called on application close to wrap user data into a JSON to be passed to file storage
     public static void saveUserData(){
         //create a JSON of the user data

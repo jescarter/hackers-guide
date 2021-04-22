@@ -1,12 +1,14 @@
 package resources;
 
-import java.util.HashMap;
-
 /*
  * a doubled link list to store and order the values from user input
  * last updated 04/22/2021
  * Author(s) Ian Holder,
  */
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class DoubledLinkList {
     private static class Node {
@@ -60,7 +62,6 @@ public class DoubledLinkList {
                 found = true;
             }
             current = current.next;
-            printList();
         }
         return found;
     }
@@ -132,6 +133,10 @@ public class DoubledLinkList {
     }
     //================= SETTERS ===============
     public void populateFromMap(HashMap<String,Integer> _inputMap){
-
+        Iterator inputMapIterator = _inputMap.entrySet().iterator();
+        while(inputMapIterator.hasNext()){
+            Map.Entry mapElement = (Map.Entry)inputMapIterator.next();
+            addElement((String)mapElement.getKey(),(int)mapElement.getValue());
+        }
     }
 }

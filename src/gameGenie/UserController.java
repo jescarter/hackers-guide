@@ -53,7 +53,7 @@ public class UserController {
     }
 
     //check if a game had been rated
-    protected static Boolean wasGameViewed(int _gameID){
+    public static Boolean wasGameViewed(int _gameID){
         return User.wasViewed(_gameID);
     }
 }

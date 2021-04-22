@@ -1,4 +1,4 @@
-package translators;
+package game;
 
 /*
  * an interface for the game translator
