@@ -18,11 +18,11 @@ class UserDataUnwrapper {
         if(!_saveData.isNull("userGenre")){
             HashMap<String,Integer> userGenres;
             HashMap<String,Integer> userTags;
-            HashMap<Integer,String> userViewedGames;
+            HashMap<String,String> userViewedGames;
             try {
                 userGenres = jsonArrayToStrIntMap(_saveData.getJSONArray("userGenre"));
                 userTags = jsonArrayToStrIntMap(_saveData.getJSONArray("userTags"));
-                userViewedGames = jsonArrayToIntStrMap(_saveData.getJSONArray("viewedGames"));
+                userViewedGames = jsonArrayToStrStrMap(_saveData.getJSONArray("viewedGames"));
                 User.setUserGenres(MapAndListConverter.fromMapToLinkList(userGenres));
                 User.setUserTags(MapAndListConverter.fromMapToLinkList(userTags));
                 User.setViewedGames(userViewedGames);
@@ -47,12 +47,12 @@ class UserDataUnwrapper {
         return toBeReturned;
     }
 
-    private static HashMap<Integer,String> jsonArrayToIntStrMap(JSONArray _inputArray){
-        HashMap<Integer,String> toBeReturned = new HashMap<>();
+    private static HashMap<String,String> jsonArrayToStrStrMap(JSONArray _inputArray){
+        HashMap<String,String> toBeReturned = new HashMap<>();
         try{
             for (int i = 0; i < _inputArray.length(); i++) {
                 JSONObject temp = _inputArray.getJSONObject(i);
-                toBeReturned.put(temp.getInt("key"), temp.getString("value"));
+                toBeReturned.put(temp.getString("key"), temp.getString("value"));
             }
         }catch (Exception e){
             e.printStackTrace();

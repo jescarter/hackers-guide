@@ -18,14 +18,14 @@ public class Game {
     protected String title;
     protected String[] tags;
     protected String[] platforms;
-    protected int metacriticScore;
+    protected String metacriticScore;
     protected URL gameCoverURL;
     protected Path coverFilePath;
-    protected int gameID;
+    protected String gameID;
 
     //constructor
-    public Game(String[] _genre, String _title, String[] _tags, int _metacriticScore, String _gameCoverURL,
-                String _releaseDate, String[] _platforms, int _gameID) {
+    public Game(String[] _genre, String _title, String[] _tags, String _metacriticScore, String _gameCoverURL,
+                String _releaseDate, String[] _platforms, String _gameID) {
         this.genre = _genre;
         this.title = _title;
         this.tags = _tags;
@@ -65,11 +65,11 @@ public class Game {
         return this.genre;
     }
 
-    public int getGameID(){
+    public String getGameID(){
         return this.gameID;
     }
 
-    public int getMetacriticScore() {
+    public String getMetacriticScore() {
         return this.metacriticScore;
     }
 

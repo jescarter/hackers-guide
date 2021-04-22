@@ -21,7 +21,7 @@ public class GameController {
     }
 
     //get if a game had been rated from the user controller for the game factory
-    public static boolean wasGameViewed(int _gameID){
+    public static boolean wasGameViewed(String _gameID){
         return UserController.wasGameViewed(_gameID);
     }
 }

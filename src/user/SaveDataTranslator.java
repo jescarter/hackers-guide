@@ -17,7 +17,7 @@ public class SaveDataTranslator implements SaveDataTranslatorInterface{
         //create a JSON of the user data
         HashMap<String,Integer> userGenreMap = MapAndListConverter.fromLinkListToMap(User.getUserGenres());
         HashMap<String,Integer> userTagsMap = MapAndListConverter.fromLinkListToMap(User.getUserTags());
-        HashMap<Integer,String> userViewedGames = User.getViewedGames();
+        HashMap<String,String> userViewedGames = User.getViewedGames();
         //pass the data to be wrapped in a json
         JSONObject toBeStored = UserDataWrapper.toJSON(userGenreMap,userTagsMap,userViewedGames);
         //send the json to be written in a file

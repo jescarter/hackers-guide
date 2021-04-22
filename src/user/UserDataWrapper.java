@@ -15,11 +15,11 @@ import java.util.Map;
 class UserDataWrapper {
     //protected to only be acceded by the save data translator
     protected static JSONObject toJSON(HashMap<String,Integer> _userGenre, HashMap<String,Integer> _userTags,
-                                       HashMap<Integer,String> _userViewedGames){
+                                       HashMap<String,String> _userViewedGames){
         //take the hash maps and turn into Json arrays
         JSONArray userGenre = fromStringIntMap(_userGenre);
         JSONArray userTags = fromStringIntMap(_userTags);
-        JSONArray userViewedGames = fromIntStringMap(_userViewedGames);
+        JSONArray userViewedGames = fromStringStringMap(_userViewedGames);
         //put the json arrays into a json object
         JSONObject toBeReturned = new JSONObject();
         try{
@@ -48,9 +48,9 @@ class UserDataWrapper {
         return toBeReturned;
     }
 
-    private static JSONArray fromIntStringMap(HashMap<Integer,String> _inputMap){
+    private static JSONArray fromStringStringMap(HashMap<String,String> _inputMap){
         JSONArray toBeReturned = new JSONArray();
-        for(Map.Entry<Integer,String> integerStringEntry: _inputMap.entrySet()){
+        for(Map.Entry<String,String> integerStringEntry: _inputMap.entrySet()){
             JSONObject temp = new JSONObject();
             try{
                 temp.put("key", integerStringEntry.getKey());

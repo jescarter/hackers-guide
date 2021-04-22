@@ -34,6 +34,15 @@ public class GamesByGenreTranslator {
         String genre = input.nextLine();
         genre = genre.replace(" ", "-");
 
+        String gameName;
+        String gameID;
+        String gameReleaseDate;
+        String gameScore;
+        String gameCoverURL;
+        String[] gameGenres;
+        String[] gameTags;
+        String[] gamePlatforms;
+
         // Create a HTTP Connection.
         String baseUrl = "https://api.rawg.io/api";
         String callAction = ("/games?genre%20=%20" + genre + "?key=");
