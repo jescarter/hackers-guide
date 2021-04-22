@@ -14,13 +14,17 @@ public interface GameTranslatorInterface {
     public static Game[] getGamesByGenre(String _genre){
         return null;
     }
+
     public static Game[] getGamesByTag(String _tag){
         return null;
     }
-    public static HashMap<String, Integer> getGenres(){
+
+    public static String[] getGenres(){
         return null;
     }
-    public static HashMap<String,Integer> getTags(){
+
+    public static String[] getTags(){
         return null;
     }
+
 }
