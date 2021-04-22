@@ -8,7 +8,7 @@ package user;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import resources.Util;
+
 import java.util.HashMap;
 
 //default is packet protected
@@ -23,8 +23,8 @@ class UserDataUnwrapper {
                 userGenres = jsonArrayToStrIntMap(_saveData.getJSONArray("userGenre"));
                 userTags = jsonArrayToStrIntMap(_saveData.getJSONArray("userTags"));
                 userViewedGames = jsonArrayToIntStrMap(_saveData.getJSONArray("viewedGames"));
-                User.setUserGenres(Util.fromMapToLinkList(userGenres));
-                User.setUserTags(Util.fromMapToLinkList(userTags));
+                User.setUserGenres(MapAndListConverter.fromMapToLinkList(userGenres));
+                User.setUserTags(MapAndListConverter.fromMapToLinkList(userTags));
                 User.setViewedGames(userViewedGames);
                 return true;
             }catch (Exception e){

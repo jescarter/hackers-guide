@@ -12,7 +12,7 @@ import resources.Game;
 import resources.GameQueue;
 import translators.GamesByGenreTranslator;
 
-import static resources.Util.genresArray;
+
 
 public class GameFactory {
     private static String[] gameGenres;
@@ -26,7 +26,7 @@ public class GameFactory {
         //create the game queue
         GameQueue<Game> toBeReturned = new GameQueue<>();
         //make the game array to call the API for game objects
-        Game[] placeHolder = GamesByGenreTranslator.getGames(gameGenres[(int) (Math.random() * genresArray.length) - 1]);
+        Game[] placeHolder = GamesByGenreTranslator.getGames(gameGenres[(int) (Math.random() * gameGenres.length) - 1]);
         //check each game in the array
         for (Game placeHoldingGame:placeHolder) {
             //check that the games in the array have not been rated

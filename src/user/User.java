@@ -6,7 +6,6 @@ package user;
  * Author(s) Ian Holder, Jesse Carter
  */
 
-import resources.DoubledLinkList;
 import java.util.HashMap;
 
 public class User {
