@@ -2,7 +2,7 @@ package resources;
 
 import java.util.HashMap;
 
-/**
+/*
  * a doubled link list to store and order the values from user input
  * last updated 04/08/2021
  * Author(s) Ian Holder,

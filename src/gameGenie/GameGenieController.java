@@ -1,8 +1,8 @@
 package gameGenie;
 
-/**
+/*
  * an application controller,that will handle scene transitions and loading in user data
- * last updated 04/21/2021
+ * last updated 04/22/2021
  * Author(s) Ian Holder,
  */
 
@@ -23,10 +23,24 @@ public class GameGenieController {
     private static GameGenieController controller = null;
     //for the game picker screen gets info from the game queue
     private static GameQueue<Game> gameQueue;
+    private static final String startScreenFile = "/startScreen.fxml";
+    private static final String gamePickerFile = "/gamePickerScreen.fxml";
+    private static final String gameRecommendationFile = "/gameRecommendationScreen.fxml";
 
     //constructor
-    GameGenieController() {
-        this.primaryStage = null;
+    GameGenieController(){}
+
+    //on application start when the stage is passed figure out which scene to show if there is user data to load in
+    protected void setPrimaryStage(Stage _stage){
+        this.primaryStage = _stage;
+        this.primaryStage.setTitle("Game Genie");
+        //if there is no data loaded into the user at application start
+        if(!UserController.userDataLoaded()) {
+            updateStage(startScreenFile);
+        }else{
+            changeSceneIntoGamePicker();
+        }
+        this.primaryStage.show();
     }
 
     //will create a new scene from an inputted file name and update the stage
@@ -43,12 +57,12 @@ public class GameGenieController {
 
     //the loading protocol from start to game picker
     public void changeSceneIntoGamePicker(){
-        updateStage("/gamePickerScreen.fxml");
+        updateStage(gamePickerFile);
     }
 
     //loading into the game recommendation screen
     public void changeSceneIntoGameRecommendation(){
-        updateStage("/gameRecommendationScreen.fxml");
+        updateStage(gameRecommendationFile);
     }
 
     //make the GameGenieController a singleton
@@ -59,23 +73,14 @@ public class GameGenieController {
         return controller;
     }
 
-    //on application start when the stage is passed figure out which scene to show
-    public void setPrimaryStage(Stage _stage){
-        this.primaryStage = _stage;
-        this.primaryStage.setTitle("Game Genie");
-        //if there is no data loaded into the user at application start
-        if(!UserController.userDataLoaded()) {
-            updateStage("/startScreen.fxml");
-        }else{
-            updateStage("/gamePickerScreen.fxml");
-        }
-        this.primaryStage.show();
-    }
+    //Start Screen
 
     //route from the start screen to the user controller to be evaluated
-    public static void handleStartCheckBoxes(CheckBox[] _startCheckBoxes){
+    public static void handleStartCheckBoxes(String[] _startCheckBoxes){
         UserController.handleCheckBoxes(_startCheckBoxes);
     }
+
+    //Game Picker
 
     //when the scene is set to game picker make sure that there are values in the game queue
     public static Game getGamePickerGame(){
@@ -99,10 +104,14 @@ public class GameGenieController {
         gameQueue.poll();
     }
 
+    //Game Recommendation
+
     //calls the game controller to get the one game for the game recommendation screen
     public static Game getRecommendation(){
         return GameController.getRecommendation();
     }
+
+    //stage close
 
     //on application close tell the user controller that the application is closing
     public static void applicationClosing(){

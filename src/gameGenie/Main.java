@@ -1,6 +1,6 @@
 package gameGenie;
 
-/**
+/*
  * last updated 04/21/2021
  * Author(s) Ian Holder,
  */

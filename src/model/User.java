@@ -1,6 +1,6 @@
 package model;
 
-/**
+/*
  * the user selection data
  * last updated 04/20/2021
  * Author(s) Ian Holder, Jesse Carter

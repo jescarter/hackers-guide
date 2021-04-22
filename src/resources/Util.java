@@ -1,6 +1,6 @@
 package resources;
 
-/**
+/*
  * helper to hold an array of genre strings
  * last updated 04/06/2021
  * Author(s) Ian Holder,

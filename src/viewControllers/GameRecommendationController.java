@@ -1,6 +1,6 @@
 package viewControllers;
 
-/**
+/*
  * Controller for the game recommendation fxml, that will show games
  * last updated 04/18/2021
  * Author(s) Ian Holder,

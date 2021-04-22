@@ -1,6 +1,6 @@
 package model;
 
-/**
+/*
  * Create game objects with api data to be used for views
  * last updated 04/19/2021
  * Author(s) Ian Holder,

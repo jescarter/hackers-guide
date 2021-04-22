@@ -1,6 +1,6 @@
 package gameGenie;
 
-/**
+/*
  * controller to handle user selections from the views
  * last updated 04/21/2021
  * Author(s) Ian Holder,
@@ -14,12 +14,9 @@ import resources.Util;
 
 public class UserController {
     //populate the user liked genres based on the selected check boxes from the start screen
-    public static void handleCheckBoxes(CheckBox[] _checkBoxArray){
-        for(int i = 0; i < _checkBoxArray.length; i++){
-            if(_checkBoxArray[i].isSelected()){
-                //the checkboxes should be in order according to the util array
-                User.addGenreLike(Util.genresArray[i]);
-            }
+    public static void handleCheckBoxes(String[] _checkBoxArray){
+        for (String temp:_checkBoxArray) {
+            User.addGenreLike(temp);
         }
     }
 

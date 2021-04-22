@@ -1,9 +1,9 @@
 package resources;
 
-/**
- * helper method for the game picker view to show games
- * last updated 04/06/2021
- * Author(s) Ian Holder,
+/*
+  helper method for the game picker view to show games
+  last updated 04/06/2021
+  Author(s) Ian Holder,
  */
 
 import java.util.*;

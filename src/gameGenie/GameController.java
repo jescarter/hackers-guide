@@ -1,9 +1,9 @@
 package gameGenie;
 
-/**
- * controller to handle creation of game objects and game queues for the game genie controller
- * last updated 04/20/2021
- * Author(s) Ian Holder,
+/*
+  controller to handle creation of game objects and game queues for the game genie controller
+  last updated 04/20/2021
+  Author(s) Ian Holder,
  */
 
 import model.Game;
