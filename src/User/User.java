@@ -2,7 +2,7 @@ package User;
 
 /*
  * the user selection data
- * last updated 04/20/2021
+ * last updated 04/22/2021
  * Author(s) Ian Holder, Jesse Carter
  */
 
@@ -19,7 +19,7 @@ public class User {
     private static final String defaultTag = "Cube";
 
     //for the viewed games map
-    public static void addViewedGame(int _gameID, String _gameTitle) {
+    protected static void addViewedGame(int _gameID, String _gameTitle) {
         //Add the viewed game to the user's list of previously viewed games.
         viewedGames.putIfAbsent(_gameID, _gameTitle);
     }
@@ -29,11 +29,11 @@ public class User {
         return viewedGames.containsKey(_gameID);
     }
 
-    public static void addGenre(String _genreName, int _inputValue){
+    protected static void addGenre(String _genreName, int _inputValue){
         userGenres.addElement(_genreName,_inputValue);
     }
 
-    public static void addTag(String _tagName, int _inputValue){
+    protected static void addTag(String _tagName, int _inputValue){
         userTags.addElement(_tagName,_inputValue);
     }
 

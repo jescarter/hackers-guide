@@ -7,7 +7,7 @@ package game;
  */
 
 import User.User;
-import gameGenie.UserController;
+import gameGenie.GameController;
 import resources.Game;
 import resources.GameQueue;
 import translators.GamesByGenreTranslator;
@@ -23,7 +23,7 @@ public class GameFactory {
         //check each game in the array
         for (Game placeHoldingGame:placeHolder) {
             //check that the games in the array have not been rated
-            if(!UserController.wasGameViewed(placeHoldingGame.getGameID())){
+            if(!GameController.wasGameViewed(placeHoldingGame.getGameID())){
                 //put game in the queue
                 toBeReturned.offer(placeHoldingGame);
             }
@@ -36,7 +36,7 @@ public class GameFactory {
         Game[] placeHolder = GamesByGenreTranslator.getGames(User.getMostLikedGenre());
         for (Game game : placeHolder) {
             //insure that the game has not been rated
-            if(!UserController.wasGameViewed(game.getGameID())) {
+            if(!GameController.wasGameViewed(game.getGameID())) {
                 //on the first loop the recommendation game object will be set to the first element in the array
                 if (recommendation == null) {
                     recommendation = game;

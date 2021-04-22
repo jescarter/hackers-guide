@@ -8,6 +8,7 @@ package gameGenie;
 
 import resources.Game;
 import User.SaveDataTranslator;
+import User.GameParsing;
 import User.User;
 
 public class UserController {
@@ -16,30 +17,16 @@ public class UserController {
 
     //populate the user liked genres based on the selected check boxes from the start screen
     protected static void handleCheckBoxes(String[] _checkBoxArray){
-        for (String temp:_checkBoxArray) {
-            User.addGenre(temp,defaultLikeValue);
-        }
+        GameParsing.addStartScreenSelections(_checkBoxArray,defaultLikeValue);
     }
 
     //populate the user genres and tags, selected from the game picker screen
     protected static void Liked(Game _game){
-        //add all the genres of the game to the liked link list in the user
-        for (String genre: _game.getGenre()) {
-            User.addGenre(genre,defaultLikeValue);
-        }
-        //add all the tags
-        for (String tag: _game.getTags()) {
-            User.addTag(tag,defaultLikeValue);
-        }
-        //add to the viewed map
-        User.addViewedGame(_game.getGameID(), _game.getTitle());
+        GameParsing.likedGame(_game,defaultLikeValue);
     }
 
     protected static void Disliked(Game _game){
-        for (String tag:_game.getTags()) {
-            User.addTag(tag,defaultDislikeValue);
-        }
-        User.addViewedGame(_game.getGameID(), _game.getTitle());
+        GameParsing.disLikedGame(_game,defaultDislikeValue);
     }
 
     //call the Save translator to load in save file

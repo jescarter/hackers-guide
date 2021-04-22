@@ -23,4 +23,9 @@ public class GameController {
     protected static GameQueue<Game> getGameQueue(){
         return GameFactory.getGameQueue();
     }
+
+    //get if a game had been rated from the user controller for the game factory
+    public static boolean wasGameViewed(int _gameID){
+        return UserController.wasGameViewed(_gameID);
+    }
 }
