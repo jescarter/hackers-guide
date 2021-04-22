@@ -3,7 +3,7 @@ package user;
 /*
  * to create or read JSONs to/from
  * last updated 04/21/2021
- * Author(s) Ian Holder, Jesse Carter
+ * Author(s) Ian Holder
  */
 
 import org.json.JSONArray;

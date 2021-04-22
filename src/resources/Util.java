@@ -28,8 +28,7 @@ public class Util {
     public static DoubledLinkList fromMapToLinkList(HashMap<String,Integer> _inputMap){
         DoubledLinkList toBeReturned = new DoubledLinkList();
         for (Map.Entry<String, Integer> stringIntegerEntry : _inputMap.entrySet()) {
-            Map.Entry mapElement = stringIntegerEntry;
-            toBeReturned.addElement((String) mapElement.getKey(), (int) mapElement.getValue());
+            toBeReturned.addElement(stringIntegerEntry.getKey(), stringIntegerEntry.getValue());
         }
         return toBeReturned;
     }
