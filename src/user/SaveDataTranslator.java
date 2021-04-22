@@ -8,6 +8,7 @@ package user;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import resources.DataStorage;
 import resources.Util;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,15 +20,17 @@ public class SaveDataTranslator implements SaveDataTranslatorInterface{
         HashMap<String,Integer> userGenreMap = Util.fromLinkListToMap(User.getUserGenres());
         HashMap<String,Integer> userTagsMap = Util.fromLinkListToMap(User.getUserTags());
         HashMap<Integer,String> userViewedGames = User.getViewedGames();
+        //pass the data to be wrapped in a json
         JSONObject toBeStored = UserDataWrapper.toJSON(userGenreMap,userTagsMap,userViewedGames);
-        //TODO write the JSON to a file
-
+        //send the json to be written in a file
+        DataStorage.saveFile(toBeStored);
     }
 
     //called on application start to take in a json from file and set the user data
     public static Boolean loadUserData(){
         JSONObject toBeRead = new JSONObject();
-        //TODO load in a JSON from a file
+        //call the read method to hopefully return a json
+        toBeRead = DataStorage.readFile();
         return UserDataUnwrapper.unwrap(toBeRead);
     }
 }

@@ -15,11 +15,18 @@ import translators.GamesByGenreTranslator;
 import static resources.Util.genresArray;
 
 public class GameFactory {
+    private static String[] gameGenres;
+    private static String[] gameTags;
+
     public static GameQueue<Game> getGameQueue(){
+        if(gameGenres == null || gameTags == null){
+            setGameGenres(getGenres());
+            setGameTags(getTags());
+        }
         //create the game queue
         GameQueue<Game> toBeReturned = new GameQueue<>();
         //make the game array to call the API for game objects
-        Game[] placeHolder = GamesByGenreTranslator.getGames(genresArray[(int) (Math.random() * genresArray.length) - 1]);
+        Game[] placeHolder = GamesByGenreTranslator.getGames(gameGenres[(int) (Math.random() * genresArray.length) - 1]);
         //check each game in the array
         for (Game placeHoldingGame:placeHolder) {
             //check that the games in the array have not been rated
@@ -64,5 +71,14 @@ public class GameFactory {
     //input guarding get all the valid tags
     public static String[] getTags(){
         return null;
+    }
+
+    //================= SETTERS ===============
+    private static void setGameGenres(String[] _inputArray){
+        gameGenres = _inputArray;
+    }
+
+    private static void setGameTags(String[] _inputArray){
+        gameTags = _inputArray;
     }
 }
