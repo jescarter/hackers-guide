@@ -1,4 +1,4 @@
-package model;
+package User;
 
 /*
  * the user selection data
@@ -17,8 +17,6 @@ public class User {
     //if the user data is empty return default values
     private static final String defaultGenre = "Action";
     private static final String defaultTag = "Cube";
-    private static final int defaultLikeValue = 1;
-    private static final int defaultDislikeValue = -1;
 
     //for the viewed games map
     public static void addViewedGame(int _gameID, String _gameTitle) {
@@ -31,21 +29,12 @@ public class User {
         return viewedGames.containsKey(_gameID);
     }
 
-    //for the user genres link list
-    public static void addGenreLike(String _genreName){
-        userGenres.addElement(_genreName, defaultLikeValue);
+    public static void addGenre(String _genreName, int _inputValue){
+        userGenres.addElement(_genreName,_inputValue);
     }
 
-    public static void addGenreDisliked(String _genreName){
-        userGenres.addElement(_genreName, defaultDislikeValue);
-    }
-    //for the user tags link list
-    public static void addTagLiked(String _tagName){
-        userTags.addElement(_tagName, defaultLikeValue);
-    }
-
-    public static void addTagDisliked(String _tagName){
-        userTags.addElement(_tagName, defaultDislikeValue);
+    public static void addTag(String _tagName, int _inputValue){
+        userTags.addElement(_tagName,_inputValue);
     }
 
     //================= GETTERS ===============

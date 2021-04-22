@@ -17,27 +17,12 @@ public class GameQueue<Game> extends AbstractQueue<Game> {
     }
 
     @Override
-    public Iterator<Game> iterator() {
-        return this.elements.iterator();
-    }
-
-    @Override
     public boolean offer(Game _game) {
         if(_game == null) {
             return false;
         }
         this.elements.add(_game);
         return true;
-    }
-
-    @Override
-    public int size() {
-        return this.elements.size();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return this.elements.isEmpty();
     }
 
     //take the top element out
@@ -56,5 +41,21 @@ public class GameQueue<Game> extends AbstractQueue<Game> {
     @Override
     public Game peek() {
         return this.elements.getFirst();
+    }
+
+    //================= GETTERS ===============
+    @Override
+    public Iterator<Game> iterator() {
+        return this.elements.iterator();
+    }
+
+    @Override
+    public int size() {
+        return this.elements.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return this.elements.isEmpty();
     }
 }

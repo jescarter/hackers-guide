@@ -1,4 +1,4 @@
-package model;
+package resources;
 
 /*
  * Create game objects with api data to be used for views
@@ -23,6 +23,7 @@ public class Game {
     protected Path coverFilePath;
     protected int gameID;
 
+    //constructor
     public Game(String[] _genre, String _title, String[] _tags, int _metacriticScore, String _gameCoverURL,
                 String _releaseDate, String[] _platforms, int _gameID) {
         this.genre = _genre;

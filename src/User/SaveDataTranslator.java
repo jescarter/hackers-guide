@@ -1,4 +1,4 @@
-package translators;
+package User;
 
 /*
  * to create or read JSONs to/from
@@ -6,7 +6,6 @@ package translators;
  * Author(s) Ian Holder,
  */
 
-import model.User;
 import java.util.HashMap;
 
 public class SaveDataTranslator {

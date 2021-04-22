@@ -6,8 +6,7 @@ package gameGenie;
  * Author(s) Ian Holder,
  */
 
-import javafx.scene.control.CheckBox;
-import model.Game;
+import resources.Game;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;

@@ -6,15 +6,15 @@ package gameGenie;
   Author(s) Ian Holder,
  */
 
-import model.Game;
+import resources.Game;
 import translators.GamesByGenreTranslator;
-import model.User;
+import User.User;
 import resources.GameQueue;
 
 import static resources.Util.genresArray;
 
 public class GameController {
-    public static Game getRecommendation(){
+    protected static Game getRecommendation(){
         Game recommendation = null;
         Game[] placeHolder = GamesByGenreTranslator.getGames(User.getMostLikedGenre());
         for (Game game : placeHolder) {
@@ -37,7 +37,7 @@ public class GameController {
     }
 
     //creat a game queue for the game picker, getting games from the API based on a random genre
-    public static GameQueue<Game> getGameQueue(){
+    protected static GameQueue<Game> getGameQueue(){
         //create the game queue
         GameQueue<Game> toBeReturned = new GameQueue<>();
         //make the game array to call the API for game objects

@@ -7,7 +7,7 @@ package viewControllers;
  */
 
 import gameGenie.GameGenieController;
-import model.Game;
+import resources.Game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

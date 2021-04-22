@@ -100,7 +100,7 @@ public class DoubledLinkList {
     }
 
     //to help debug
-    protected void printList() {
+    private void printList() {
         Node current = this.head;
         while (current != null) {
             System.out.println(current.nodeTitle + " " + current.preferenceValue);
@@ -130,7 +130,7 @@ public class DoubledLinkList {
     }
 
     //================= SETTERS ===============
-    public void fromMap(HashMap<String,Integer> _inputMap){
+    public void populateFromMap(HashMap<String,Integer> _inputMap){
 
     }
 }

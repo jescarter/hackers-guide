@@ -13,8 +13,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import model.Game;
-import org.json.*;
+import resources.Game;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
