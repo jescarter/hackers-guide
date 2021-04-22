@@ -2,7 +2,7 @@ package gameGenie;
 
 /*
  * controller to handle user selections from the views
- * last updated 04/21/2021
+ * last updated 04/22/2021
  * Author(s) Ian Holder,
  */
 
@@ -50,5 +50,10 @@ public class UserController {
     //on close request save the user data
     protected static void programClose() {
         SaveDataTranslator.saveUserData();
+    }
+
+    //check if a game had been rated
+    protected static Boolean wasGameViewed(int _gameID){
+        return User.wasViewed(_gameID);
     }
 }

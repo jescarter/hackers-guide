@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 /*
  * a doubled link list to store and order the values from user input
- * last updated 04/08/2021
+ * last updated 04/22/2021
  * Author(s) Ian Holder,
  */
 
@@ -47,6 +47,8 @@ public class DoubledLinkList {
         printList();
 
     }
+
+    //ordering
 
     //if the list is not empty it will transverse the list to try and find a node with the same string title
     private boolean searchAndPlace(Node _node){
@@ -128,7 +130,6 @@ public class DoubledLinkList {
         }
         return toReturn;
     }
-
     //================= SETTERS ===============
     public void populateFromMap(HashMap<String,Integer> _inputMap){
 

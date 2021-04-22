@@ -2,7 +2,7 @@ package resources;
 
 /*
  * Create game objects with api data to be used for views
- * last updated 04/19/2021
+ * last updated 04/22/2021
  * Author(s) Ian Holder,
  */
 
@@ -44,35 +44,7 @@ public class Game {
         }
     }
 
-    public Boolean hasGenre(String _genre){
-        //check that the array contains anything
-        if(this.genre.length == 0){
-            return false;
-        }
-        //transverse the array to find the search term
-        for (String placeHolder:this.genre) {
-            if(placeHolder.equals(_genre)){
-                return true;
-            }
-        }
-        //if the array does not have the string return false
-        return false;
-    }
-
-    public Boolean hasTag(String _tag){
-        if(this.tags.length == 0 || this.genre == null){
-            return false;
-        }
-        for (String placeHolder:this.tags) {
-            if(placeHolder.equals(_tag)){
-                return true;
-            }
-        }
-        return false;
-    }
-
     //=================  GETTERS ===============
-
     public String getTitle() {
         return this.title;
     }
@@ -115,6 +87,33 @@ public class Game {
 
     public URL getGameCoverURL() {
         return this.gameCoverURL;
+    }
+
+    public Boolean hasGenre(String _genre){
+        //check that the array contains anything
+        if(this.genre.length == 0){
+            return false;
+        }
+        //transverse the array to find the search term
+        for (String placeHolder:this.genre) {
+            if(placeHolder.equals(_genre)){
+                return true;
+            }
+        }
+        //if the array does not have the string return false
+        return false;
+    }
+
+    public Boolean hasTag(String _tag){
+        if(this.tags.length == 0 || this.genre == null){
+            return false;
+        }
+        for (String placeHolder:this.tags) {
+            if(placeHolder.equals(_tag)){
+                return true;
+            }
+        }
+        return false;
     }
 
     //=================  SETTERS ===============

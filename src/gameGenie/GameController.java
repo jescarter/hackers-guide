@@ -2,7 +2,7 @@ package gameGenie;
 
 /*
   controller to handle creation of game objects and game queues for the game genie controller
-  last updated 04/20/2021
+  last updated 04/22/2021
   Author(s) Ian Holder,
  */
 
@@ -18,19 +18,22 @@ public class GameController {
         Game recommendation = null;
         Game[] placeHolder = GamesByGenreTranslator.getGames(User.getMostLikedGenre());
         for (Game game : placeHolder) {
-            //on the first loop the recommendation game object will be set to the first element in the array
-            if (recommendation == null) {
+            //insure that the game has not been rated
+            if(!UserController.wasGameViewed(game.getGameID())) {
+                //on the first loop the recommendation game object will be set to the first element in the array
+                if (recommendation == null) {
                 recommendation = game;
-            }
-            //in the case that the recommendation game has the same tag as another game in the array, take the highest score
-            if (game.hasTag(User.getMostLikedTag()) && recommendation.hasTag(User.getMostLikedTag())) {
-                if (game.getMetacriticScore() > recommendation.getMetacriticScore()) {
+                }
+                //in the case that the recommendation game has the same tag as another game in the array, take the highest score
+                if (game.hasTag(User.getMostLikedTag()) && recommendation.hasTag(User.getMostLikedTag())) {
+                    if (game.getMetacriticScore() > recommendation.getMetacriticScore()) {
+                        recommendation = game;
+                    }
+                }
+                //if recommendation does not have the most liked tag and game does
+                if(game.hasTag(User.getMostLikedTag()) && !recommendation.hasTag(User.getMostLikedTag())){
                     recommendation = game;
                 }
-            }
-            //if recommendation does not have the most liked tag and game does
-            if(game.hasTag(User.getMostLikedTag()) && !recommendation.hasTag(User.getMostLikedTag())){
-                recommendation = game;
             }
         }
         return recommendation;
@@ -45,7 +48,7 @@ public class GameController {
         //check each game in the array
         for (Game placeHoldingGame:placeHolder) {
             //check that the games in the array have not been rated
-            if(!User.wasViewed(placeHoldingGame.getGameID())){
+            if(!UserController.wasGameViewed(placeHoldingGame.getGameID())){
                 //put game in the queue
                 toBeReturned.offer(placeHoldingGame);
             }
