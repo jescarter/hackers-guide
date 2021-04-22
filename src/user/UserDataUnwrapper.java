@@ -9,10 +9,9 @@ package user;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import resources.Util;
-
 import java.util.HashMap;
 
-//default is paket protected
+//default is packet protected
 class UserDataUnwrapper {
     //takes out the json arrays and populates the hash maps with them
     protected static boolean unwrap(JSONObject _saveData){

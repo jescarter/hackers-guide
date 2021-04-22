@@ -90,7 +90,7 @@ public class StartScreenLogic {
             }
         }
 
-        GameGenieController.getInstance().handleStartCheckBoxes(checkedValues);
+        GameGenieController.handleStartCheckBoxes(checkedValues);
         GameGenieController.getInstance().changeSceneIntoGamePicker();
     }
 

@@ -20,12 +20,14 @@ public class SaveDataTranslator implements SaveDataTranslatorInterface{
         HashMap<String,Integer> userTagsMap = Util.fromLinkListToMap(User.getUserTags());
         HashMap<Integer,String> userViewedGames = User.getViewedGames();
         JSONObject toBeStored = UserDataWrapper.toJSON(userGenreMap,userTagsMap,userViewedGames);
+        //TODO write the JSON to a file
 
     }
 
     //called on application start to take in a json from file and set the user data
     public static Boolean loadUserData(){
         JSONObject toBeRead = new JSONObject();
+        //TODO load in a JSON from a file
         return UserDataUnwrapper.unwrap(toBeRead);
     }
 }
