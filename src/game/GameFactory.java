@@ -55,4 +55,14 @@ public class GameFactory {
         }
         return recommendation;
     }
+
+    //for input guarding get an array of all valid genres
+    public static String[] getGenres(){
+        return null;
+    }
+
+    //input guarding get all the valid tags
+    public static String[] getTags(){
+        return null;
+    }
 }

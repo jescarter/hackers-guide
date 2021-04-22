@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class DoubledLinkList {
-    private static class Node {
+    static class Node {
         String nodeTitle;
         int preferenceValue;
         Node previous = null;
@@ -118,25 +118,5 @@ public class DoubledLinkList {
 
     public String lowestValue(){
         return this.tail.nodeTitle;
-    }
-
-    //for data storage allow for the link lists to be turned into hash maps
-    public HashMap<String,Integer> toMap(){
-        HashMap<String,Integer> toReturn = new HashMap<>();
-        Node current = this.head;
-
-        while(current != this.tail){
-            toReturn.put(current.nodeTitle, current.preferenceValue);
-            current = current.next;
-        }
-        return toReturn;
-    }
-    //================= SETTERS ===============
-    public void populateFromMap(HashMap<String,Integer> _inputMap){
-        Iterator inputMapIterator = _inputMap.entrySet().iterator();
-        while(inputMapIterator.hasNext()){
-            Map.Entry mapElement = (Map.Entry)inputMapIterator.next();
-            addElement((String)mapElement.getKey(),(int)mapElement.getValue());
-        }
     }
 }
