@@ -12,7 +12,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserDataWrapper {
+class UserDataWrapper {
     //protected to only be acceded by the save data translator
     protected static JSONObject toJSON(HashMap<String,Integer> _userGenre, HashMap<String,Integer> _userTags,
                                        HashMap<Integer,String> _userViewedGames){

@@ -12,7 +12,8 @@ import resources.Util;
 
 import java.util.HashMap;
 
-public class UserDataUnwrapper {
+//default is paket protected
+class UserDataUnwrapper {
     //takes out the json arrays and populates the hash maps with them
     protected static boolean unwrap(JSONObject _saveData){
         if(!_saveData.isNull("userGenre")){
