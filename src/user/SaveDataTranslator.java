@@ -25,6 +25,7 @@ public class SaveDataTranslator implements SaveDataTranslatorInterface{
 
     //called on application start to take in a json from file and set the user data
     public static Boolean loadUserData(){
-        return false;
+        JSONObject toBeRead = new JSONObject();
+        return UserDataUnwrapper.unwrap(toBeRead);
     }
 }
