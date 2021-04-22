@@ -39,15 +39,15 @@ public class User {
 
     //================= GETTERS ===============
     //getting the user data to be put into data storage on application close
-    public static DoubledLinkList getUserGenres(){
+    protected static DoubledLinkList getUserGenres(){
         return userGenres;
     }
 
-    public static DoubledLinkList getUserTags(){
+    protected static DoubledLinkList getUserTags(){
         return userTags;
     }
 
-    public static HashMap<Integer,String> getViewedGames(){
+    protected static HashMap<Integer,String> getViewedGames(){
         return viewedGames;
     }
 
@@ -68,15 +68,15 @@ public class User {
 
     //================= SETTERS ===============
     //for reading in from a data storage
-    public static void setUserGenres(DoubledLinkList _userGenres){
+    protected static void setUserGenres(DoubledLinkList _userGenres){
         userGenres = _userGenres;
     }
 
-    public static void setUserTags(DoubledLinkList _userTags){
+    protected static void setUserTags(DoubledLinkList _userTags){
         userTags = _userTags;
     }
 
-    public static void setViewedGames(HashMap<Integer,String> _viewedGames){
+    protected static void setViewedGames(HashMap<Integer,String> _viewedGames){
         viewedGames = _viewedGames;
     }
 

@@ -1,4 +1,4 @@
-package viewControllers;
+package viewLogic;
 
 /*
  * A controller that is going to pass the start screen information to a model to handle it
@@ -11,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
-public class StartScreenController {
+public class StartScreenLogic {
     @FXML
     private CheckBox actionBox;
     @FXML

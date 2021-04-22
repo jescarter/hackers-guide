@@ -1,4 +1,4 @@
-package viewControllers;
+package viewLogic;
 
 /*
  * Controller for the game recommendation fxml, that will show games
@@ -16,7 +16,7 @@ import javafx.scene.image.ImageView;
 
 
 
-public class GameRecommendationController {
+public class GameRecommendationLogic {
     private Game currentGame;
 
     @FXML

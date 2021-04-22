@@ -1,4 +1,4 @@
-package viewControllers;
+package viewLogic;
 
 /*
  * Controller for the game picker fxml, that will show games
@@ -15,7 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class GamePickerController {
+public class GamePickerLogic {
     private Game currentGame;
 
     @FXML
