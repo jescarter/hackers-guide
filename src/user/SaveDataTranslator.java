@@ -3,12 +3,14 @@ package user;
 /*
  * to create or read JSONs to/from
  * last updated 04/21/2021
- * Author(s) Ian Holder,
+ * Author(s) Ian Holder, Jesse Carter
  */
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import resources.Util;
-
 import java.util.HashMap;
+import java.util.Map;
 
 public class SaveDataTranslator implements SaveDataTranslatorInterface{
     //called on application close to wrap user data into a JSON to be passed to file storage
@@ -17,6 +19,7 @@ public class SaveDataTranslator implements SaveDataTranslatorInterface{
         HashMap<String,Integer> userGenreMap = Util.fromLinkListToMap(User.getUserGenres());
         HashMap<String,Integer> userTagsMap = Util.fromLinkListToMap(User.getUserTags());
         HashMap<Integer,String> userViewedGames = User.getViewedGames();
+        JSONObject toBeStored = UserDataWrapper.toJSON(userGenreMap,userTagsMap,userViewedGames);
 
     }
 

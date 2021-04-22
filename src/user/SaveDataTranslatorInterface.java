@@ -6,6 +6,8 @@ package user;
  * Author(s) Ian Holder,
  */
 
+import org.json.JSONObject;
+
 public interface SaveDataTranslatorInterface {
     //will get the user data from the user class and call a helper to wrap into a json to pass to be written to a file
     public static void saveUserData(){
