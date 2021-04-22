@@ -7,9 +7,9 @@ package gameGenie;
  */
 
 import resources.Game;
-import User.SaveDataTranslator;
-import User.GameParsing;
-import User.User;
+import user.SaveDataTranslator;
+import user.GameParsing;
+import user.User;
 
 public class UserController {
     private static final int defaultLikeValue = 1;

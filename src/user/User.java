@@ -1,4 +1,4 @@
-package User;
+package user;
 
 /*
  * the user selection data

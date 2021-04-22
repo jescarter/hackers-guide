@@ -8,11 +8,7 @@ package gameGenie;
 
 import game.GameFactory;
 import resources.Game;
-import translators.GamesByGenreTranslator;
-import User.User;
 import resources.GameQueue;
-
-import static resources.Util.genresArray;
 
 public class GameController {
     protected static Game getRecommendation(){

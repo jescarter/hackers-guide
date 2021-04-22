@@ -6,7 +6,7 @@ package game;
  * Author(s) Ian Holder,
  */
 
-import User.User;
+import user.User;
 import gameGenie.GameController;
 import resources.Game;
 import resources.GameQueue;

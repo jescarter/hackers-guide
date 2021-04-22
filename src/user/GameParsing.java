@@ -1,4 +1,4 @@
-package User;
+package user;
 
 /*
  * helper class that intakes the games from the user controller to update user data

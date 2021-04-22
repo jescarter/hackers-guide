@@ -1,4 +1,4 @@
-package User;
+package user;
 
 /*
  * to create or read JSONs to/from

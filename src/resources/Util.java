@@ -7,7 +7,6 @@ package resources;
  */
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class Util {
@@ -28,10 +27,9 @@ public class Util {
 
     public static DoubledLinkList fromMapToLinkList(HashMap<String,Integer> _inputMap){
         DoubledLinkList toBeReturned = new DoubledLinkList();
-        Iterator inputMapIterator = _inputMap.entrySet().iterator();
-        while(inputMapIterator.hasNext()){
-            Map.Entry mapElement = (Map.Entry)inputMapIterator.next();
-            toBeReturned.addElement((String)mapElement.getKey(),(int)mapElement.getValue());
+        for (Map.Entry<String, Integer> stringIntegerEntry : _inputMap.entrySet()) {
+            Map.Entry mapElement = stringIntegerEntry;
+            toBeReturned.addElement((String) mapElement.getKey(), (int) mapElement.getValue());
         }
         return toBeReturned;
     }

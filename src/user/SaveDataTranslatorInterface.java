@@ -1,4 +1,4 @@
-package User;
+package user;
 
 /*
  * interface for how the save translator should work
