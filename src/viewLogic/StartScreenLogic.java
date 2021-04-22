@@ -53,7 +53,8 @@ public class StartScreenLogic {
 
     public Button doneButton;
 
-    @FXML public void initialize(){
+    @FXML
+    public void initialize(){
         this.actionBox.setText("Action");
         this.indieBox.setText("Indie");
         this.adventureBox.setText("Adventure");
@@ -75,7 +76,6 @@ public class StartScreenLogic {
         this.cardBox.setText("Card");
     }
 
-
     @FXML
     private void userClickedDoneButton() {
         //pack all the checkboxes in order to the util genresArray
@@ -89,6 +89,7 @@ public class StartScreenLogic {
                 checkedValues[i] = startCheckBoxes[i].getText();
             }
         }
+
         GameGenieController.getInstance().handleStartCheckBoxes(checkedValues);
         GameGenieController.getInstance().changeSceneIntoGamePicker();
     }
