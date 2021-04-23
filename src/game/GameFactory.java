@@ -50,7 +50,7 @@ public class GameFactory {
                 }
                 //in the case that the recommendation game has the same tag as another game in the array, take the highest score
                 if (game.hasTag(User.getMostLikedTag()) && recommendation.hasTag(User.getMostLikedTag())) {
-                    if (!game.getMetacriticScore().equals(recommendation.getMetacriticScore())) {
+                    if (Integer.parseInt(game.getMetacriticScore()) < Integer.parseInt(recommendation.getMetacriticScore())) {
                         recommendation = game;
                     }
                 }
