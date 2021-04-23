@@ -83,14 +83,8 @@ public class StartScreenLogic {
                 this.strategyBox, this.shooterBox, this.casualBox, this.simulationBox, this.puzzleBox, this.arcadeBox,
                 this.platformerBox, this.racingBox, this.sportsBox, this.massivelyMultiplayerBox, this.fightingBox,
                 this.familyBox, this.boardGamesBox, this.educationalBox, this.cardBox};
-        String[] checkedValues = new String[19];
-        for(int i = 0; i < startCheckBoxes.length; i++){
-            if(startCheckBoxes[i].isSelected()){
-                checkedValues[i] = startCheckBoxes[i].getText();
-            }
-        }
 
-        GameGenieController.handleStartCheckBoxes(checkedValues);
+        GameGenieController.handleStartCheckBoxes(startCheckBoxes);
         GameGenieController.getInstance().changeSceneIntoGamePicker();
     }
 

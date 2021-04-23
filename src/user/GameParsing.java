@@ -6,6 +6,7 @@ package user;
  * Author(s) Ian Holder, Jesse Carter
  */
 
+import javafx.scene.control.CheckBox;
 import resources.Game;
 
 public class GameParsing {
@@ -29,9 +30,11 @@ public class GameParsing {
         User.addViewedGame(_inputGame.getGameID(), _inputGame.getTitle());
     }
 
-    public static void addStartScreenSelections(String[] _userSelection, int _incrementValue){
-        for (String temp:_userSelection) {
-            User.addGenre(temp,_incrementValue);
+    public static void addStartScreenSelections(CheckBox[] _userSelection, int _incrementValue){
+        for (CheckBox temp:_userSelection) {
+            if(temp.isSelected()) {
+                User.addGenre(temp.getText(), _incrementValue);
+            }
         }
     }
 }

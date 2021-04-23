@@ -8,17 +8,22 @@ package resources;
 
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class DataStorage {
     private static FileWriter fileOut;
     private static BufferedReader fileIn;
-    private static final String fileName = "/Users/Shared/gameGenieSaveData.txt";
+    private static Path filePath;
+    private static final String fileName = "C:\\TestingProjectSaveFiles\\gameGenieSaveData.txt";
+
     //to take a json convert it to a usable form and write to a file
     public static void saveFile(JSONObject _toWrite){
         try{
+            filePath = Paths.get(fileName);
+            Files.createDirectories(filePath.getParent());
             fileOut = new FileWriter(fileName);
             fileOut.write(_toWrite.toString());
         }catch (Exception e){
@@ -38,11 +43,13 @@ public class DataStorage {
         String inputData = null;
         JSONObject toBeReturned = new JSONObject();
         try{
-            fileIn = new BufferedReader(new FileReader(fileName));
-            while(fileIn.readLine() != null){
-                inputData += fileIn.readLine();
+            StringBuilder sb = new StringBuilder();
+            InputStream in = new FileInputStream(fileName);
+            fileIn = new BufferedReader(new InputStreamReader(in));
+            while((inputData = fileIn.readLine()) != null){
+                sb.append(inputData + System.lineSeparator());
             }
-            toBeReturned = new JSONObject(inputData);
+            toBeReturned = new JSONObject(sb.toString());
             return toBeReturned;
         }catch (Exception e){
             e.printStackTrace();

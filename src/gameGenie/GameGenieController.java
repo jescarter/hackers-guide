@@ -6,6 +6,7 @@ package gameGenie;
  * Author(s) Ian Holder,
  */
 
+import javafx.scene.control.CheckBox;
 import resources.Game;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -75,8 +76,9 @@ public class GameGenieController {
     //Start Screen
 
     //route from the start screen to the user controller to be evaluated
-    public static void handleStartCheckBoxes(String[] _startCheckBoxes){
-        UserController.handleCheckBoxes(_startCheckBoxes);
+    public static void handleStartCheckBoxes(CheckBox[] _startCheckBoxes){
+        //guard that the input has content
+            UserController.handleCheckBoxes(_startCheckBoxes);
     }
 
     //Game Picker

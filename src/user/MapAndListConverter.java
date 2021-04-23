@@ -8,7 +8,7 @@ class MapAndListConverter {
     public static HashMap<String,Integer> fromLinkListToMap(DoubledLinkList _inputList){
         HashMap<String,Integer> toReturn = new HashMap<>();
         DoubledLinkList.Node current = _inputList.head;
-        while(current != _inputList.tail){
+        while(current != null){
             toReturn.put(current.nodeTitle, current.preferenceValue);
             current = current.next;
         }

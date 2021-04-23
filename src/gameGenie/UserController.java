@@ -6,6 +6,7 @@ package gameGenie;
  * Author(s) Ian Holder,
  */
 
+import javafx.scene.control.CheckBox;
 import resources.Game;
 import user.SaveDataTranslator;
 import user.GameParsing;
@@ -16,7 +17,7 @@ public class UserController {
     private static final int defaultDislikeValue = -1;
 
     //populate the user liked genres based on the selected check boxes from the start screen
-    protected static void handleCheckBoxes(String[] _checkBoxArray){
+    protected static void handleCheckBoxes(CheckBox[] _checkBoxArray){
         GameParsing.addStartScreenSelections(_checkBoxArray,defaultLikeValue);
     }
 
