@@ -20,14 +20,14 @@ public class DataStorage implements DataStorageIntf{
     private static final String fileName = "C:\\TestingProjectSaveFiles\\gameGenieSaveData.txt";
 
     //to take a json convert it to a usable form and write to a file
-    public void saveFile(JSONObject _toWrite){
+    public void saveFile(JSONObject _toBeStored){
         try{
             //make a path to create the directory
             filePath = Paths.get(fileName);
             Files.createDirectories(filePath.getParent());
             //write the file in the directory
             fileOut = new FileWriter(fileName);
-            fileOut.write(_toWrite.toString());
+            fileOut.write(_toBeStored.toString());
         }catch (Exception e){
             e.printStackTrace();
         }finally {
