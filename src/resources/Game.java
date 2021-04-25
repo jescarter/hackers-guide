@@ -2,7 +2,7 @@ package resources;
 
 /*
  * Create game objects with api data to be used for views
- * last updated 04/22/2021
+ * last updated 04/24/2021
  * Author(s) Ian Holder,
  */
 
@@ -34,7 +34,9 @@ public class Game {
         this.platforms = _platforms;
         this.gameID = _gameID;
 
+        //sets the file path and downloads the cover image on construction
         try {
+            //creates the file with the suffix jpg so the image views can use it
             this.coverFilePath = Files.createTempFile("tmp", ".jpg");
             this.gameCoverURL = new URL(_gameCoverURL);
             InputStream inputStream = this.gameCoverURL.openStream();

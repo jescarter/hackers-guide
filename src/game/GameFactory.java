@@ -2,7 +2,7 @@ package game;
 
 /*
  * a model to create/return games from the api
- * last updated 04/22/2021
+ * last updated 04/24/2021
  * Author(s) Ian Holder,
  */
 
@@ -40,6 +40,7 @@ public class GameFactory {
 
     public static Game getRecommendation(){
         Game recommendation = null;
+        //call for the api to get games of the user's most liked genre
         Game[] placeHolder = GamesByGenreTranslator.getGames(User.getMostLikedGenre());
         for (Game game : placeHolder) {
             //insure that the game has not been rated

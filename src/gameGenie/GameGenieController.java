@@ -23,18 +23,17 @@ public class GameGenieController {
     private static GameGenieController controller = null;
     //for the game picker screen gets info from the game queue
     private static GameQueue<Game> gameQueue;
+    //view file names
     private static final String startScreenFile = "/startScreen.fxml";
     private static final String gamePickerFile = "/gamePickerScreen.fxml";
     private static final String gameRecommendationFile = "/gameRecommendationScreen.fxml";
 
-    //constructor
-    GameGenieController(){}
 
     //on application start when the stage is passed figure out which scene to show if there is user data to load in
     protected void setPrimaryStage(Stage _stage){
         this.primaryStage = _stage;
         this.primaryStage.setTitle("Game Genie");
-        //if there is no data loaded into the user at application start
+        //if there is no data loaded into the user at application start, show the start screen
         if(!UserController.userDataLoaded()) {
             updateStage(startScreenFile);
         }else{
@@ -77,14 +76,15 @@ public class GameGenieController {
 
     //route from the start screen to the user controller to be evaluated
     public static void handleStartCheckBoxes(CheckBox[] _startCheckBoxes){
-        //guard that the input has content
-            UserController.handleCheckBoxes(_startCheckBoxes);
+        //pass the check box array to be evaluated in the game parsing model
+        UserController.handleCheckBoxes(_startCheckBoxes);
     }
 
     //Game Picker
 
     //when the scene is set to game picker make sure that there are values in the game queue
     public static Game getGamePickerGame(){
+        //if there are no games in the queue then get more game, also populates on first call
         if(gameQueue == null || gameQueue.isEmpty()){
             gameQueue = getGameQueue();
         }
@@ -93,6 +93,7 @@ public class GameGenieController {
 
     //pass the game from the top of the queue to the user controller to update user info
     public static void userLikedGame(){
+        //send the top game to be parsed below
         UserController.Liked(Objects.requireNonNull(gameQueue.poll()));
     }
 

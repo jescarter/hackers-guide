@@ -2,7 +2,7 @@ package resources;
 
 /*
  * to write and read jsons to/from files
- * last updated 04/22/2021
+ * last updated 04/24/2021
  * Author(s) Ian Holder,
  */
 
@@ -22,14 +22,17 @@ public class DataStorage {
     //to take a json convert it to a usable form and write to a file
     public static void saveFile(JSONObject _toWrite){
         try{
+            //make a path to create the directory
             filePath = Paths.get(fileName);
             Files.createDirectories(filePath.getParent());
+            //write the file in the directory
             fileOut = new FileWriter(fileName);
             fileOut.write(_toWrite.toString());
         }catch (Exception e){
             e.printStackTrace();
         }finally {
             try {
+                //empty and close the file writer
                 fileOut.flush();
                 fileOut.close();
             } catch (Exception e) {
@@ -42,6 +45,7 @@ public class DataStorage {
     public static JSONObject readFile(){
         String inputData = null;
         JSONObject toBeReturned = new JSONObject();
+        //using a string builder to piece together all the chars from the buffer reader
         try{
             StringBuilder sb = new StringBuilder();
             InputStream in = new FileInputStream(fileName);
@@ -49,6 +53,7 @@ public class DataStorage {
             while((inputData = fileIn.readLine()) != null){
                 sb.append(inputData + System.lineSeparator());
             }
+            //make a json with the data stored only can work if the stored data was a json to stringed, or in that format
             toBeReturned = new JSONObject(sb.toString());
             return toBeReturned;
         }catch (Exception e){
@@ -60,6 +65,7 @@ public class DataStorage {
                 e.printStackTrace();
             }
         }
+        //if it could not read anything in it will return an empty Json
         return toBeReturned;
     }
 }

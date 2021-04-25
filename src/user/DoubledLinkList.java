@@ -2,7 +2,7 @@ package user;
 
 /*
  * a doubled link list to store and order the values from user input
- * last updated 04/22/2021
+ * last updated 04/24/2021
  * Author(s) Ian Holder,
  */
 
@@ -41,6 +41,7 @@ public class DoubledLinkList {
             this.tail = newNode;
             this.tail.next = null;
         }
+        //order the list after adding/changing the value of an element
         if(_preferenceValue > 0){
             orderAscending();
         }else{
@@ -54,8 +55,11 @@ public class DoubledLinkList {
 
     //if the list is not empty it will transverse the list to try and find a node with the same string title
     private boolean searchAndPlace(Node _node){
+        //create a pointer node starting at the head
         Node current = this.head;
+        //use a variable to get out of the loop when the element is found
         boolean found = false;
+        //continue till the element is found or hitting the end of the list
         while (current != null && !found) {
             if (current.nodeTitle.equals(_node.nodeTitle)) {
                 current.preferenceValue = current.preferenceValue + _node.preferenceValue;
@@ -68,8 +72,10 @@ public class DoubledLinkList {
 
     //if an element is added/value incremented order from tail up
     private void orderAscending() {
+        //starting from the bottom up as if an element value was increased the element before it could have a lower value
         Node current = this.tail;
 
+        //keep going till the current pointer is the list head
         while (current != this.head) {
             if (current.preferenceValue > current.previous.preferenceValue) {
                 swap(current.previous, current);
@@ -113,6 +119,7 @@ public class DoubledLinkList {
 
     //================= GETTERS ===============
     public String greatestValue(){
+        //as the list is ordered then the head node should be the highest value in the list
         return this.head.nodeTitle;
     }
 

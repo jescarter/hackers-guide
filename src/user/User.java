@@ -17,7 +17,7 @@ public class User {
     private static final String defaultGenre = "Action";
     private static final String defaultTag = "Cube";
 
-    //for the viewed games map
+    //for the viewed games map, written by Jesse
     protected static void addViewedGame(String _gameID, String _gameTitle) {
         //Add the viewed game to the user's list of previously viewed games.
         viewedGames.putIfAbsent(_gameID, _gameTitle);

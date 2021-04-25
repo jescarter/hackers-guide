@@ -24,6 +24,7 @@ public class GameParsing {
     }
 
     public static void disLikedGame(Game _inputGame, int _decrementValue){
+        //if the user did not like a game then only modify the tags and add to the viewed games map
         for (String tag:_inputGame.getTags()) {
             User.addTag(tag,_decrementValue);
         }
@@ -33,6 +34,7 @@ public class GameParsing {
     public static void addStartScreenSelections(CheckBox[] _userSelection, int _incrementValue){
         for (CheckBox temp:_userSelection) {
             if(temp.isSelected()) {
+                //the text of the check boxes are set in the view on initialization
                 User.addGenre(temp.getText(), _incrementValue);
             }
         }
