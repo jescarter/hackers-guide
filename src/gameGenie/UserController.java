@@ -7,10 +7,13 @@ package gameGenie;
  */
 
 import javafx.scene.control.CheckBox;
+import resources.DataStorage;
 import resources.Game;
 import user.SaveDataTranslator;
 import user.GameParsing;
 import user.User;
+
+import static user.User.setUser;
 
 public class UserController {
     private static final int defaultLikeValue = 1;
@@ -32,7 +35,10 @@ public class UserController {
 
     //call the Save translator to load in save file
     protected static boolean userDataLoaded(){
-        return SaveDataTranslator.loadUserData();
+        SaveDataTranslator.setDataStorage(new DataStorage());
+        User newUser = SaveDataTranslator.loadUserData();
+        setUser(newUser);
+        return User.hasGenres();
     }
 
     //on close request save the user data

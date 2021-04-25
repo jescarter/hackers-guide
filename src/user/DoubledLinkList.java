@@ -30,7 +30,7 @@ public class DoubledLinkList {
         Node newNode = new Node(_nodeTitle, _preferenceValue);
 
         //check if the list is empty
-        if (this.head == null) {
+        if (empty()) {
             this.head = this.tail = newNode;
             this.head.previous = null;
             this.tail.next = null;
@@ -125,5 +125,9 @@ public class DoubledLinkList {
 
     public String lowestValue(){
         return this.tail.nodeTitle;
+    }
+
+    public boolean empty(){
+        return this.head == null;
     }
 }

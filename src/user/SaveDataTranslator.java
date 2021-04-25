@@ -9,11 +9,13 @@ package user;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import resources.DataStorage;
+import resources.DataStorageIntf;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class SaveDataTranslator{
+    private static DataStorageIntf dataStorage;
     //called on application close to wrap user data into a JSON to be passed to file storage
     public static void saveUserData(){
         //create a JSON of the user data
@@ -23,15 +25,15 @@ public class SaveDataTranslator{
         //pass the data to be wrapped in a json
         JSONObject toBeStored = toJSON(userGenreMap,userTagsMap,userViewedGames);
         //send the json to be written in a file
-        DataStorage.saveFile(toBeStored);
+        dataStorage.saveFile(toBeStored);
     }
 
     //called on application start to take in a json from file and set the user data
-    public static Boolean loadUserData(){
+    public static User loadUserData(){
         JSONObject toRead = new JSONObject();
         //call the read method to hopefully return a json
-        toRead = DataStorage.readFile();
-        //pass the json to be parsed and have it's data populate the user class
+        toRead = dataStorage.readFile();
+        //pass the json to be parsed and return a new user object
         return unwrap(toRead);
     }
 
@@ -54,7 +56,8 @@ public class SaveDataTranslator{
     }
 
     //takes out the json arrays and populates the hash maps with them
-    private static boolean unwrap(JSONObject _saveData){
+    private static User unwrap(JSONObject _saveData){
+        User newUser = new User();
         if(!_saveData.isNull("userGenre")){
             HashMap<String,Integer> userGenres;
             HashMap<String,Integer> userTags;
@@ -63,15 +66,14 @@ public class SaveDataTranslator{
                 userGenres = jsonArrayToStrIntMap(_saveData.getJSONArray("userGenre"));
                 userTags = jsonArrayToStrIntMap(_saveData.getJSONArray("userTags"));
                 userViewedGames = jsonArrayToStrStrMap(_saveData.getJSONArray("viewedGames"));
-                User.setUserGenres(fromMapToLinkList(userGenres));
-                User.setUserTags(fromMapToLinkList(userTags));
-                User.setViewedGames(userViewedGames);
-                return true;
+                newUser.setUserGenres(fromMapToLinkList(userGenres));
+                newUser.setUserTags(fromMapToLinkList(userTags));
+                newUser.setViewedGames(userViewedGames);
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
-        return false;
+        return newUser;
     }
 
     private static HashMap<String,Integer> jsonArrayToStrIntMap(JSONArray _inputArray){
@@ -149,5 +151,16 @@ public class SaveDataTranslator{
             }
         }
         return toBeReturned;
+    }
+
+    //testing method
+    public static void test(){
+        System.out.println("Test one");
+        User.setViewedGames(null);
+
+    }
+    //================= SETTERS ===============
+    public static void setDataStorage(DataStorageIntf _dataStorage){
+        dataStorage = _dataStorage;
     }
 }

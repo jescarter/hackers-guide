@@ -7,10 +7,12 @@ package gameGenie;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import user.SaveDataTranslator;
 
 public class Main extends Application {
 
     public static void main(String[] args) {
+        SaveDataTranslator.test();
         launch(args);
     }
 

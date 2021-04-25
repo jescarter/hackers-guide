@@ -16,6 +16,11 @@ public class User {
     //if the user data is empty return default values
     private static final String defaultGenre = "Action";
     private static final String defaultTag = "Cube";
+    private static User User;
+
+    public User(){
+
+    }
 
     //for the viewed games map, written by Jesse
     protected static void addViewedGame(String _gameID, String _gameTitle) {
@@ -50,6 +55,10 @@ public class User {
         return viewedGames;
     }
 
+    public static boolean hasGenres(){
+        return !userGenres.empty();
+    }
+
     //return the most liked tag or genre
     public static String getMostLikedGenre(){
         if(userGenres.greatestValue() == null){
@@ -66,6 +75,10 @@ public class User {
     }
 
     //================= SETTERS ===============
+    public static void setUser(User _user){
+        User = _user;
+    }
+
     //for reading in from a data storage
     protected static void setUserGenres(DoubledLinkList _userGenres){
         userGenres = _userGenres;
@@ -79,4 +92,9 @@ public class User {
         viewedGames = _viewedGames;
     }
 
+    public static void clear(){
+        setUserTags(null);
+        setUserGenres(null);
+        setViewedGames(null);
+    }
 }

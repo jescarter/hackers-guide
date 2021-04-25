@@ -13,14 +13,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class DataStorage {
-    private static FileWriter fileOut;
-    private static BufferedReader fileIn;
-    private static Path filePath;
+public class DataStorage implements DataStorageIntf{
+    private FileWriter fileOut;
+    private BufferedReader fileIn;
+    private Path filePath;
     private static final String fileName = "C:\\TestingProjectSaveFiles\\gameGenieSaveData.txt";
 
     //to take a json convert it to a usable form and write to a file
-    public static void saveFile(JSONObject _toWrite){
+    public void saveFile(JSONObject _toWrite){
         try{
             //make a path to create the directory
             filePath = Paths.get(fileName);
@@ -42,7 +42,7 @@ public class DataStorage {
     }
 
     //to read info from a file convert it to a json and send it back
-    public static JSONObject readFile(){
+    public JSONObject readFile(){
         String inputData = null;
         JSONObject toBeReturned = new JSONObject();
         //using a string builder to piece together all the chars from the buffer reader
