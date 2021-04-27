@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import resources.DataStorageIntf;
 import resources.MockDataStorage;
+import resources.UserHistoryIntf;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,11 +18,11 @@ import java.util.Map;
 public class SaveDataTranslator{
     private static DataStorageIntf dataStorage;
     //called on application close to wrap user data into a JSON to be passed to file storage
-    public static void saveUserData(){
+    public static void saveUserData(UserHistoryIntf _dataToSave){
         //create a JSON of the user data
-        HashMap<String,Integer> userGenreMap = fromLinkListToMap(User.getUserGenres());
-        HashMap<String,Integer> userTagsMap = fromLinkListToMap(User.getUserTags());
-        HashMap<String,String> userViewedGames = User.getViewedGames();
+        HashMap<String,Integer> userGenreMap = _dataToSave.getUserGenres();
+        HashMap<String,Integer> userTagsMap = _dataToSave.getUserTags();
+        HashMap<String,String> userViewedGames = _dataToSave.getViewedGames();
         //pass the data to be wrapped in a json
         JSONObject toBeStored = toJSON(userGenreMap,userTagsMap,userViewedGames);
         //send the json to be written in a file
@@ -29,7 +30,7 @@ public class SaveDataTranslator{
     }
 
     //called on application start to take in a json from file and set the user data
-    public static User loadUserData(){
+    public static UserHistoryIntf loadUserData(){
         JSONObject toRead = new JSONObject();
         //call the read method to hopefully return a json
         toRead = dataStorage.readFile();
@@ -37,29 +38,9 @@ public class SaveDataTranslator{
         return unwrap(toRead);
     }
 
-    private static HashMap<String,Integer> fromLinkListToMap(DoubledLinkList _inputList){
-        HashMap<String,Integer> toReturn = new HashMap<>();
-        if(!_inputList.empty()) {
-            DoubledLinkList.Node current = _inputList.head;
-            while (current != null) {
-                toReturn.put(current.nodeTitle, current.preferenceValue);
-                current = current.next;
-            }
-        }
-        return toReturn;
-    }
-
-    private static DoubledLinkList fromMapToLinkList(HashMap<String,Integer> _inputMap){
-        DoubledLinkList toBeReturned = new DoubledLinkList();
-        for (Map.Entry<String, Integer> stringIntegerEntry : _inputMap.entrySet()) {
-            toBeReturned.addElement(stringIntegerEntry.getKey(), stringIntegerEntry.getValue());
-        }
-        return toBeReturned;
-    }
-
     //takes out the json arrays and populates the hash maps with them
-    private static User unwrap(JSONObject _saveData){
-        User newUser = new User();
+    private static UserHistoryIntf unwrap(JSONObject _saveData){
+        UserHistoryIntf newUser = new UserHistory();
         if(!_saveData.isNull("userGenre")){
             HashMap<String,Integer> userGenres;
             HashMap<String,Integer> userTags;
@@ -68,8 +49,8 @@ public class SaveDataTranslator{
                 userGenres = jsonArrayToStrIntMap(_saveData.getJSONArray("userGenre"));
                 userTags = jsonArrayToStrIntMap(_saveData.getJSONArray("userTags"));
                 userViewedGames = jsonArrayToStrStrMap(_saveData.getJSONArray("viewedGames"));
-                newUser.setUserGenres(fromMapToLinkList(userGenres));
-                newUser.setUserTags(fromMapToLinkList(userTags));
+                newUser.setUserGenres(userGenres);
+                newUser.setUserTags(userTags);
                 newUser.setViewedGames(userViewedGames);
             }catch (Exception e){
                 e.printStackTrace();
@@ -142,14 +123,18 @@ public class SaveDataTranslator{
 
     private static JSONArray fromStringStringMap(HashMap<String,String> _inputMap){
         JSONArray toBeReturned = new JSONArray();
-        for(Map.Entry<String,String> integerStringEntry: _inputMap.entrySet()){
-            JSONObject temp = new JSONObject();
-            try{
-                temp.put("key", integerStringEntry.getKey());
-                temp.put("value", integerStringEntry.getValue());
-                toBeReturned.put(temp);
-            }catch (Exception e){
-                e.printStackTrace();
+        if(_inputMap == null){
+            return toBeReturned;
+        }else {
+            for (Map.Entry<String, String> integerStringEntry : _inputMap.entrySet()) {
+                JSONObject temp = new JSONObject();
+                try {
+                    temp.put("key", integerStringEntry.getKey());
+                    temp.put("value", integerStringEntry.getValue());
+                    toBeReturned.put(temp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
         return toBeReturned;

@@ -9,11 +9,10 @@ package gameGenie;
 import javafx.scene.control.CheckBox;
 import resources.DataStorage;
 import resources.Game;
+import resources.UserHistoryIntf;
 import user.SaveDataTranslator;
 import user.GameParsing;
 import user.User;
-
-import static user.User.setUser;
 
 public class UserController {
     private static final int defaultLikeValue = 1;
@@ -36,18 +35,21 @@ public class UserController {
     //call the Save translator to load in save file
     protected static boolean userDataLoaded(){
         SaveDataTranslator.setDataStorage(new DataStorage());
-        User newUser = SaveDataTranslator.loadUserData();
-        setUser(newUser);
-        return User.hasGenres();
+        //call that if there is any saved data
+        UserHistoryIntf newUser = SaveDataTranslator.loadUserData();
+        //load that data into the user class
+        User.getInstance().setUserHistory(newUser);
+        //if the user class is not empty then go to the game picker
+        return !User.getInstance().isEmpty();
     }
 
     //on close request save the user data
     protected static void programClose() {
-        SaveDataTranslator.saveUserData();
+        SaveDataTranslator.saveUserData(User.getInstance().getUserHistory());
     }
 
     //check if a game had been rated
     public static Boolean wasGameViewed(String _gameID){
-        return User.wasViewed(_gameID);
+        return User.getInstance().wasViewed(_gameID);
     }
 }

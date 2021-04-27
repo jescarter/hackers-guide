@@ -2,7 +2,7 @@ package Testing;
 
 /*
   unit test
-  last updated 04/25/2021
+  last updated 04/27/2021
   Author(s) Ian Holder,
  */
 
@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import resources.MockDataStorage;
 import user.DoubledLinkList;
 import user.User;
+import user.UserHistory;
 
 import java.util.HashMap;
 
@@ -22,9 +23,9 @@ public class Test {
         MockDataStorage test = new MockDataStorage();
         setDataStorage(test);
         test1();
-        User.clear();
+        User.getInstance().clear();
         test2();
-        User.clear();
+        User.getInstance().clear();
 
     }
 
@@ -32,22 +33,18 @@ public class Test {
         System.out.println("Test one");
         System.out.println("Testing for an empty user object, edge case");
         //set the user data to empty
-        setViewedGames(new HashMap<>());
-        setUserGenres(new DoubledLinkList());
-        setUserTags(new DoubledLinkList());
+        UserHistory testingUser = new UserHistory();
         //call the save to pass the JSON to test
-        saveUserData();
-        //empty the user obj
-        User.clear();
+        saveUserData(testingUser);
         //repopulate the user from the JSON
-        loadUserData();
+        UserHistory toCompare = (UserHistory) loadUserData();
         //read the user data back in
-        HashMap<String,String> toBeViewed = getViewedGames();
-        DoubledLinkList toBeGenre = getUserGenres();
-        DoubledLinkList toBeTags = getUserTags();
+        HashMap<String, String> toBeViewed = toCompare.getViewedGames();
+        HashMap<String, Integer> toBeGenre = toCompare.getUserGenres();
+        HashMap<String, Integer> toBeTags = toCompare.getUserTags();
         //evaluate
-        if(toBeViewed.isEmpty() && toBeGenre.empty()){
-            if(toBeTags.empty()){
+        if(toBeViewed.isEmpty() && toBeGenre.isEmpty()){
+            if(toBeTags.isEmpty()){
                 System.out.println("Test passed");
             }else {
                 System.out.println("test failed tags don't match");
@@ -60,32 +57,26 @@ public class Test {
     private static void test2(){
         System.out.println("Test two");
         System.out.println("Testing a user with 100 rated games, tags, and Genres, edge case");
+        UserHistory toFill = new UserHistory();
         //populate the user with imposable large data
-        HashMap<String,String> mockViewedGames = fillHashMap(100);
-        DoubledLinkList mockedGenres = fillList(19);
-        DoubledLinkList mockedTags = fillList(100);
-        setUserGenres(mockedGenres);
-        setUserTags(mockedTags);
-        setViewedGames(mockViewedGames);
-        saveUserData();
-        User.clear();
-        loadUserData();
-        HashMap<String,String> toCheck = getViewedGames();
-        DoubledLinkList genresToCheck = getUserGenres();
-        DoubledLinkList tagsToCheck = getUserTags();
-        if(mockViewedGames.equals(toCheck) && mockedGenres.isEqual(genresToCheck)){
-            if(mockedTags.isEqual(tagsToCheck)){
-                System.out.println("Test passed");
-            }else{
-                System.out.println("Test fail on tags check");
-            }
+        HashMap<String,String> mockViewedGames = fillHashMapString(100);
+        HashMap<String, Integer> mockedGenres = fillHashMapInt(19);
+        HashMap<String, Integer> mockedTags = fillHashMapInt(100);
+        toFill.setUserGenres(mockedGenres);
+        toFill.setUserTags(mockedTags);
+        toFill.setViewedGames(mockViewedGames);
+        saveUserData(toFill);
+
+        UserHistory toCompare =(UserHistory) loadUserData();
+        if(toFill.isEqual(toCompare)){
+            System.out.println("Test passed");
         }else{
-            System.out.println("Test fail on games viewed or genres");
+            System.out.println("Test Failed");
         }
     }
 
     //helper to fill a hash map with 100 elements
-    private static HashMap<String,String> fillHashMap(int _numberOfElements){
+    private static HashMap<String,String> fillHashMapString(int _numberOfElements){
         HashMap<String,String> toReturn = new HashMap<>();
         for(int i = 0; i <= _numberOfElements; i++){
             String tempKey = String.valueOf(i);
@@ -94,12 +85,11 @@ public class Test {
         }
         return toReturn;
     }
-    //helper to fill Double Link lists with 100 elements
-    private static DoubledLinkList fillList(int _numberOfElements){
-        DoubledLinkList toReturn = new DoubledLinkList();
+    private static HashMap<String,Integer> fillHashMapInt(int _numberOfElements){
+        HashMap<String,Integer> toReturn = new HashMap<>();
         for(int i = 0; i <= _numberOfElements; i++){
-            String tempTitle = String.valueOf(i);
-            toReturn.addElement(tempTitle,i);
+            String tempKey = String.valueOf(i);
+            toReturn.put(tempKey, i);
         }
         return toReturn;
     }

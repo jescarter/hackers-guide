@@ -16,29 +16,29 @@ public class GameParsing {
     public static void likedGame(Game _inputGame, int _incrementValue){
         //add all the genres of the game to the liked link list in the user
         for (String genre: _inputGame.getGenre()) {
-            User.addGenre(genre,_incrementValue);
+            User.getInstance().addGenre(genre,_incrementValue);
         }
         //add all the tags
         for (String tag: _inputGame.getTags()) {
-            User.addTag(tag,_incrementValue);
+            User.getInstance().addTag(tag,_incrementValue);
         }
         //add to the viewed map
-        User.addViewedGame(_inputGame.getGameID(), _inputGame.getTitle());
+        User.getInstance().addViewedGame(_inputGame.getGameID(), _inputGame.getTitle());
     }
 
     public static void disLikedGame(Game _inputGame, int _decrementValue){
         //if the user did not like a game then only modify the tags and add to the viewed games map
         for (String tag:_inputGame.getTags()) {
-            User.addTag(tag,_decrementValue);
+            User.getInstance().addTag(tag,_decrementValue);
         }
-        User.addViewedGame(_inputGame.getGameID(), _inputGame.getTitle());
+        User.getInstance().addViewedGame(_inputGame.getGameID(), _inputGame.getTitle());
     }
 
     public static void addStartScreenSelections(CheckBox[] _userSelection, int _incrementValue){
         for (CheckBox temp:_userSelection) {
             if(temp.isSelected()) {
                 //the text of the check boxes are set in the view on initialization
-                User.addGenre(temp.getText(), _incrementValue);
+                User.getInstance().addGenre(temp.getText(), _incrementValue);
             }
         }
     }

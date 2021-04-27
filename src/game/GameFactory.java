@@ -41,7 +41,7 @@ public class GameFactory {
     public static Game getRecommendation(){
         Game recommendation = null;
         //call for the api to get games of the user's most liked genre
-        Game[] placeHolder = GamesByGenreTranslator.getGames(User.getMostLikedGenre());
+        Game[] placeHolder = GamesByGenreTranslator.getGames(User.getInstance().getMostLikedGenre());
         for (Game game : placeHolder) {
             //insure that the game has not been rated
             if(!GameController.wasGameViewed(game.getGameID())) {
@@ -50,13 +50,13 @@ public class GameFactory {
                     recommendation = game;
                 }
                 //in the case that the recommendation game has the same tag as another game in the array, take the highest score
-                if (game.hasTag(User.getMostLikedTag()) && recommendation.hasTag(User.getMostLikedTag())) {
+                if (game.hasTag(User.getInstance().getMostLikedTag()) && recommendation.hasTag(User.getInstance().getMostLikedTag())) {
                     if (Integer.parseInt(game.getMetacriticScore()) < Integer.parseInt(recommendation.getMetacriticScore())) {
                         recommendation = game;
                     }
                 }
                 //if recommendation does not have the most liked tag and game does
-                if(game.hasTag(User.getMostLikedTag()) && !recommendation.hasTag(User.getMostLikedTag())){
+                if(game.hasTag(User.getInstance().getMostLikedTag()) && !recommendation.hasTag(User.getInstance().getMostLikedTag())){
                     recommendation = game;
                 }
             }

@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class DoubledLinkList {
-    static class Node {
+    public static class Node {
         String nodeTitle;
         int preferenceValue;
         Node previous = null;
