@@ -5,10 +5,8 @@ package gameGenie;
  * Author(s) Ian Holder,
  */
 
-import Testing.Test;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import user.SaveDataTranslator;
 
 public class Main extends Application {
 

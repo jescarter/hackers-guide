@@ -1,4 +1,4 @@
-package user;
+package resources;
 
 /*
  * to create or read JSONs to/from
@@ -8,14 +8,13 @@ package user;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import resources.DataStorageIntf;
-import resources.MockDataStorage;
-import resources.UserHistoryIntf;
+import user.UserHistory;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class SaveDataTranslator{
+    //set what data storage is going to be used
     private static DataStorageIntf dataStorage;
     //called on application close to wrap user data into a JSON to be passed to file storage
     public static void saveUserData(UserHistoryIntf _dataToSave){
@@ -34,21 +33,29 @@ public class SaveDataTranslator{
         JSONObject toRead = new JSONObject();
         //call the read method to hopefully return a json
         toRead = dataStorage.readFile();
-        //pass the json to be parsed and return a new user object
-        return unwrap(toRead);
+        if(!toRead.toString().isEmpty()) {
+            //pass the json to be parsed and return a new user history object
+            return unwrap(toRead);
+        }else{
+            return new UserHistory();
+        }
     }
 
     //takes out the json arrays and populates the hash maps with them
     private static UserHistoryIntf unwrap(JSONObject _saveData){
         UserHistoryIntf newUser = new UserHistory();
+        //check that there is data in the json
         if(!_saveData.isNull("userGenre")){
+            //created the collections that will populate the user history
             HashMap<String,Integer> userGenres;
             HashMap<String,Integer> userTags;
             HashMap<String,String> userViewedGames;
+            //use try catch to handle possible json exception
             try {
                 userGenres = jsonArrayToStrIntMap(_saveData.getJSONArray("userGenre"));
                 userTags = jsonArrayToStrIntMap(_saveData.getJSONArray("userTags"));
                 userViewedGames = jsonArrayToStrStrMap(_saveData.getJSONArray("viewedGames"));
+                //populate the user history
                 newUser.setUserGenres(userGenres);
                 newUser.setUserTags(userTags);
                 newUser.setViewedGames(userViewedGames);
@@ -56,9 +63,13 @@ public class SaveDataTranslator{
                 e.printStackTrace();
             }
         }
+        //return the user history to be sent to the user controller
         return newUser;
     }
 
+    //helpers
+
+    //used in loading
     private static HashMap<String,Integer> jsonArrayToStrIntMap(JSONArray _inputArray){
         HashMap<String,Integer> toBeReturned = new HashMap<>();
         //pull the ordered pairs wrapped in json object into the hash map
@@ -87,6 +98,7 @@ public class SaveDataTranslator{
         return toBeReturned;
     }
 
+    //used in saving
     private static JSONObject toJSON(HashMap<String,Integer> _userGenre, HashMap<String,Integer> _userTags,
                                        HashMap<String,String> _userViewedGames){
         //take the hash maps and turn into Json arrays
@@ -141,6 +153,7 @@ public class SaveDataTranslator{
     }
 
     //================= SETTERS ===============
+    //set what the data storage being used is
     public static void setDataStorage(DataStorageIntf _dataStorage){
         dataStorage = _dataStorage;
     }

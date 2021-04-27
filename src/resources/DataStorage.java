@@ -41,13 +41,17 @@ public class DataStorage implements DataStorageIntf{
     }
 
     //to read info from a file convert it to a json and send it back
-    public JSONObject readFile(){
+    public JSONObject readFile() {
         String inputData = null;
         JSONObject toBeReturned = new JSONObject();
         //using a string builder to piece together all the chars from the buffer reader
         try{
             StringBuilder sb = new StringBuilder();
-            InputStream in = new FileInputStream(fileName);
+            File file = new File(fileName);
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            InputStream in = new FileInputStream(file);
             fileIn = new BufferedReader(new InputStreamReader(in));
             while((inputData = fileIn.readLine()) != null){
                 sb.append(inputData + System.lineSeparator());

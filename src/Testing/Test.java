@@ -6,16 +6,12 @@ package Testing;
   Author(s) Ian Holder,
  */
 
-import org.json.JSONObject;
 import resources.MockDataStorage;
-import user.DoubledLinkList;
-import user.User;
 import user.UserHistory;
 
 import java.util.HashMap;
 
-import static user.SaveDataTranslator.*;
-import static user.User.*;
+import static resources.SaveDataTranslator.*;
 
 public class Test {
     //testing method
@@ -23,10 +19,7 @@ public class Test {
         MockDataStorage test = new MockDataStorage();
         setDataStorage(test);
         test1();
-        User.getInstance().clear();
         test2();
-        User.getInstance().clear();
-
     }
 
     private static void test1(){
@@ -56,7 +49,7 @@ public class Test {
 
     private static void test2(){
         System.out.println("Test two");
-        System.out.println("Testing a user with 100 rated games, tags, and Genres, edge case");
+        System.out.println("Testing a user with 100 rated games, 100 tags, and 19 genres, edge case");
         UserHistory toFill = new UserHistory();
         //populate the user with imposable large data
         HashMap<String,String> mockViewedGames = fillHashMapString(100);

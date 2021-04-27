@@ -65,8 +65,4 @@ public class User {
     public void setUserHistory(UserHistoryIntf _inputHistory){
         this.userHistory = _inputHistory;
     }
-
-    public void clear(){
-        this.userHistory = null;
-    }
 }

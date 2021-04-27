@@ -10,7 +10,7 @@ import javafx.scene.control.CheckBox;
 import resources.DataStorage;
 import resources.Game;
 import resources.UserHistoryIntf;
-import user.SaveDataTranslator;
+import resources.SaveDataTranslator;
 import user.GameParsing;
 import user.User;
 
