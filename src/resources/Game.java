@@ -2,7 +2,7 @@ package resources;
 
 /*
  * Create game objects with api data to be used for views
- * last updated 04/24/2021
+ * last updated 04/26/2021
  * Author(s) Ian Holder,
  */
 
@@ -13,15 +13,15 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
 public class Game {
-    protected String[] genre;
-    protected String releaseDate;
-    protected String title;
-    protected String[] tags;
-    protected String[] platforms;
-    protected String metacriticScore;
-    protected URL gameCoverURL;
-    protected Path coverFilePath;
-    protected String gameID;
+    private final String[] genre;
+    private final String releaseDate;
+    private final String title;
+    private final String[] tags;
+    private final String[] platforms;
+    private final String metacriticScore;
+    private URL gameCoverURL;
+    private Path coverFilePath;
+    private final String gameID;
 
     //constructor
     public Game(String[] _genre, String _title, String[] _tags, String _metacriticScore, String _gameCoverURL,

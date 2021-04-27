@@ -5,6 +5,7 @@ package gameGenie;
  * Author(s) Ian Holder,
  */
 
+import Testing.Test;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import user.SaveDataTranslator;
@@ -12,8 +13,8 @@ import user.SaveDataTranslator;
 public class Main extends Application {
 
     public static void main(String[] args) {
-        SaveDataTranslator.test();
-        launch(args);
+        Test.test();
+        //launch(args);
     }
 
     @Override

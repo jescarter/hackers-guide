@@ -8,7 +8,6 @@ package user;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import resources.DataStorage;
 import resources.DataStorageIntf;
 import resources.MockDataStorage;
 
@@ -156,71 +155,6 @@ public class SaveDataTranslator{
         return toBeReturned;
     }
 
-    //testing method
-    public static void test(){
-        test1();
-        User.clear();
-        test2();
-        User.clear();
-
-    }
-
-    private static void test1(){
-        System.out.println("Test one");
-        System.out.println("Testing for an empty user object, edge case");
-        User.setViewedGames(new HashMap<>());
-        User.setUserGenres(new DoubledLinkList());
-        User.setUserTags(new DoubledLinkList());
-        MockDataStorage test = new MockDataStorage();
-        try {
-            test.setDesiredSaveFileJSON(new JSONObject("{\"viewedGames\":[],\"userTags\":[],\"userGenre\":[]}"));
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        setDataStorage(test);
-        saveUserData();
-    }
-
-    private static void test2(){
-        System.out.println("Test two");
-        System.out.println("Testing a user with 100 rated games, tags, and Genres, edge case");
-        //populate the user with imposable large data
-        HashMap<String,String> mockViewedGames = fillHashMap(10);
-        DoubledLinkList mockedGenres = fillList(19);
-        DoubledLinkList mockedTags = fillList(20);
-        User.setUserGenres(mockedGenres);
-        User.setUserTags(mockedTags);
-        User.setViewedGames(mockViewedGames);
-
-        MockDataStorage test = new MockDataStorage();
-        try{
-            test.setDesiredSaveFileJSON(new JSONObject());
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        setDataStorage(test);
-        saveUserData();
-    }
-
-    //helper to fill a hash map with 100 elements
-    private static HashMap<String,String> fillHashMap(int _numberOfElements){
-        HashMap<String,String> toReturn = new HashMap<>();
-        for(int i = 0; i <= _numberOfElements; i++){
-            String tempKey = String.valueOf(i);
-            String tempValue = String.valueOf(i);
-            toReturn.put(tempKey, tempValue);
-        }
-        return toReturn;
-    }
-    //helper to fill Double Link lists with 100 elements
-    private static DoubledLinkList fillList(int _numberOfElements){
-        DoubledLinkList toReturn = new DoubledLinkList();
-        for(int i = 0; i <= _numberOfElements; i++){
-            String tempTitle = String.valueOf(i);
-            toReturn.addElement(tempTitle,i);
-        }
-        return toReturn;
-    }
     //================= SETTERS ===============
     public static void setDataStorage(DataStorageIntf _dataStorage){
         dataStorage = _dataStorage;

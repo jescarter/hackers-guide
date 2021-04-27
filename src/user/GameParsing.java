@@ -10,6 +10,9 @@ import javafx.scene.control.CheckBox;
 import resources.Game;
 
 public class GameParsing {
+    public void setUser(User _newUser){
+        User user = _newUser;
+    }
     public static void likedGame(Game _inputGame, int _incrementValue){
         //add all the genres of the game to the liked link list in the user
         for (String genre: _inputGame.getGenre()) {
