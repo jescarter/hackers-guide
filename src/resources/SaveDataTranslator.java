@@ -16,6 +16,7 @@ import java.util.Map;
 public class SaveDataTranslator{
     //set what data storage is going to be used
     private static DataStorageIntf dataStorage;
+
     //called on application close to wrap user data into a JSON to be passed to file storage
     public static void saveUserData(UserHistoryIntf _dataToSave){
         //create a JSON of the user data
@@ -33,6 +34,7 @@ public class SaveDataTranslator{
         JSONObject toRead = new JSONObject();
         //call the read method to hopefully return a json
         toRead = dataStorage.readFile();
+        //if there is no contents of the file then it did not exist prior the application start
         if(!toRead.toString().isEmpty()) {
             //pass the json to be parsed and return a new user history object
             return unwrap(toRead);

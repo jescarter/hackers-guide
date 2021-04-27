@@ -15,8 +15,9 @@ import java.nio.file.Paths;
 
 public class DataStorage implements DataStorageIntf{
     private FileWriter fileOut;
-    private BufferedReader fileIn;
+    private static BufferedReader fileIn;
     private static final String fileName = "C:\\TestingProjectSaveFiles\\gameGenieSaveData.txt";
+    private static final String canNotFindFileJSONString = "{\"viewedGames\":[],\"userTags\":[],\"userGenre\":[]}";
 
     //to take a json convert it to a usable form and write to a file
     public void saveFile(JSONObject _toBeStored){
@@ -48,8 +49,9 @@ public class DataStorage implements DataStorageIntf{
         try{
             StringBuilder sb = new StringBuilder();
             File file = new File(fileName);
-            if(!file.exists()){
-                file.createNewFile();
+            //if the file does not exist then return an empty data, hard coded which is not great
+            if(!file.exists()) {
+                return new JSONObject(canNotFindFileJSONString);
             }
             InputStream in = new FileInputStream(file);
             fileIn = new BufferedReader(new InputStreamReader(in));
