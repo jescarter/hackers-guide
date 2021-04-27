@@ -53,14 +53,14 @@ public class Game {
 
     //method to return a single string of the game genre array
     public String getGameGenreString(){
-        String outputString = "";
+        StringBuilder outputString = new StringBuilder();
         for (String gameGenreArrayValue:this.genre) {
-            outputString += gameGenreArrayValue;
+            outputString.append(gameGenreArrayValue);
             if(this.genre.length > 1){
-                outputString += " ,";
+                outputString.append(" ,");
             }
         }
-        return outputString;
+        return outputString.toString();
     }
 
     public String[] getGenre() {
