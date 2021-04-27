@@ -2,7 +2,7 @@ package user;
 
 /*
  * the user selection data
- * last updated 04/22/2021
+ * last updated 04/27/2021
  * Author(s) Ian Holder, Jesse Carter
  */
 
@@ -14,7 +14,6 @@ public class User {
     private static User user;
     private UserHistoryIntf userHistory;
 
-    //for the viewed games map, written by Jesse
     protected void addViewedGame(String _gameID, String _gameTitle) {
         //Add the viewed game to the user's list of previously viewed games.
         this.userHistory.addGame(_gameID, _gameTitle);
@@ -50,6 +49,7 @@ public class User {
         return this.userHistory.getTopTag();
     }
 
+    //make the user a singleton
     public static User getInstance(){
         if(user == null){
             user = new User();

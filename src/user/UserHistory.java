@@ -16,46 +16,6 @@ public class UserHistory implements UserHistoryIntf {
     private HashMap<String, String> viewedGames;
 
     @Override
-    public void setUserGenres(HashMap<String, Integer> _inputGenres) {
-        this.userGenres = fromMapToLinkList(_inputGenres);
-    }
-
-    @Override
-    public void setUserTags(HashMap<String, Integer> _inputTags) {
-        this.userTags = fromMapToLinkList(_inputTags);
-    }
-
-    @Override
-    public void setViewedGames(HashMap<String, String> _inputMap) {
-        this.viewedGames = _inputMap;
-    }
-
-    @Override
-    public HashMap<String, Integer> getUserGenres() {
-        return fromLinkListToMap(this.userGenres);
-    }
-
-    @Override
-    public HashMap<String, Integer> getUserTags() {
-        return fromLinkListToMap(this.userTags);
-    }
-
-    @Override
-    public HashMap<String, String> getViewedGames() {
-        return this.viewedGames;
-    }
-
-    @Override
-    public String getTopGenre() {
-        return this.userGenres.greatestValue();
-    }
-
-    @Override
-    public String getTopTag() {
-        return this.userTags.greatestValue();
-    }
-
-    @Override
     public void addGenre(String _genre, int _preferenceMod) {
         this.userGenres.addElement(_genre, _preferenceMod);
     }
@@ -119,5 +79,47 @@ public class UserHistory implements UserHistoryIntf {
             }
             return toReturn;
         }
+    }
+
+    //================= GETTERS ===============
+    @Override
+    public HashMap<String, Integer> getUserGenres() {
+        return fromLinkListToMap(this.userGenres);
+    }
+
+    @Override
+    public HashMap<String, Integer> getUserTags() {
+        return fromLinkListToMap(this.userTags);
+    }
+
+    @Override
+    public HashMap<String, String> getViewedGames() {
+        return this.viewedGames;
+    }
+
+    @Override
+    public String getTopGenre() {
+        return this.userGenres.greatestValue();
+    }
+
+    @Override
+    public String getTopTag() {
+        return this.userTags.greatestValue();
+    }
+
+    //================= SETTERS ===============
+    @Override
+    public void setUserGenres(HashMap<String, Integer> _inputGenres) {
+        this.userGenres = fromMapToLinkList(_inputGenres);
+    }
+
+    @Override
+    public void setUserTags(HashMap<String, Integer> _inputTags) {
+        this.userTags = fromMapToLinkList(_inputTags);
+    }
+
+    @Override
+    public void setViewedGames(HashMap<String, String> _inputMap) {
+        this.viewedGames = _inputMap;
     }
 }

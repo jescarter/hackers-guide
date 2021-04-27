@@ -2,7 +2,7 @@ package user;
 
 /*
  * a doubled link list to store and order the values from user input
- * last updated 04/24/2021
+ * last updated 04/27/2021
  * Author(s) Ian Holder,
  */
 

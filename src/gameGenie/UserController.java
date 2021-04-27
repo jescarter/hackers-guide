@@ -2,7 +2,7 @@ package gameGenie;
 
 /*
  * controller to handle user selections from the views
- * last updated 04/22/2021
+ * last updated 04/27/2021
  * Author(s) Ian Holder,
  */
 

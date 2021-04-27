@@ -2,7 +2,7 @@ package resources;
 
 /*
  * Create game objects with api data to be used for views
- * last updated 04/26/2021
+ * last updated 04/27/2021
  * Author(s) Ian Holder,
  */
 
@@ -77,6 +77,10 @@ public class Game {
 
     public String[] getTags() {
         return this.tags;
+    }
+
+    public String[] getPlatforms() {
+        return platforms;
     }
 
     public String getReleaseDate(){

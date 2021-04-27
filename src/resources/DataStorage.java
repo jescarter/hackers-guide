@@ -2,7 +2,7 @@ package resources;
 
 /*
  * to write and read jsons to/from files
- * last updated 04/24/2021
+ * last updated 04/27/2021
  * Author(s) Ian Holder,
  */
 
@@ -16,14 +16,13 @@ import java.nio.file.Paths;
 public class DataStorage implements DataStorageIntf{
     private FileWriter fileOut;
     private BufferedReader fileIn;
-    private Path filePath;
     private static final String fileName = "C:\\TestingProjectSaveFiles\\gameGenieSaveData.txt";
 
     //to take a json convert it to a usable form and write to a file
     public void saveFile(JSONObject _toBeStored){
         try{
             //make a path to create the directory
-            filePath = Paths.get(fileName);
+            Path filePath = Paths.get(fileName);
             Files.createDirectories(filePath.getParent());
             //write the file in the directory
             fileOut = new FileWriter(fileName);
