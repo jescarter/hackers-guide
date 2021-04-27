@@ -2,29 +2,19 @@ package game;
 
 /*
  * an interface for the game translator
- * last updated 04/22/2021
+ * last updated 04/27/2021
  * Author(s) Ian Holder,
  */
 
 import resources.Game;
 
-import java.util.HashMap;
-
 public interface GameTranslatorInterface {
-    public static Game[] getGamesByGenre(String _genre){
-        return null;
-    }
+    public Game[] getGamesByGenre(String _genre);
 
-    public static Game[] getGamesByTag(String _tag){
-        return null;
-    }
+    public Game[] getGamesByTag(String _tag);
 
-    public static String[] getGenres(){
-        return null;
-    }
+    public String[] getGenres();
 
-    public static String[] getTags(){
-        return null;
-    }
+    public String[] getTags();
 
 }
