@@ -1,6 +1,6 @@
 package gameGenie;
 
-/**
+/*
  * last updated 04/21/2021
  * Author(s) Ian Holder,
  */
@@ -22,6 +22,7 @@ public class Main extends Application {
     //on close route through the game genie controller that the application is closing
     @Override
     public void stop(){
+        //routing the closure call to inform the user package to save it's data
         GameGenieController.applicationClosing();
         System.out.println("File Saved");
     }

@@ -1,13 +1,13 @@
-package viewControllers;
+package viewLogic;
 
-/**
+/*
  * Controller for the game recommendation fxml, that will show games
  * last updated 04/18/2021
  * Author(s) Ian Holder,
  */
 
 import gameGenie.GameGenieController;
-import model.Game;
+import resources.Game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,7 +16,7 @@ import javafx.scene.image.ImageView;
 
 
 
-public class GameRecommendationController {
+public class GameRecommendationLogic {
     private Game currentGame;
 
     @FXML

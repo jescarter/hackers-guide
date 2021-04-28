@@ -1,56 +1,55 @@
 package gameGenie;
 
-/**
+/*
  * controller to handle user selections from the views
- * last updated 04/21/2021
+ * last updated 04/27/2021
  * Author(s) Ian Holder,
  */
 
 import javafx.scene.control.CheckBox;
-import model.Game;
-import translators.SaveDataTranslator;
-import model.User;
-import resources.Util;
+import resources.DataStorage;
+import resources.Game;
+import resources.UserHistoryIntf;
+import resources.SaveDataTranslator;
+import user.GameParsing;
+import user.User;
 
 public class UserController {
+    private static final int defaultLikeValue = 1;
+    private static final int defaultDislikeValue = -1;
+
     //populate the user liked genres based on the selected check boxes from the start screen
-    public static void handleCheckBoxes(CheckBox[] _checkBoxArray){
-        for(int i = 0; i < _checkBoxArray.length; i++){
-            if(_checkBoxArray[i].isSelected()){
-                //the checkboxes should be in order according to the util array
-                User.addGenreLike(Util.genresArray[i]);
-            }
-        }
+    protected static void handleCheckBoxes(CheckBox[] _checkBoxArray){
+        GameParsing.addStartScreenSelections(_checkBoxArray,defaultLikeValue);
     }
 
     //populate the user genres and tags, selected from the game picker screen
-    public static void Liked(Game _game){
-        //add all the genres of the game to the liked link list in the user
-        for (String genre: _game.getGenre()) {
-            User.addGenreLike(genre);
-        }
-        //add all the tags
-        for (String tag: _game.getTags()) {
-            User.addTagLiked(tag);
-        }
-        //add to the viewed map
-        User.addViewedGame(_game.getGameID(), _game.getTitle());
+    protected static void Liked(Game _game){
+        GameParsing.likedGame(_game,defaultLikeValue);
     }
 
-    public static void Disliked(Game _game){
-        for (String tag:_game.getTags()) {
-            User.addTagDisliked(tag);
-        }
-        User.addViewedGame(_game.getGameID(), _game.getTitle());
+    protected static void Disliked(Game _game){
+        GameParsing.disLikedGame(_game,defaultDislikeValue);
     }
 
     //call the Save translator to load in save file
-    public static boolean userDataLoaded(){
-        return SaveDataTranslator.loadUserData();
+    protected static boolean userDataLoaded(){
+        SaveDataTranslator.setDataStorage(new DataStorage());
+        //call that if there is any saved data
+        UserHistoryIntf newUser = SaveDataTranslator.loadUserData();
+        //load that data into the user class
+        User.getInstance().setUserHistory(newUser);
+        //if the user class is not empty then go to the game picker
+        return !User.getInstance().isEmpty();
     }
 
     //on close request save the user data
-    public static void programClose() {
-        SaveDataTranslator.saveUserData();
+    protected static void programClose() {
+        SaveDataTranslator.saveUserData(User.getInstance().getUserHistory());
+    }
+
+    //check if a game had been rated
+    public static Boolean wasGameViewed(String _gameID){
+        return User.getInstance().wasViewed(_gameID);
     }
 }

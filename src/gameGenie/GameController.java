@@ -1,55 +1,34 @@
 package gameGenie;
 
-/**
- * controller to handle creation of game objects and game queues for the game genie controller
- * last updated 04/20/2021
- * Author(s) Ian Holder,
+/*
+  controller to handle creation of game objects and game queues for the game genie controller
+  last updated 04/22/2021
+  Author(s) Ian Holder,
  */
 
-import model.Game;
-import translators.GamesByGenreTranslator;
-import model.User;
+import game.GameFactory;
+import resources.Game;
 import resources.GameQueue;
-
-import static resources.Util.genresArray;
+import resources.GameTranslator;
 
 public class GameController {
-    public static Game getRecommendation(){
-        Game recommendation = null;
-        Game[] placeHolder = GamesByGenreTranslator.getGames(User.getMostLikedGenre());
-        for (Game game : placeHolder) {
-            //on the first loop the recommendation game object will be set to the first element in the array
-            if (recommendation == null) {
-                recommendation = game;
-            }
-            //in the case that the recommendation game has the same tag as another game in the array, take the highest score
-            if (game.hasTag(User.getMostLikedTag()) && recommendation.hasTag(User.getMostLikedTag())) {
-                if (game.getMetacriticScore() > recommendation.getMetacriticScore()) {
-                    recommendation = game;
-                }
-            }
-            //if recommendation does not have the most liked tag and game does
-            if(game.hasTag(User.getMostLikedTag()) && !recommendation.hasTag(User.getMostLikedTag())){
-                recommendation = game;
-            }
-        }
-        return recommendation;
+    protected static Game getRecommendation(){
+        GameFactory.getInstance().setGameTranslator(new GameTranslator());
+        return GameFactory.getInstance().getRecommendation();
     }
 
     //creat a game queue for the game picker, getting games from the API based on a random genre
-    public static GameQueue<Game> getGameQueue(){
-        //create the game queue
-        GameQueue<Game> toBeReturned = new GameQueue<>();
-        //make the game array to call the API for game objects
-        Game[] placeHolder = GamesByGenreTranslator.getGames(genresArray[(int) (Math.random() * genresArray.length) - 1]);
-        //check each game in the array
-        for (Game placeHoldingGame:placeHolder) {
-            //check that the games in the array have not been rated
-            if(!User.wasViewed(placeHoldingGame.getGameID())){
-                //put game in the queue
-                toBeReturned.offer(placeHoldingGame);
-            }
+    protected static GameQueue<Game> getGameQueue(){
+        GameFactory.getInstance().setGameTranslator(new GameTranslator());
+        GameQueue<Game> myQueue = GameFactory.getInstance().getGameQueue(0);
+        if(myQueue.isEmpty()){
+            myQueue = GameFactory.getInstance().getGameQueue(1);
         }
-        return toBeReturned;
+        return myQueue;
+    }
+
+    //get if a game had been rated from the user controller for the game factory
+    public static boolean wasGameViewed(String _gameID){
+        return UserController.wasGameViewed(_gameID);
     }
 }

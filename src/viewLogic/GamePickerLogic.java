@@ -1,13 +1,13 @@
-package viewControllers;
+package viewLogic;
 
-/**
+/*
  * Controller for the game picker fxml, that will show games
  * last updated 04/08/2021
  * Author(s) Ian Holder,
  */
 
 import gameGenie.GameGenieController;
-import model.Game;
+import resources.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,7 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class GamePickerController {
+public class GamePickerLogic {
     private Game currentGame;
 
     @FXML

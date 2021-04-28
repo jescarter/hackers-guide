@@ -1,8 +1,8 @@
-package model;
+package resources;
 
-/**
+/*
  * Create game objects with api data to be used for views
- * last updated 04/19/2021
+ * last updated 04/27/2021
  * Author(s) Ian Holder,
  */
 
@@ -13,18 +13,19 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
 public class Game {
-    protected String[] genre;
-    protected String releaseDate;
-    protected String title;
-    protected String[] tags;
-    protected String[] platforms;
-    protected int metacriticScore;
-    protected URL gameCoverURL;
-    protected Path coverFilePath;
-    protected int gameID;
+    private final String[] genre;
+    private final String releaseDate;
+    private final String title;
+    private final String[] tags;
+    private final String[] platforms;
+    private final String metacriticScore;
+    private URL gameCoverURL;
+    private Path coverFilePath;
+    private final String gameID;
 
-    public Game(String[] _genre, String _title, String[] _tags, int _metacriticScore, String _gameCoverURL,
-                String _releaseDate, String[] _platforms, int _gameID) {
+    //constructor
+    public Game(String[] _genre, String _title, String[] _tags, String _metacriticScore, String _gameCoverURL,
+                String _releaseDate, String[] _platforms, String _gameID) {
         this.genre = _genre;
         this.title = _title;
         this.tags = _tags;
@@ -33,7 +34,9 @@ public class Game {
         this.platforms = _platforms;
         this.gameID = _gameID;
 
+        //sets the file path and downloads the cover image on construction
         try {
+            //creates the file with the suffix jpg so the image views can use it
             this.coverFilePath = Files.createTempFile("tmp", ".jpg");
             this.gameCoverURL = new URL(_gameCoverURL);
             InputStream inputStream = this.gameCoverURL.openStream();
@@ -41,6 +44,55 @@ public class Game {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    //=================  GETTERS ===============
+    public String getTitle() {
+        return this.title;
+    }
+
+    //method to return a single string of the game genre array
+    public String getGameGenreString(){
+        StringBuilder outputString = new StringBuilder();
+        for (String gameGenreArrayValue:this.genre) {
+            outputString.append(gameGenreArrayValue);
+            if(this.genre.length > 1){
+                outputString.append(" ,");
+            }
+        }
+        return outputString.toString();
+    }
+
+    public String[] getGenre() {
+        return this.genre;
+    }
+
+    public String getGameID(){
+        return this.gameID;
+    }
+
+    public String getMetacriticScore() {
+        return this.metacriticScore;
+    }
+
+    public String[] getTags() {
+        return this.tags;
+    }
+
+    public String[] getPlatforms() {
+        return platforms;
+    }
+
+    public String getReleaseDate(){
+        return this.releaseDate;
+    }
+
+    public Path getCoverFilePath() {
+        return this.coverFilePath;
+    }
+
+    public URL getGameCoverURL() {
+        return this.gameCoverURL;
     }
 
     public Boolean hasGenre(String _genre){
@@ -68,52 +120,6 @@ public class Game {
             }
         }
         return false;
-    }
-
-    //=================  GETTERS ===============
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    //method to return a single string of the game genre array
-    public String getGameGenreString(){
-        String outputString = "";
-        for (String gameGenreArrayValue:this.genre) {
-            outputString += gameGenreArrayValue;
-            if(this.genre.length > 1){
-                outputString += " ,";
-            }
-        }
-        return outputString;
-    }
-
-    public String[] getGenre() {
-        return this.genre;
-    }
-
-    public int getGameID(){
-        return this.gameID;
-    }
-
-    public int getMetacriticScore() {
-        return this.metacriticScore;
-    }
-
-    public String[] getTags() {
-        return this.tags;
-    }
-
-    public String getReleaseDate(){
-        return this.releaseDate;
-    }
-
-    public Path getCoverFilePath() {
-        return this.coverFilePath;
-    }
-
-    public URL getGameCoverURL() {
-        return this.gameCoverURL;
     }
 
     //=================  SETTERS ===============

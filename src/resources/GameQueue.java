@@ -1,9 +1,9 @@
 package resources;
 
-/**
- * helper method for the game picker view to show games
- * last updated 04/06/2021
- * Author(s) Ian Holder,
+/*
+  helper method for the game picker view to show games
+  last updated 04/22/2021
+  Author(s) Ian Holder,
  */
 
 import java.util.*;
@@ -17,27 +17,13 @@ public class GameQueue<Game> extends AbstractQueue<Game> {
     }
 
     @Override
-    public Iterator<Game> iterator() {
-        return this.elements.iterator();
-    }
-
-    @Override
     public boolean offer(Game _game) {
+        //guards invalid inputs
         if(_game == null) {
             return false;
         }
         this.elements.add(_game);
         return true;
-    }
-
-    @Override
-    public int size() {
-        return this.elements.size();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return this.elements.isEmpty();
     }
 
     //take the top element out
@@ -56,5 +42,21 @@ public class GameQueue<Game> extends AbstractQueue<Game> {
     @Override
     public Game peek() {
         return this.elements.getFirst();
+    }
+
+    //================= GETTERS ===============
+    @Override
+    public Iterator<Game> iterator() {
+        return this.elements.iterator();
+    }
+
+    @Override
+    public int size() {
+        return this.elements.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return this.elements.isEmpty();
     }
 }

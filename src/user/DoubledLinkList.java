@@ -1,15 +1,17 @@
-package resources;
+package user;
 
-import java.util.HashMap;
-
-/**
+/*
  * a doubled link list to store and order the values from user input
- * last updated 04/08/2021
+ * last updated 04/28/2021
  * Author(s) Ian Holder,
  */
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 public class DoubledLinkList {
-    private static class Node {
+    public static class Node {
         String nodeTitle;
         int preferenceValue;
         Node previous = null;
@@ -28,7 +30,7 @@ public class DoubledLinkList {
         Node newNode = new Node(_nodeTitle, _preferenceValue);
 
         //check if the list is empty
-        if (this.head == null) {
+        if (empty()) {
             this.head = this.tail = newNode;
             this.head.previous = null;
             this.tail.next = null;
@@ -39,6 +41,7 @@ public class DoubledLinkList {
             this.tail = newNode;
             this.tail.next = null;
         }
+        //order the list after adding/changing the value of an element
         if(_preferenceValue > 0){
             orderAscending();
         }else{
@@ -48,25 +51,31 @@ public class DoubledLinkList {
 
     }
 
+    //ordering
+
     //if the list is not empty it will transverse the list to try and find a node with the same string title
     private boolean searchAndPlace(Node _node){
+        //create a pointer node starting at the head
         Node current = this.head;
+        //use a variable to get out of the loop when the element is found
         boolean found = false;
+        //continue till the element is found or hitting the end of the list
         while (current != null && !found) {
             if (current.nodeTitle.equals(_node.nodeTitle)) {
                 current.preferenceValue = current.preferenceValue + _node.preferenceValue;
                 found = true;
             }
             current = current.next;
-            printList();
         }
         return found;
     }
 
     //if an element is added/value incremented order from tail up
     private void orderAscending() {
+        //starting from the bottom up as if an element value was increased the element before it could have a lower value
         Node current = this.tail;
 
+        //keep going till the current pointer is the list head
         while (current != this.head) {
             if (current.preferenceValue > current.previous.preferenceValue) {
                 swap(current.previous, current);
@@ -100,7 +109,7 @@ public class DoubledLinkList {
     }
 
     //to help debug
-    protected void printList() {
+    private void printList() {
         Node current = this.head;
         while (current != null) {
             System.out.println(current.nodeTitle + " " + current.preferenceValue);
@@ -108,8 +117,45 @@ public class DoubledLinkList {
         }
     }
 
+    //just checks if a given node matches a node in this list
+    private boolean hasNode(Node _toCompare){
+        boolean found = false;
+        Node current = this.head;
+        while(current != null && !found){
+            if(_toCompare.nodeTitle.equals(current.nodeTitle) && _toCompare.preferenceValue == current.preferenceValue){
+                found = true;
+            }
+            current = current.next;
+        }
+        return found;
+    }
+
+    //to evaluate if two link lists have the same content
+    public Boolean isEqual(DoubledLinkList _toCompare){
+        boolean doesMatch = false;
+        if(this.empty() && _toCompare.empty()){
+            return true;
+        }
+        //check that every element in the input list is in this list
+        Node current = _toCompare.head;
+        while(current != null){
+            if(hasNode(current)){
+                doesMatch = true;
+                current = current.next;
+            }else{
+                doesMatch = false;
+                current = null;
+            }
+        }
+        return doesMatch;
+    }
+
     //================= GETTERS ===============
     public String greatestValue(){
+        //as the list is ordered then the head node should be the highest value in the list
+        if(this.head == null){
+            return "empty";
+        }
         return this.head.nodeTitle;
     }
 
@@ -117,20 +163,7 @@ public class DoubledLinkList {
         return this.tail.nodeTitle;
     }
 
-    //for data storage allow for the link lists to be turned into hash maps
-    public HashMap<String,Integer> toMap(){
-        HashMap<String,Integer> toReturn = new HashMap<>();
-        Node current = this.head;
-
-        while(current != this.tail){
-            toReturn.put(current.nodeTitle, current.preferenceValue);
-            current = current.next;
-        }
-        return toReturn;
-    }
-
-    //================= SETTERS ===============
-    public void fromMap(HashMap<String,Integer> _inputMap){
-
+    public boolean empty(){
+        return this.head == null;
     }
 }

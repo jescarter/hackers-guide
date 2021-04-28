@@ -1,6 +1,6 @@
-package viewControllers;
+package viewLogic;
 
-/**
+/*
  * A controller that is going to pass the start screen information to a model to handle it
  * last updated 03/25/2021
  * Author(s) Ian Holder,
@@ -11,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
-public class StartScreenController {
+public class StartScreenLogic {
     @FXML
     private CheckBox actionBox;
     @FXML
@@ -53,14 +53,38 @@ public class StartScreenController {
 
     public Button doneButton;
 
+    @FXML
+    public void initialize(){
+        this.actionBox.setText("Action");
+        this.indieBox.setText("Indie");
+        this.adventureBox.setText("Adventure");
+        this.rpgBox.setText("RPG");
+        this.strategyBox.setText("Strategy");
+        this.shooterBox.setText("Shooter");
+        this.casualBox.setText("Casual");
+        this.simulationBox.setText("Simulation");
+        this.puzzleBox.setText("Puzzle");
+        this.arcadeBox.setText("Arcade");
+        this.platformerBox.setText("Platformer");
+        this.racingBox.setText("Racing");
+        this.sportsBox.setText("Sports");
+        this.massivelyMultiplayerBox.setText("Massively Multiplayer");
+        this.fightingBox.setText("Fighting");
+        this.familyBox.setText("Family");
+        this.boardGamesBox.setText("Board Games");
+        this.educationalBox.setText("Educational");
+        this.cardBox.setText("Card");
+    }
 
-    @FXML void userClickedDoneButton() {
+    @FXML
+    private void userClickedDoneButton() {
         //pack all the checkboxes in order to the util genresArray
         CheckBox[] startCheckBoxes = new CheckBox[]{this.actionBox, this.indieBox, this.adventureBox, this.rpgBox,
                 this.strategyBox, this.shooterBox, this.casualBox, this.simulationBox, this.puzzleBox, this.arcadeBox,
                 this.platformerBox, this.racingBox, this.sportsBox, this.massivelyMultiplayerBox, this.fightingBox,
                 this.familyBox, this.boardGamesBox, this.educationalBox, this.cardBox};
-        GameGenieController.getInstance().handleStartCheckBoxes(startCheckBoxes);
+
+        GameGenieController.handleStartCheckBoxes(startCheckBoxes);
         GameGenieController.getInstance().changeSceneIntoGamePicker();
     }
 
