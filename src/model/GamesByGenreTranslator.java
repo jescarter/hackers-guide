@@ -107,9 +107,8 @@ public class GamesByGenreTranslator {
                 }
             }
         } catch (Exception ex) {
-            String[] errorMessage = new String[1];
-            errorMessage[0] = ("Error: " + ex);
-            return errorMessage;
+            System.out.println("Error: " + ex);
+            return null;
         }
         return gameArray;
     }
