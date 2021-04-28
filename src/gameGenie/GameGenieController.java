@@ -20,7 +20,7 @@ public class GameGenieController {
     //the window is held by the game genie controller
     private Stage primaryStage;
     //the game genie controller to be a singleton holds reference to itself
-    private static GameGenieController controller = null;
+    private static GameGenieController controller;
     //for the game picker screen gets info from the game queue
     private static GameQueue<Game> gameQueue;
     //view file names

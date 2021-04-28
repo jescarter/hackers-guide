@@ -99,11 +99,17 @@ public class UserHistory implements UserHistoryIntf {
 
     @Override
     public String getTopGenre() {
+        if(isEmpty()){
+            return "empty";
+        }
         return this.userGenres.greatestValue();
     }
 
     @Override
     public String getTopTag() {
+        if(isEmpty()){
+            return "empty";
+        }
         return this.userTags.greatestValue();
     }
 

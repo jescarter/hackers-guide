@@ -2,7 +2,7 @@ package game;
 
 /*
  * a model to return games sent from the game translator, after being checked
- * last updated 04/27/2021
+ * last updated 04/28/2021
  * Author(s) Ian Holder,
  */
 
@@ -12,19 +12,21 @@ import resources.Game;
 import resources.GameQueue;
 
 public class GameFactory {
-    private static String[] gameGenres;
-    private static String[] gameTags;
-    private static GameTranslatorInterface gameTranslator;
+    private String[] gameGenres;
+    private String[] gameTags;
+    private GameTranslatorInterface gameTranslator;
+    private static GameFactory gameFactory;
 
-    public static GameQueue<Game> getGameQueue(){
-        if(gameGenres == null || gameTags == null){
+    //================= GETTERS ===============
+    public GameQueue<Game> getGameQueue(){
+        if(this.gameGenres == null || this.gameTags == null){
             setGameGenres(gameTranslator.getGenres());
             setGameTags(gameTranslator.getTags());
         }
         //create the game queue
         GameQueue<Game> toBeReturned = new GameQueue<>();
         //make the game array to call the API for game objects
-        Game[] placeHolder = gameTranslator.getGamesByGenre(gameGenres[(int) (Math.random() * gameGenres.length) - 1]);
+        Game[] placeHolder = gameTranslator.getGamesByGenre(gameGenres[(int) (Math.random() * gameGenres.length)]);
         //check each game in the array
         for (Game placeHoldingGame:placeHolder) {
             //check that the games in the array have not been rated
@@ -33,18 +35,23 @@ public class GameFactory {
                 toBeReturned.offer(placeHoldingGame);
             }
         }
+        //if on pass it can not get a game queue recur
+        if(toBeReturned.isEmpty()){
+            toBeReturned = getGameQueue();
+        }
         return toBeReturned;
+
     }
 
-    public static Game getRecommendation(){
+    public Game getRecommendation(){
         Game recommendation = null;
         //call for the api to get games of the user's most liked genre
         String favoriteGenre = User.getInstance().getMostLikedGenre();
         String favoriteTag = User.getInstance().getMostLikedTag();
         //if the users favorite genre is null then the tags are also null
-        if(favoriteGenre == null){
-            favoriteGenre = gameGenres[(int) (Math.random() * gameGenres.length) - 1];
-            favoriteTag = gameTags[(int) (Math.random() * gameTags.length) - 1];
+        if(favoriteGenre.equals("empty")){
+            favoriteGenre = gameGenres[(int) (Math.random() * gameGenres.length)];
+            favoriteTag = gameTags[(int) (Math.random() * gameTags.length)];
         }
         Game[] placeHolder = gameTranslator.getGamesByGenre(favoriteGenre);
         for (Game game : placeHolder) {
@@ -61,7 +68,7 @@ public class GameFactory {
         return recommendation;
     }
 
-    private static Game compareGameBasedOnTag(Game _game1, Game _game2, String _favoriteTag){
+    private Game compareGameBasedOnTag(Game _game1, Game _game2, String _favoriteTag){
         //if both games have the favorite tag take the one that has the higher score
         if(_game1.hasTag(_favoriteTag) && _game1.hasTag(_favoriteTag)){
             if(Integer.parseInt(_game1.getMetacriticScore()) < Integer.parseInt(_game2.getMetacriticScore())){
@@ -83,25 +90,32 @@ public class GameFactory {
     }
 
     //for input guarding get an array of all valid genres
-    public static String[] getGenres(){
+    public String[] getGenres(){
         return gameTranslator.getGenres();
     }
 
     //input guarding get all the valid tags
-    public static String[] getTags(){
+    public String[] getTags(){
         return gameTranslator.getTags();
     }
 
+    public static GameFactory getInstance() {
+        if(gameFactory == null){
+            gameFactory = new GameFactory();
+        }
+        return gameFactory;
+    }
+
     //================= SETTERS ===============
-    private static void setGameGenres(String[] _inputArray){
+    private void setGameGenres(String[] _inputArray){
         gameGenres = _inputArray;
     }
 
-    private static void setGameTags(String[] _inputArray){
+    private void setGameTags(String[] _inputArray){
         gameTags = _inputArray;
     }
 
-    public static void setGameTranslator(GameTranslatorInterface _inputTranslator){
+    public void setGameTranslator(GameTranslatorInterface _inputTranslator){
         gameTranslator = _inputTranslator;
     }
 }
