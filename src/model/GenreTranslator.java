@@ -1,8 +1,8 @@
 package src.model;
 
 /*
-Last updated: 20 April, 2021
-This class will call on the RAWG API and display all possible genres and their ID.
+Last updated: 28 April, 2021
+This class will call on the RAWG API and display all possible genres.
 Authors: Emily Crabtree
 */
 
@@ -17,16 +17,16 @@ import org.json.JSONObject;
 
 public class GenreTranslator {
 
+    // Create genre array of 19 to be later filled.
+    String[] genre = new String[19];
+
     //=================  GETTERS ===============
-    protected static void getGenres () {
+    protected String[] getGenres () {
 
         // Create a HTTP Connection.
         String baseUrl = "https://api.rawg.io/api/genres?key=";
         String apiKey = "6346c4bd4d004ac58323138cd49d65cb";
         String urlString = baseUrl + apiKey;
-        
-        // Create genre array to be later filled.
-        String[] genre = new String[20];
 
         URL url;
         try {
@@ -40,6 +40,7 @@ public class GenreTranslator {
             if (status != 200) {
                 System.out.printf("Error: Could not load genres: " + status);
             } else {
+                
                 // Parsing input stream into a text string.
                 BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 String inputLine;
@@ -47,9 +48,11 @@ public class GenreTranslator {
                 while ((inputLine = in.readLine()) != null) {
                     content.append(inputLine);
                 }
+                
                 // Close the connections.
                 in.close();
                 con.disconnect();
+                
                 // Parse that object into a usable Java JSON object and into a JSON array.
                 JSONObject obj = new JSONObject(content.toString());
                 JSONArray genres_array = obj.getJSONArray("results");
@@ -62,7 +65,8 @@ public class GenreTranslator {
             }
         } catch (Exception ex) {
             System.out.println("Error: " + ex);
-            return;
+            return null;
         }
+        return genre;
     }
 }
