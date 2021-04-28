@@ -2,8 +2,8 @@ package resources;
 
 /*
   takes in the jsons from the api caller and makes game objects from them
-  last updated 04/27/2021
-  Author(s) Ian Holder,
+  last updated 04/28/2021
+  Author(s) Ian Holder, Emily Crabtree
  */
 
 import game.GameTranslatorInterface;

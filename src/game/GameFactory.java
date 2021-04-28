@@ -11,6 +11,8 @@ import gameGenie.GameController;
 import resources.Game;
 import resources.GameQueue;
 
+import java.util.HashMap;
+
 public class GameFactory {
     private String[] gameGenres;
     private String[] gameTags;
@@ -19,21 +21,33 @@ public class GameFactory {
 
     //================= GETTERS ===============
     public GameQueue<Game> getGameQueue(int _genreChangerByForce){
+        HashMap<String,String> gamesInQueue = new HashMap<>();
+
         if(this.gameGenres == null || this.gameTags == null){
             setGameGenres(gameTranslator.getGenres());
             setGameTags(gameTranslator.getTags());
         }
-        int funTesting = (((int) (Math.random() * this.gameGenres.length)) + _genreChangerByForce) % this.gameGenres.length;
+        int funTestingGenre = (((int) (Math.random() * this.gameGenres.length)) + _genreChangerByForce) % this.gameGenres.length;
+        int funTestingTags = (((int) (Math.random() * this.gameTags.length))) % this.gameTags.length;
+        System.out.println("Searching Genre is " + gameGenres[funTestingGenre]);
+        System.out.println("Searching Tag is " + gameTags[funTestingTags]);
         //create the game queue
         GameQueue<Game> toBeReturned = new GameQueue<>();
         //make the game array to call the API for game objects
-        Game[] placeHolder = gameTranslator.getGamesByGenre(this.gameGenres[funTesting]);
+        Game[] placeHolder = gameTranslator.getGamesByGenre(this.gameGenres[funTestingGenre]);
+        Game[] placeHolder2 = gameTranslator.getGamesByTag(this.gameTags[funTestingTags]);
         //check each game in the array
         for (Game placeHoldingGame:placeHolder) {
             //check that the games in the array have not been rated
             if(!GameController.wasGameViewed(placeHoldingGame.getGameID())){
                 //put game in the queue
                 toBeReturned.offer(placeHoldingGame);
+                gamesInQueue.put(placeHoldingGame.getTitle(), placeHoldingGame.getGameID());
+            }
+        }
+        for (Game placeHolderTag:placeHolder2) {
+            if(!GameController.wasGameViewed(placeHolderTag.getGameID()) && !gamesInQueue.containsKey(placeHolderTag.getTitle())){
+                toBeReturned.offer(placeHolderTag);
             }
         }
         //if on pass it can not get a game queue recur
@@ -51,6 +65,8 @@ public class GameFactory {
             favoriteGenre = gameGenres[(int) (Math.random() * gameGenres.length)];
             favoriteTag = gameTags[(int) (Math.random() * gameTags.length)];
         }
+        System.out.println("Favorite Genre is " + favoriteGenre);
+        System.out.println("Favorite Tag is " + favoriteTag);
         Game[] placeHolder = gameTranslator.getGamesByGenre(favoriteGenre);
         for (Game game : placeHolder) {
             //insure that the game has not been rated

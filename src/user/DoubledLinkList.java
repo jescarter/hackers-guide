@@ -2,7 +2,7 @@ package user;
 
 /*
  * a doubled link list to store and order the values from user input
- * last updated 04/27/2021
+ * last updated 04/28/2021
  * Author(s) Ian Holder,
  */
 
@@ -153,6 +153,9 @@ public class DoubledLinkList {
     //================= GETTERS ===============
     public String greatestValue(){
         //as the list is ordered then the head node should be the highest value in the list
+        if(this.head == null){
+            return "empty";
+        }
         return this.head.nodeTitle;
     }
 
