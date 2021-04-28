@@ -1,11 +1,13 @@
 package src.model;
 
 /*
-Last updated: 20 April, 2021
+Last updated: 28 April, 2021
 This class will call on the RAWG API, prompt the user to enter a video game tag, and display the most relevant results for 20 games.
 Authors: Emily Crabtree
 */
 
+import java.nio.file.Path;
+import java.util.List;
 import java.util.Scanner;
 
 import java.io.BufferedReader;
@@ -17,26 +19,26 @@ import org.json.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-
 public class GamesByTagTranslator {
 
+    // Create arrays and initialize variables to be later filled.
+    String[] genre;
+    String releaseDate;
+    String title;
+    String[] tags;
+    String[] platforms;
+    String metacriticScore;
+    String gameCoverURL;
+    String gameID;
+    Game game;
+    Game[] gameArray = new Game[20];
+
     //=================  GETTERS ===============
-    protected static void getGames () {
+
+    protected Game[] getGames () {
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter a tag: ");
         String tagQuery = input.nextLine();
         tagQuery = tagQuery.replace(" ", "-");
-
-        // Create arrays and initialize variables to be later filled.
-        String[] genre = new String[20];
-        String[] tags = new String[20];
-        String[] platforms = new String[20];
-        String title;
-        String releaseDate;
-        String description;
-        String metacriticScore;
-        String gameCoverURL;
-        String gameID;
 
         // Create a HTTP Connection.
         String baseUrl = "https://api.rawg.io/api";
@@ -72,9 +74,9 @@ public class GamesByTagTranslator {
                 JSONArray games_array = obj.getJSONArray("results");
 
                 // Create game object by parsing through the array. Display the wanted results.
-                for (int i = 0; i < games_array.length(); i++){
+                for (int i = 0; i < games_array.length(); i++) {
                     JSONObject games = games_array.getJSONObject(i);
-                    title = ((i + 1) + games.getString("name"));
+                    title = games.getString("name");
                     gameID = games.getString("id");
                     releaseDate = games.getString("released");
                     metacriticScore = games.getString("metacritic");
@@ -82,30 +84,37 @@ public class GamesByTagTranslator {
 
                     // Create genres array from game object, parsing through the array to create genre object. Display wanted results.
                     JSONArray games_genres = games.getJSONArray("genres");
-                    for (int j = 0; j < games_genres.length(); j++){
+                    for (int j = 0; j < games_genres.length(); j++) {
                         JSONObject genres = games_genres.getJSONObject(j);
                         genre[i] = genres.getString("name");
                     }
 
                     // Create tags array from game object, parsing through the array to create tag object. Display wanted results.
                     JSONArray games_tags = games.getJSONArray("tags");
-                    for (int j = 0; j < games_tags.length(); j++){
+                    for (int j = 0; j < games_tags.length(); j++) {
                         JSONObject tag = games_tags.getJSONObject(j);
                         tags[i] = tag.getString("name");
                     }
 
                     // Create platforms array from game object, parsing through the array to create platform object. Display wanted results.
                     JSONArray parent_platforms = games.getJSONArray("parent_platforms");
-                    for (int j = 0; j < parent_platforms.length(); j++){
+                    for (int j = 0; j < parent_platforms.length(); j++) {
                         JSONObject obj_platforms = parent_platforms.getJSONObject(j);
                         JSONObject platform = obj_platforms.getJSONObject("platform");
                         platforms[i] = platform.getString("name");
+                    }
+                    
+                    // Create game and then put all games into Game object array.
+                    game = new Game(genre, title, tags, metacriticScore, gameCoverURL, releaseDate, platforms, gameID);
+                    for (int j = 0; j < gameArray.length; j++){
+                        gameArray[j] = game;
                     }
                 }
             }
         } catch (Exception ex) {
             System.out.println("Error: " + ex);
-            return;
+            return null;
         }
+        return gameArray;
     }
 }
