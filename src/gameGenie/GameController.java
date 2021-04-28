@@ -20,7 +20,11 @@ public class GameController {
     //creat a game queue for the game picker, getting games from the API based on a random genre
     protected static GameQueue<Game> getGameQueue(){
         GameFactory.getInstance().setGameTranslator(new GameTranslator());
-        return GameFactory.getInstance().getGameQueue();
+        GameQueue<Game> myQueue = GameFactory.getInstance().getGameQueue(0);
+        if(myQueue.isEmpty()){
+            myQueue = GameFactory.getInstance().getGameQueue(1);
+        }
+        return myQueue;
     }
 
     //get if a game had been rated from the user controller for the game factory

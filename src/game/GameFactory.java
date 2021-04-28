@@ -18,15 +18,16 @@ public class GameFactory {
     private static GameFactory gameFactory;
 
     //================= GETTERS ===============
-    public GameQueue<Game> getGameQueue(){
+    public GameQueue<Game> getGameQueue(int _genreChangerByForce){
         if(this.gameGenres == null || this.gameTags == null){
             setGameGenres(gameTranslator.getGenres());
             setGameTags(gameTranslator.getTags());
         }
+        int funTesting = (((int) (Math.random() * this.gameGenres.length)) + _genreChangerByForce) % this.gameGenres.length;
         //create the game queue
         GameQueue<Game> toBeReturned = new GameQueue<>();
         //make the game array to call the API for game objects
-        Game[] placeHolder = gameTranslator.getGamesByGenre(gameGenres[(int) (Math.random() * gameGenres.length)]);
+        Game[] placeHolder = gameTranslator.getGamesByGenre(this.gameGenres[funTesting]);
         //check each game in the array
         for (Game placeHoldingGame:placeHolder) {
             //check that the games in the array have not been rated
@@ -36,9 +37,6 @@ public class GameFactory {
             }
         }
         //if on pass it can not get a game queue recur
-        if(toBeReturned.isEmpty()){
-            toBeReturned = getGameQueue();
-        }
         return toBeReturned;
 
     }
