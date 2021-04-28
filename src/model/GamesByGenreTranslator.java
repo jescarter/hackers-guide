@@ -1,13 +1,12 @@
 package src.model;
 
 /*
-Last updated: 20 April, 2021
+Last updated: 28 April, 2021
 This class will call on the RAWG API, prompt the user to enter a video game genre, and display the most relevant results for 20 games.
 Authors: Emily Crabtree
 */
 
 import java.util.Scanner;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -19,23 +18,23 @@ import org.json.JSONObject;
 
 public class GamesByGenreTranslator {
 
-    //=================  GETTERS ===============
-    protected static void getGames () {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter a genre: ");
-        String genreQuery = input.nextLine();
-        genreQuery = genreQuery.replace(" ", "-");
+    // Create arrays and initialize variables to be later filled.
+    String[] genre;
+    String releaseDate;
+    String title;
+    String[] tags;
+    String[] platforms;
+    String metacriticScore;
+    String gameCoverURL;
+    String gameID;
+    Game game;
+    Game[] gameArray = new Game[20];
+    String genreQuery;
 
-        // Create arrays and initialize variables to be later filled.
-        String[] genre = new String[20];
-        String[] tags = new String[20];
-        String[] platforms = new String[20];
-        String title;
-        String releaseDate;
-        String description;
-        String metacriticScore;
-        String gameCoverURL;
-        String gameID;
+    //=================  GETTERS ===============
+
+    protected Game[] getGames () {
+        genreQuery = genreQuery.replace(" ", "-");
 
         // Create a HTTP Connection.
         String baseUrl = "https://api.rawg.io/api";
@@ -72,11 +71,11 @@ public class GamesByGenreTranslator {
                 // Create game object by parsing through the array. Display the wanted results.
                 for (int i = 0; i < games_array.length(); i++){
                     JSONObject games = games_array.getJSONObject(i);
-                    title = ((i + 1) + games.getString("name"));
+                    title = games.getString("name");
                     gameID = games.getString("id");
                     releaseDate = games.getString("released");
                     metacriticScore = games.getString("metacritic");
-                    gameCoverURL = games.getString("background_images");
+                    gameCoverURL = games.getString("background_image");
 
                     // Create genre array for each instance, displaying the wanted result.
                     JSONArray games_genres = games.getJSONArray("genres");
@@ -99,11 +98,19 @@ public class GamesByGenreTranslator {
                         JSONObject platform = obj_platforms.getJSONObject("platform");
                         platforms[i] = platform.getString("name");
                     }
+                    
+                    // Create game object and then place all games into a Game object array.
+                    game = new Game(genre, title, tags, metacriticScore, gameCoverURL, releaseDate, platforms, gameID);
+                    for (int j = 0; j < gameArray.length; j++) {
+                        gameArray[j] = game;
+                    }
                 }
             }
         } catch (Exception ex) {
-            System.out.println("Error: " + ex);
-            return;
+            String[] errorMessage = new String[1];
+            errorMessage[0] = ("Error: " + ex);
+            return errorMessage;
         }
+        return gameArray;
     }
 }
