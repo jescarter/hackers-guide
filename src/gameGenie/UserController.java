@@ -23,11 +23,11 @@ public class UserController {
     }
 
     //populate the user genres and tags, selected from the game picker screen
-    protected static void Liked(Game _game){
+    protected static void liked(Game _game){
         User.parseGame(_game,defaultLikeValue);
     }
 
-    protected static void Disliked(Game _game){
+    protected static void disliked(Game _game){
         User.parseGame(_game,defaultDislikeValue);
     }
 

@@ -94,11 +94,11 @@ public class GameGenieController {
     //pass the game from the top of the queue to the user controller to update user info
     public static void userLikedGame(){
         //send the top game to be parsed below
-        UserController.Liked(Objects.requireNonNull(gameQueue.poll()));
+        UserController.liked(Objects.requireNonNull(gameQueue.poll()));
     }
 
     public static void userDislikedGame(){
-        UserController.Disliked(Objects.requireNonNull(gameQueue.poll()));
+        UserController.disliked(Objects.requireNonNull(gameQueue.poll()));
     }
 
     //just remove the top element from the game queue, for right now there is nothing to do with it
