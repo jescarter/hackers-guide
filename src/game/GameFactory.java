@@ -107,8 +107,10 @@ public class GameFactory {
         if(!this.pageKeeperTags.containsKey(favoriteTag)){
             this.pageKeeperTags.put(favoriteTag, 1);
         }
+
         System.out.println("Favorite Genre is " + favoriteGenre);
         System.out.println("Favorite Tag is " + favoriteTag);
+
         Game[] placeHolder = gameTranslator.getGamesByGenre(favoriteGenre, pageKeeperGenres.get(favoriteGenre));
 
         //if the genre that is searched has all been rated then move to the next page

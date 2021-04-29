@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Locale;
 
 public class RAWGCaller implements APICallerInft {
     private static final String baseURL = "https://api.rawg.io/api";
@@ -22,7 +23,10 @@ public class RAWGCaller implements APICallerInft {
     public JSONObject getGamesByGenre(String _genre, int _page) {
         //build the url
         String genreQuery = _genre.replace(" ", "-");
-        String callAction = ("/games?genres=" + genreQuery.toLowerCase() + "&key=");
+        if(!genreQuery.equals("RPG")){
+            genreQuery = genreQuery.toLowerCase();
+        }
+        String callAction = ("/games?genres=" + genreQuery + "&key=");
         String urlString = baseURL + callAction + apiKey + "&page=" + _page;
         return call(urlString);
     }
