@@ -1,4 +1,4 @@
-package resources;
+package DataStorage;
 
 /*
  * to write and read jsons to/from files
@@ -13,7 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class DataStorage implements DataStorageIntf{
+public class DataStorage implements DataStorageIntf {
     private FileWriter fileOut;
     private static BufferedReader fileIn;
     private static final String fileName = "C:\\TestingProjectSaveFiles\\gameGenieSaveData.txt";

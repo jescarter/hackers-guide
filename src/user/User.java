@@ -6,10 +6,6 @@ package user;
  * Author(s) Ian Holder, Jesse Carter
  */
 
-import resources.UserHistoryIntf;
-
-import java.util.HashMap;
-
 public class User {
     private static User user;
     private UserHistoryIntf userHistory;

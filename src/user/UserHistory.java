@@ -6,7 +6,6 @@ package user;
  * Author(s) Ian Holder,
  */
 
-import resources.UserHistoryIntf;
 import java.util.HashMap;
 import java.util.Map;
 

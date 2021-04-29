@@ -14,6 +14,7 @@ import resources.GameQueue;
 import java.util.HashMap;
 
 public class GameFactory {
+    //for some reason even though the api gives RPG in this form it does not like it for the api call
     private String[] gameGenres;
     private String[] gameTags;
     private GameTranslatorIntf gameTranslator;
@@ -37,14 +38,16 @@ public class GameFactory {
         //helper to ensure no redundancies between search results
         HashMap<String,String> gamesInQueue = new HashMap<>();
 
+        //pull the values
         if(this.gameGenres == null || this.gameTags == null){
             setGameGenres(gameTranslator.getGenres());
             setGameTags(gameTranslator.getTags());
         }
         //to help what page in the api needs to be retrieved
-        if(pageKeeperGenres.equals(new HashMap<>())) {
+        if(pageKeeperGenres.isEmpty()) {
             populatePageKeepers();
         }
+        //
         int funTestingGenre = (((int) (Math.random() * this.gameGenres.length))) % this.gameGenres.length;
         int funTestingTags = (((int) (Math.random() * this.gameTags.length))) % this.gameTags.length;
 

@@ -9,7 +9,7 @@ package gameGenie;
 import game.GameFactory;
 import resources.Game;
 import resources.GameQueue;
-import resources.GameTranslator;
+import game.GameTranslator;
 
 public class GameController {
     protected static Game getRecommendation(){

@@ -1,4 +1,4 @@
-package resources;
+package game;
 
 /*
   takes in the jsons from the api caller and makes game objects from them
@@ -6,23 +6,30 @@ package resources;
   Author(s) Ian Holder, Emily Crabtree
  */
 
+import API.APICallerInft;
+import API.RAWGCaller;
 import game.GameTranslatorIntf;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import resources.Game;
 
 public class GameTranslator implements GameTranslatorIntf {
     private APICallerInft myCaller;
 
     @Override
     public Game[] getGamesByGenre(String _genre, int _page) {
-        setMyCaller(new RAWGCaller());
+        if(this.myCaller == null) {
+            setMyCaller(new RAWGCaller());
+        }
         JSONObject toParse = myCaller.getGamesByGenre(_genre, _page);
         return parseGameJSON(toParse);
     }
 
     @Override
     public Game[] getGamesByTag(String _tag, int _page) {
-        setMyCaller(new RAWGCaller());
+        if(this.myCaller == null) {
+            setMyCaller(new RAWGCaller());
+        }
         JSONObject toParse = myCaller.getGamesByTag(_tag, _page);
         return parseGameJSON(toParse);
     }
@@ -50,7 +57,9 @@ public class GameTranslator implements GameTranslatorIntf {
 
     @Override
     public String[] getTags() {
-        setMyCaller(new RAWGCaller());
+        if(this.myCaller == null) {
+            setMyCaller(new RAWGCaller());
+        }
         JSONObject toParse = myCaller.getTags();
         String[] toReturn = new String[80];
         try{

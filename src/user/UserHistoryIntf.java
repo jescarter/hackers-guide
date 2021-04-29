@@ -1,4 +1,4 @@
-package resources;
+package user;
 
 /*
   an interface for the user history object for greater modularity, but it is to specific just to get it to work

@@ -1,4 +1,4 @@
-package resources;
+package API;
 
 /*
 Last updated: 28  April, 2021

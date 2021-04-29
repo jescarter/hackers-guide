@@ -1,4 +1,4 @@
-package resources;
+package DataStorage;
 
 /*
   a spoof data storage for the unit test
@@ -6,9 +6,10 @@ package resources;
   Author(s) Ian Holder,
  */
 
+import DataStorage.DataStorageIntf;
 import org.json.JSONObject;
 
-public class MockDataStorage implements DataStorageIntf{
+public class MockDataStorage implements DataStorageIntf {
     private JSONObject desiredLoadedData;
 
     //gets the json from the save data translator

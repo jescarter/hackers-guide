@@ -1,4 +1,4 @@
-package resources;
+package API;
 
 /*
  * to standardize api callers
