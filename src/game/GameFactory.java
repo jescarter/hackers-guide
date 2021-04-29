@@ -42,15 +42,17 @@ public class GameFactory {
             setGameTags(gameTranslator.getTags());
         }
         //to help what page in the api needs to be retrieved
-        populatePageKeepers();
+        if(pageKeeperGenres.equals(new HashMap<>())) {
+            populatePageKeepers();
+        }
         int funTestingGenre = (((int) (Math.random() * this.gameGenres.length))) % this.gameGenres.length;
         int funTestingTags = (((int) (Math.random() * this.gameTags.length))) % this.gameTags.length;
 
         String genreToSearchFor = gameGenres[funTestingGenre];
         String tagToSearchFor = gameTags[funTestingTags];
-        System.out.println("Searching Genre is " + genreToSearchFor);
-        System.out.println("Searching Tag is " + tagToSearchFor);
-        
+        System.out.println("Searching Genre is " + genreToSearchFor + " on page " + pageKeeperGenres.get(genreToSearchFor));
+        System.out.println("Searching Tag is " + tagToSearchFor + " on page " + pageKeeperTags.get(tagToSearchFor));
+
         //create the game queue
         GameQueue<Game> toBeReturned = new GameQueue<>();
         
@@ -125,7 +127,7 @@ public class GameFactory {
 
     private Game compareGameBasedOnTag(Game _game1, Game _game2, String _favoriteTag){
         //if both games have the favorite tag take the one that has the higher score
-        if(_game1.hasTag(_favoriteTag) && _game1.hasTag(_favoriteTag)){
+        if(_game1.hasTag(_favoriteTag) && _game2.hasTag(_favoriteTag)){
             if(Integer.parseInt(_game1.getMetacriticScore()) < Integer.parseInt(_game2.getMetacriticScore())){
                 //game 2 has the higher score
                 return _game2;
@@ -164,8 +166,10 @@ public class GameFactory {
     private Game[] getAnArrayThatIsNotRated(Game[] _toCheck, String _searchValue){
         Game[] toDealWith = _toCheck;
         while(isArrayRated(toDealWith)){
-            int pageNumber = pageKeeperGenres.get(_searchValue);
+            int pageNumber = pageKeeperGenres.get(_searchValue) + 1;
             pageKeeperGenres.replace(_searchValue, pageNumber);
+            //print to the console to show that when the page has been fulled rated to go to the next page
+            System.out.println("Searching Genre " + _searchValue + " now on page " + pageKeeperGenres.get(_searchValue));
             toDealWith = gameTranslator.getGamesByGenre(_searchValue, pageKeeperGenres.get(_searchValue));
         }
         return toDealWith;
