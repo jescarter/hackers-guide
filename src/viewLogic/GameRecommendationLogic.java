@@ -20,6 +20,8 @@ public class GameRecommendationLogic {
     private Game currentGame;
 
     @FXML
+    private Label gamePlatforms;
+    @FXML
     private Label gameTitleLabel;
     @FXML
     private Label gameReleaseDate;
@@ -40,7 +42,8 @@ public class GameRecommendationLogic {
         recommendationGameCoverArt.setImage(new Image("File:" + currentGame.getCoverFilePath().toString()));
         gameTitleLabel.setText("Title: " + currentGame.getTitle());
         gameReleaseDate.setText("Release Date: " + currentGame.getReleaseDate());
-        gameGenre.setText("Genre: " + currentGame.getGameGenreString());
+        gameGenre.setText("Genres: " + currentGame.getGameGenreString());
+        gamePlatforms.setText("Platforms: " + currentGame.getGamePlatformString());
         gameMetacritic.setText("Metacritic Score: " + currentGame.getMetacriticScore());
     }
 
