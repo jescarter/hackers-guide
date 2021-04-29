@@ -11,7 +11,6 @@ import DataStorage.DataStorage;
 import resources.Game;
 import user.UserHistoryIntf;
 import DataStorage.SaveDataTranslator;
-import user.GameParsing;
 import user.User;
 
 public class UserController {
@@ -20,16 +19,16 @@ public class UserController {
 
     //populate the user liked genres based on the selected check boxes from the start screen
     protected static void handleCheckBoxes(CheckBox[] _checkBoxArray){
-        GameParsing.addStartScreenSelections(_checkBoxArray,defaultLikeValue);
+        User.addStartScreenSelections(_checkBoxArray,defaultLikeValue);
     }
 
     //populate the user genres and tags, selected from the game picker screen
     protected static void Liked(Game _game){
-        GameParsing.likedGame(_game,defaultLikeValue);
+        User.parseGame(_game,defaultLikeValue);
     }
 
     protected static void Disliked(Game _game){
-        GameParsing.disLikedGame(_game,defaultDislikeValue);
+        User.parseGame(_game,defaultDislikeValue);
     }
 
     //call the Save translator to load in save file
@@ -46,10 +45,5 @@ public class UserController {
     //on close request save the user data
     protected static void programClose() {
         SaveDataTranslator.saveUserData(User.getInstance().getUserHistory());
-    }
-
-    //check if a game had been rated
-    public static Boolean wasGameViewed(String _gameID){
-        return User.getInstance().wasViewed(_gameID);
     }
 }
