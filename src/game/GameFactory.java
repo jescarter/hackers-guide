@@ -175,13 +175,41 @@ public class GameFactory {
 
     private Game[] getAnArrayThatIsNotRated(Game[] _toCheck, String _searchValue){
         Game[] toDealWith = _toCheck;
-        while(isArrayRated(toDealWith)){
-            int pageNumber = pageKeeperGenres.get(_searchValue) + 1;
-            pageKeeperGenres.replace(_searchValue, pageNumber);
-            //print to the console to show that when the page has been fulled rated to go to the next page
-            System.out.println("Searching Genre " + _searchValue + " now on page " + pageKeeperGenres.get(_searchValue));
-            toDealWith = gameTranslator.getGamesByGenre(_searchValue, pageKeeperGenres.get(_searchValue));
+        String controlSearchValue = _searchValue;
+        //if the search is invalid then search a different one
+        while(toDealWith[1] == null){
+            //if the search is a genre
+            if(pageKeeperGenres.containsKey(controlSearchValue)){
+                int intGenre = (((int) (Math.random() * this.gameGenres.length))) % this.gameGenres.length;
+                controlSearchValue = gameGenres[intGenre];
+                System.out.println("Now Searching " + controlSearchValue + " on page " + pageKeeperGenres.get(controlSearchValue));
+                toDealWith = gameTranslator.getGamesByGenre(controlSearchValue, pageKeeperGenres.get(controlSearchValue));
+            }
+            //if the search is a tag
+            if(pageKeeperTags.containsKey(controlSearchValue)){
+                int intTag = (((int) (Math.random() * this.gameTags.length))) % this.gameTags.length;
+                controlSearchValue = gameTags[intTag];
+                System.out.println("Now Searching " + controlSearchValue + " on page " + pageKeeperTags.get(controlSearchValue));
+                toDealWith = gameTranslator.getGamesByTag(controlSearchValue, pageKeeperTags.get(controlSearchValue));
+            }
         }
+        //if all elements in the array are rated then go to the next page else do nothing
+        while(isArrayRated(toDealWith)){
+            if(pageKeeperGenres.containsKey(controlSearchValue)) {
+                int pageNumber = pageKeeperGenres.get(controlSearchValue) + 1;
+                pageKeeperGenres.replace(controlSearchValue, pageNumber);
+                //print to the console to show that when the page has been fulled rated to go to the next page
+                System.out.println("Searching Genre " + controlSearchValue + " now on page " + pageKeeperGenres.get(controlSearchValue));
+                toDealWith = gameTranslator.getGamesByGenre(controlSearchValue, pageKeeperGenres.get(controlSearchValue));
+            }
+            if(pageKeeperTags.containsKey(controlSearchValue)){
+                int pageNumber = pageKeeperTags.get(controlSearchValue) + 1;
+                pageKeeperTags.replace(controlSearchValue, pageNumber);
+                System.out.println("Searching Tag " + controlSearchValue + " now on page " + pageKeeperTags.get(controlSearchValue));
+                toDealWith = gameTranslator.getGamesByTag(controlSearchValue, pageKeeperTags.get(controlSearchValue));
+            }
+        }
+        //if the array has elements and has a game that is not rated then return it
         return toDealWith;
     }
 
