@@ -22,6 +22,16 @@ public class GameFactory {
     private HashMap<String,Integer> pageKeeperGenres = new HashMap<>();
     private HashMap<String,Integer> pageKeeperTags = new HashMap<>();
 
+    //helper method to see if a page of the api has all been rated
+    private boolean isArrayRated(Game[] _toRate){
+        for (Game tempGame:_toRate) {
+            if(!GameController.wasGameViewed(tempGame.getGameID())){
+                return false;
+            }
+        }
+        return true;
+    }
+
     //================= GETTERS ===============
     public GameQueue<Game> getGameQueue(){
         //helper to ensure no redundancies between search results
@@ -49,26 +59,21 @@ public class GameFactory {
         Game[] placeHolder2 = gameTranslator.getGamesByTag(tagToSearchFor, pageKeeperTags.get(tagToSearchFor));
 
         //if the genre that is searched has all been rated then move to the next page
-        if(isArrayRated(placeHolder)){
-            int pageNumber = pageKeeperGenres.get(genreToSearchFor);
-            pageKeeperGenres.replace(genreToSearchFor, pageNumber);
-            placeHolder = gameTranslator.getGamesByGenre(genreToSearchFor, pageKeeperGenres.get(genreToSearchFor));
-        }
-        if(isArrayRated(placeHolder2)){
-            int pageNumber = pageKeeperTags.get(tagToSearchFor);
-            pageKeeperTags.replace(tagToSearchFor, pageNumber);
-            placeHolder2 = gameTranslator.getGamesByTag(tagToSearchFor, pageKeeperTags.get(tagToSearchFor));
-        }
+        placeHolder = getAnArrayThatIsNotRated(placeHolder, genreToSearchFor);
+        placeHolder2 = getAnArrayThatIsNotRated(placeHolder2, tagToSearchFor);
+
         //check each game in the array
         for (Game placeHoldingGame:placeHolder) {
             //check that the games in the array have not been rated
             if(!GameController.wasGameViewed(placeHoldingGame.getGameID())){
                 //put game in the queue
                 toBeReturned.offer(placeHoldingGame);
+                //to prevent copies given the tag
                 gamesInQueue.put(placeHoldingGame.getTitle(), placeHoldingGame.getGameID());
             }
         }
         for (Game placeHolderTag:placeHolder2) {
+            //make sure the game has not been rated or is already in the queue
             if(!GameController.wasGameViewed(placeHolderTag.getGameID()) && !gamesInQueue.containsKey(placeHolderTag.getTitle())){
                 toBeReturned.offer(placeHolderTag);
             }
@@ -90,16 +95,19 @@ public class GameFactory {
         if(favoriteTag.equals("empty")){
             favoriteTag = gameTags[(int) (Math.random() * gameTags.length)];
         }
+        //ensure that if the favorite tag or genre was not obtained at application start
+        if(!this.pageKeeperGenres.containsKey(favoriteGenre)){
+            this.pageKeeperGenres.put(favoriteGenre, 1);
+        }
+        if(!this.pageKeeperTags.containsKey(favoriteTag)){
+            this.pageKeeperTags.put(favoriteTag, 1);
+        }
         System.out.println("Favorite Genre is " + favoriteGenre);
         System.out.println("Favorite Tag is " + favoriteTag);
         Game[] placeHolder = gameTranslator.getGamesByGenre(favoriteGenre, pageKeeperGenres.get(favoriteGenre));
 
         //if the genre that is searched has all been rated then move to the next page
-        if(isArrayRated(placeHolder)){
-            int pageNumber = pageKeeperGenres.get(favoriteGenre);
-            pageKeeperGenres.replace(favoriteGenre, pageNumber);
-            placeHolder = gameTranslator.getGamesByGenre(favoriteGenre, pageKeeperGenres.get(favoriteGenre));
-        }
+        placeHolder = getAnArrayThatIsNotRated(placeHolder, favoriteGenre);
 
         for (Game game : placeHolder) {
             //insure that the game has not been rated
@@ -153,21 +161,14 @@ public class GameFactory {
         return gameFactory;
     }
 
-    private boolean isArrayRated(Game[] _toRate){
-        for (Game tempGame:_toRate) {
-            if(!GameController.wasGameViewed(tempGame.getGameID())){
-                return false;
-            }
+    private Game[] getAnArrayThatIsNotRated(Game[] _toCheck, String _searchValue){
+        Game[] toDealWith = _toCheck;
+        while(isArrayRated(toDealWith)){
+            int pageNumber = pageKeeperGenres.get(_searchValue);
+            pageKeeperGenres.replace(_searchValue, pageNumber);
+            toDealWith = gameTranslator.getGamesByGenre(_searchValue, pageKeeperGenres.get(_searchValue));
         }
-        return true;
-    }
-
-    public HashMap<String, Integer> getPageKeeperGenres(){
-        return this.pageKeeperGenres;
-    }
-
-    public HashMap<String, Integer> getPageKeeperTags(){
-        return this.pageKeeperTags;
+        return toDealWith;
     }
 
     //================= SETTERS ===============
@@ -183,22 +184,12 @@ public class GameFactory {
         gameTranslator = _inputTranslator;
     }
 
-    public void setPageKeeperGenres(HashMap<String,Integer> _incomingGenreMap){
-        this.pageKeeperGenres = _incomingGenreMap;
-    }
-
-    public void setPageKeeperTags(HashMap<String,Integer> _incomingTagMap){
-        this.pageKeeperTags = _incomingTagMap;
-    }
-    
     private void populatePageKeepers(){
-        if(!pageKeeperGenres.isEmpty() && !pageKeeperTags.isEmpty()) {
-            for (String tempGenre : gameGenres) {
-                pageKeeperGenres.put(tempGenre, 1);
-            }
-            for (String tempTags : gameTags) {
-                pageKeeperTags.put(tempTags, 1);
-            }
+        for (String tempGenre : gameGenres) {
+            pageKeeperGenres.put(tempGenre, 1);
+        }
+        for (String tempTags : gameTags) {
+            pageKeeperTags.put(tempTags, 1);
         }
     }
 }

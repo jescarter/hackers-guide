@@ -46,26 +46,32 @@ public class DataStorage implements DataStorageIntf{
         String inputData = null;
         JSONObject toBeReturned = new JSONObject();
         //using a string builder to piece together all the chars from the buffer reader
-        try{
-            StringBuilder sb = new StringBuilder();
-            File file = new File(fileName);
-            //if the file does not exist then return an empty data, hard coded which is not great
-            if(!file.exists()) {
-                return new JSONObject(canNotFindFileJSONString);
-            }
-            InputStream in = new FileInputStream(file);
-            fileIn = new BufferedReader(new InputStreamReader(in));
-            while((inputData = fileIn.readLine()) != null){
-                sb.append(inputData + System.lineSeparator());
-            }
-            //make a json with the data stored only can work if the stored data was a json to stringed, or in that format
-            toBeReturned = new JSONObject(sb.toString());
-            return toBeReturned;
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
+        File file = new File(fileName);
+        if(file.exists()) {
             try {
-                fileIn.close();
+                StringBuilder sb = new StringBuilder();
+
+                InputStream in = new FileInputStream(file);
+                fileIn = new BufferedReader(new InputStreamReader(in));
+                while ((inputData = fileIn.readLine()) != null) {
+                    sb.append(inputData + System.lineSeparator());
+                }
+                //make a json with the data stored only can work if the stored data was a json to stringed, or in that format
+                toBeReturned = new JSONObject(sb.toString());
+                return toBeReturned;
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    fileIn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }else{
+            //if the file does not exist then return an empty data, hard coded which is not great
+            try {
+                return new JSONObject(canNotFindFileJSONString);
             }catch (Exception e){
                 e.printStackTrace();
             }
