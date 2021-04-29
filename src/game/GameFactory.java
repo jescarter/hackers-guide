@@ -110,7 +110,7 @@ public class GameFactory {
         System.out.println("Favorite Genre is " + favoriteGenre);
         System.out.println("Favorite Tag is " + favoriteTag);
 
-        Game[] placeHolder = gameTranslator.getGamesByGenre(favoriteGenre, pageKeeperGenres.get(favoriteGenre));
+        Game[] placeHolder = gameTranslator.getGamesByGenre(favoriteGenre, pageKeeperGenres.get(favoriteGenre) + 1);
 
         //if the genre that is searched has all been rated then move to the next page
         placeHolder = getAnArrayThatIsNotRated(placeHolder, favoriteGenre);
