@@ -117,19 +117,6 @@ public class DoubledLinkList {
         }
     }
 
-    //just checks if a given node matches a node in this list
-    private boolean hasNode(Node _toCompare){
-        boolean found = false;
-        Node current = this.head;
-        while(current != null && !found){
-            if(_toCompare.nodeTitle.equals(current.nodeTitle) && _toCompare.preferenceValue == current.preferenceValue){
-                found = true;
-            }
-            current = current.next;
-        }
-        return found;
-    }
-
     //to evaluate if two link lists have the same content
     public Boolean isEqual(DoubledLinkList _toCompare){
         boolean doesMatch = false;
