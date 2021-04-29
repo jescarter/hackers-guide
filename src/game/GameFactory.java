@@ -6,7 +6,6 @@ package game;
  * Author(s) Ian Holder,
  */
 
-import user.User;
 import gameGenie.GameController;
 import resources.Game;
 import resources.GameQueue;
@@ -91,8 +90,8 @@ public class GameFactory {
     public Game getRecommendation(){
         Game recommendation = null;
         //call for the api to get games of the user's most liked genre
-        String favoriteGenre = User.getInstance().getMostLikedGenre();
-        String favoriteTag = User.getInstance().getMostLikedTag();
+        String favoriteGenre = GameController.mostLikedGenre();
+        String favoriteTag = GameController.mostLikedTag();
         //if the users favorite genre is null then the tags are also null
         if(favoriteGenre.equals("empty")){
             favoriteGenre = gameGenres[(int) (Math.random() * gameGenres.length)];

@@ -10,6 +10,7 @@ import game.GameFactory;
 import resources.Game;
 import resources.GameQueue;
 import game.GameTranslator;
+import user.User;
 
 public class GameController {
     protected static Game getRecommendation(){
@@ -29,6 +30,14 @@ public class GameController {
 
     //get if a game had been rated from the user controller for the game factory
     public static boolean wasGameViewed(String _gameID){
-        return UserController.wasGameViewed(_gameID);
+        return User.getInstance().wasViewed(_gameID);
+    }
+
+    public static String mostLikedGenre(){
+        return User.getInstance().getMostLikedGenre();
+    }
+
+    public static String mostLikedTag(){
+        return User.getInstance().getMostLikedTag();
     }
 }
