@@ -1,7 +1,7 @@
 package resources;
 
 /*
- * Create game objects with api data to be used for views
+ * objects with api data to be used for views
  * last updated 04/27/2021
  * Author(s) Ian Holder,
  */

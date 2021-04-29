@@ -16,26 +16,49 @@ import java.util.HashMap;
 public class GameFactory {
     private String[] gameGenres;
     private String[] gameTags;
-    private GameTranslatorInterface gameTranslator;
+    private GameTranslatorIntf gameTranslator;
     private static GameFactory gameFactory;
+    //these values really should be saved but meh
+    private HashMap<String,Integer> pageKeeperGenres = new HashMap<>();
+    private HashMap<String,Integer> pageKeeperTags = new HashMap<>();
 
     //================= GETTERS ===============
-    public GameQueue<Game> getGameQueue(int _genreChangerByForce){
+    public GameQueue<Game> getGameQueue(){
+        //helper to ensure no redundancies between search results
         HashMap<String,String> gamesInQueue = new HashMap<>();
 
         if(this.gameGenres == null || this.gameTags == null){
             setGameGenres(gameTranslator.getGenres());
             setGameTags(gameTranslator.getTags());
         }
-        int funTestingGenre = (((int) (Math.random() * this.gameGenres.length)) + _genreChangerByForce) % this.gameGenres.length;
+        //to help what page in the api needs to be retrieved
+        populatePageKeepers();
+        int funTestingGenre = (((int) (Math.random() * this.gameGenres.length))) % this.gameGenres.length;
         int funTestingTags = (((int) (Math.random() * this.gameTags.length))) % this.gameTags.length;
-        System.out.println("Searching Genre is " + gameGenres[funTestingGenre]);
-        System.out.println("Searching Tag is " + gameTags[funTestingTags]);
+
+        String genreToSearchFor = gameGenres[funTestingGenre];
+        String tagToSearchFor = gameTags[funTestingTags];
+        System.out.println("Searching Genre is " + genreToSearchFor);
+        System.out.println("Searching Tag is " + tagToSearchFor);
+        
         //create the game queue
         GameQueue<Game> toBeReturned = new GameQueue<>();
+        
         //make the game array to call the API for game objects
-        Game[] placeHolder = gameTranslator.getGamesByGenre(this.gameGenres[funTestingGenre]);
-        Game[] placeHolder2 = gameTranslator.getGamesByTag(this.gameTags[funTestingTags]);
+        Game[] placeHolder = gameTranslator.getGamesByGenre(genreToSearchFor, pageKeeperGenres.get(genreToSearchFor));
+        Game[] placeHolder2 = gameTranslator.getGamesByTag(tagToSearchFor, pageKeeperTags.get(tagToSearchFor));
+
+        //if the genre that is searched has all been rated then move to the next page
+        if(isArrayRated(placeHolder)){
+            int pageNumber = pageKeeperGenres.get(genreToSearchFor);
+            pageKeeperGenres.replace(genreToSearchFor, pageNumber);
+            placeHolder = gameTranslator.getGamesByGenre(genreToSearchFor, pageKeeperGenres.get(genreToSearchFor));
+        }
+        if(isArrayRated(placeHolder2)){
+            int pageNumber = pageKeeperTags.get(tagToSearchFor);
+            pageKeeperTags.replace(tagToSearchFor, pageNumber);
+            placeHolder2 = gameTranslator.getGamesByTag(tagToSearchFor, pageKeeperTags.get(tagToSearchFor));
+        }
         //check each game in the array
         for (Game placeHoldingGame:placeHolder) {
             //check that the games in the array have not been rated
@@ -63,11 +86,21 @@ public class GameFactory {
         //if the users favorite genre is null then the tags are also null
         if(favoriteGenre.equals("empty")){
             favoriteGenre = gameGenres[(int) (Math.random() * gameGenres.length)];
+        }
+        if(favoriteTag.equals("empty")){
             favoriteTag = gameTags[(int) (Math.random() * gameTags.length)];
         }
         System.out.println("Favorite Genre is " + favoriteGenre);
         System.out.println("Favorite Tag is " + favoriteTag);
-        Game[] placeHolder = gameTranslator.getGamesByGenre(favoriteGenre);
+        Game[] placeHolder = gameTranslator.getGamesByGenre(favoriteGenre, pageKeeperGenres.get(favoriteGenre));
+
+        //if the genre that is searched has all been rated then move to the next page
+        if(isArrayRated(placeHolder)){
+            int pageNumber = pageKeeperGenres.get(favoriteGenre);
+            pageKeeperGenres.replace(favoriteGenre, pageNumber);
+            placeHolder = gameTranslator.getGamesByGenre(favoriteGenre, pageKeeperGenres.get(favoriteGenre));
+        }
+
         for (Game game : placeHolder) {
             //insure that the game has not been rated
             if(!GameController.wasGameViewed(game.getGameID())) {
@@ -120,6 +153,23 @@ public class GameFactory {
         return gameFactory;
     }
 
+    private boolean isArrayRated(Game[] _toRate){
+        for (Game tempGame:_toRate) {
+            if(!GameController.wasGameViewed(tempGame.getGameID())){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public HashMap<String, Integer> getPageKeeperGenres(){
+        return this.pageKeeperGenres;
+    }
+
+    public HashMap<String, Integer> getPageKeeperTags(){
+        return this.pageKeeperTags;
+    }
+
     //================= SETTERS ===============
     private void setGameGenres(String[] _inputArray){
         gameGenres = _inputArray;
@@ -129,7 +179,26 @@ public class GameFactory {
         gameTags = _inputArray;
     }
 
-    public void setGameTranslator(GameTranslatorInterface _inputTranslator){
+    public void setGameTranslator(GameTranslatorIntf _inputTranslator){
         gameTranslator = _inputTranslator;
+    }
+
+    public void setPageKeeperGenres(HashMap<String,Integer> _incomingGenreMap){
+        this.pageKeeperGenres = _incomingGenreMap;
+    }
+
+    public void setPageKeeperTags(HashMap<String,Integer> _incomingTagMap){
+        this.pageKeeperTags = _incomingTagMap;
+    }
+    
+    private void populatePageKeepers(){
+        if(!pageKeeperGenres.isEmpty() && !pageKeeperTags.isEmpty()) {
+            for (String tempGenre : gameGenres) {
+                pageKeeperGenres.put(tempGenre, 1);
+            }
+            for (String tempTags : gameTags) {
+                pageKeeperTags.put(tempTags, 1);
+            }
+        }
     }
 }

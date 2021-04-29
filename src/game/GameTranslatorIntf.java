@@ -8,10 +8,10 @@ package game;
 
 import resources.Game;
 
-public interface GameTranslatorInterface {
-    public Game[] getGamesByGenre(String _genre);
+public interface GameTranslatorIntf {
+    public Game[] getGamesByGenre(String _genre, int _page);
 
-    public Game[] getGamesByTag(String _tag);
+    public Game[] getGamesByTag(String _tag, int _page);
 
     public String[] getGenres();
 

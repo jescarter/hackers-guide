@@ -3,7 +3,7 @@ package resources;
 /*
 Last updated: 28  April, 2021
 This class will call on the RAWG API
-Authors: Emily Crabtree
+Authors: Emily Crabtree, Ian Holder
 */
 
 import org.json.JSONArray;
@@ -19,20 +19,20 @@ public class RAWGCaller implements APICallerInft {
     private static final String apiKey = "6346c4bd4d004ac58323138cd49d65cb";
 
     @Override
-    public JSONObject getGamesByGenre(String _genre) {
+    public JSONObject getGamesByGenre(String _genre, int _page) {
         //build the url
         String genreQuery = _genre.replace(" ", "-");
-        String callAction = ("/games?genre%20=%20" + genreQuery + "&key=");
-        String urlString = baseURL + callAction + apiKey;
+        String callAction = ("/games?genres=" + genreQuery.toLowerCase() + "&key=");
+        String urlString = baseURL + callAction + apiKey + "&page=" + _page;
         return call(urlString);
     }
 
     @Override
-    public JSONObject getGamesByTag(String _tag) {
+    public JSONObject getGamesByTag(String _tag, int _page) {
         //build the url
         String tagQuery = _tag.replace(" ", "-");
-        String callAction = ("/games?tag%20=%20" + tagQuery + "&key=");
-        String urlString = baseURL + callAction + apiKey;
+        String callAction = ("/games?tags=" + tagQuery.toLowerCase() + "&key=");
+        String urlString = baseURL + callAction + apiKey + "&page=" + _page;
         //make the json to be returned outside the try catch for scoping
         return call(urlString);
     }

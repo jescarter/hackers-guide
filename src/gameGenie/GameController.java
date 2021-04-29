@@ -20,9 +20,9 @@ public class GameController {
     //creat a game queue for the game picker, getting games from the API based on a random genre
     protected static GameQueue<Game> getGameQueue(){
         GameFactory.getInstance().setGameTranslator(new GameTranslator());
-        GameQueue<Game> myQueue = GameFactory.getInstance().getGameQueue(0);
+        GameQueue<Game> myQueue = GameFactory.getInstance().getGameQueue();
         if(myQueue.isEmpty()){
-            myQueue = GameFactory.getInstance().getGameQueue(1);
+            myQueue = GameFactory.getInstance().getGameQueue();
         }
         return myQueue;
     }

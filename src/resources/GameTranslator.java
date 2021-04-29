@@ -6,25 +6,24 @@ package resources;
   Author(s) Ian Holder, Emily Crabtree
  */
 
-import game.GameTranslatorInterface;
+import game.GameTranslatorIntf;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class GameTranslator implements GameTranslatorInterface {
+public class GameTranslator implements GameTranslatorIntf {
     private APICallerInft myCaller;
 
     @Override
-    public Game[] getGamesByGenre(String _genre) {
+    public Game[] getGamesByGenre(String _genre, int _page) {
         setMyCaller(new RAWGCaller());
-        JSONObject toParse = myCaller.getGamesByGenre(_genre);
+        JSONObject toParse = myCaller.getGamesByGenre(_genre, _page);
         return parseGameJSON(toParse);
     }
 
-
     @Override
-    public Game[] getGamesByTag(String _tag) {
+    public Game[] getGamesByTag(String _tag, int _page) {
         setMyCaller(new RAWGCaller());
-        JSONObject toParse = myCaller.getGamesByTag(_tag);
+        JSONObject toParse = myCaller.getGamesByTag(_tag, _page);
         return parseGameJSON(toParse);
     }
 
@@ -99,23 +98,23 @@ public class GameTranslator implements GameTranslatorInterface {
                 gameCoverURL = games.getString("background_image");
 
                 // Create genre array for each instance, displaying the wanted result.
-                JSONArray games_genres = games.getJSONArray("genres");
-                for (int j = 0; j < games_genres.length(); j++){
-                    JSONObject genres = games_genres.getJSONObject(j);
+                JSONArray gamesGenres = games.getJSONArray("genres");
+                for (int j = 0; j < gamesGenres.length(); j++){
+                    JSONObject genres = gamesGenres.getJSONObject(j);
                     genre[j] = genres.getString("name");
                 }
 
                 // Create tags array for each instance, displaying the wanted result.
-                JSONArray games_tags = games.getJSONArray("tags");
-                for (int j = 0; j < games_tags.length(); j++){
-                    JSONObject tag = games_tags.getJSONObject(j);
+                JSONArray gamesTags = games.getJSONArray("tags");
+                for (int j = 0; j < gamesTags.length(); j++){
+                    JSONObject tag = gamesTags.getJSONObject(j);
                     tags[j] = tag.getString("name");
                 }
 
                 // Create platforms array for each instance, displaying the wanted result.
-                JSONArray parent_platforms = games.getJSONArray("parent_platforms");
-                for (int j = 0; j < parent_platforms.length(); j++){
-                    JSONObject obj_platforms = parent_platforms.getJSONObject(j);
+                JSONArray parentPlatforms = games.getJSONArray("parent_platforms");
+                for (int j = 0; j < parentPlatforms.length(); j++){
+                    JSONObject obj_platforms = parentPlatforms.getJSONObject(j);
                     JSONObject platform = obj_platforms.getJSONObject("platform");
                     platforms[j] = platform.getString("name");
                 }
