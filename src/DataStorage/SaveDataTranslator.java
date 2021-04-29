@@ -1,4 +1,4 @@
-package resources;
+package DataStorage;
 
 /*
  * to create or read JSONs to/from
@@ -8,6 +8,7 @@ package resources;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import user.UserHistoryIntf;
 import user.UserHistory;
 
 import java.util.HashMap;

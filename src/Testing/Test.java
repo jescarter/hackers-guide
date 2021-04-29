@@ -6,12 +6,12 @@ package Testing;
   Author(s) Ian Holder,
  */
 
-import resources.MockDataStorage;
+import DataStorage.MockDataStorage;
 import user.UserHistory;
 
 import java.util.HashMap;
 
-import static resources.SaveDataTranslator.*;
+import static DataStorage.SaveDataTranslator.*;
 
 public class Test {
     //testing method

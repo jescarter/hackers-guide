@@ -1,4 +1,4 @@
-package resources;
+package API;
 
 /*
  * to standardize api callers
@@ -9,9 +9,9 @@ package resources;
 import org.json.JSONObject;
 
 public interface APICallerInft {
-    public JSONObject getGamesByGenre(String _genre);
+    public JSONObject getGamesByGenre(String _genre, int _page);
 
-    public JSONObject getGamesByTag(String _tag);
+    public JSONObject getGamesByTag(String _tag, int _page);
 
     public JSONObject getGenres();
 

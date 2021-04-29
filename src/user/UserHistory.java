@@ -2,11 +2,10 @@ package user;
 
 /*
  * the user data object to pack all the info for data handling
- * last updated 04/27/2021
+ * last updated 04/28/2021
  * Author(s) Ian Holder,
  */
 
-import resources.UserHistoryIntf;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -128,4 +127,5 @@ public class UserHistory implements UserHistoryIntf {
     public void setViewedGames(HashMap<String, String> _inputMap) {
         this.viewedGames = _inputMap;
     }
+
 }

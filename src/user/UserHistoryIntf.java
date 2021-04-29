@@ -1,8 +1,8 @@
-package resources;
+package user;
 
 /*
   an interface for the user history object for greater modularity, but it is to specific just to get it to work
-  last updated 04/27/2021
+  last updated 04/28/2021
   Author(s) Ian Holder,
  */
 
@@ -16,6 +16,7 @@ public interface UserHistoryIntf {
     public HashMap<String,Integer> getUserGenres();
     public HashMap<String,Integer> getUserTags();
     public HashMap<String,String> getViewedGames();
+
     public String getTopGenre();
     public String getTopTag();
 

@@ -7,10 +7,10 @@ package gameGenie;
  */
 
 import javafx.scene.control.CheckBox;
-import resources.DataStorage;
+import DataStorage.DataStorage;
 import resources.Game;
-import resources.UserHistoryIntf;
-import resources.SaveDataTranslator;
+import user.UserHistoryIntf;
+import DataStorage.SaveDataTranslator;
 import user.GameParsing;
 import user.User;
 

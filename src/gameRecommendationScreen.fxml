@@ -31,6 +31,7 @@ Last Updated 03/25/2021
                               <Label fx:id="gameTitleLabel" alignment="CENTER" text="GameTitle" />
                               <Label fx:id="gameReleaseDate" alignment="CENTER" layoutX="156.0" layoutY="200.0" text="GameReleaseDate" />
                               <Label fx:id="gameGenre" text="GameGenre" />
+                              <Label fx:id="gamePlatforms" text="GamePlatforms" />
                               <Label fx:id="gameMetacritic" text="GameMetacritic" />
                            </children></VBox>
                             </children>
