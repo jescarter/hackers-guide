@@ -133,15 +133,21 @@ public class GameFactory {
     private Game compareGameBasedOnTag(Game _game1, Game _game2, String _favoriteTag){
         //if both games have the favorite tag take the one that has the higher score
         if(_game1.hasTag(_favoriteTag) && _game2.hasTag(_favoriteTag)){
-            //check that both games have a metacritic score, if not just return game 2
-            if(!_game1.getMetacriticScore().equals("null") && !_game2.getMetacriticScore().equals("null")) {
-                if (Integer.parseInt(_game1.getMetacriticScore()) < Integer.parseInt(_game2.getMetacriticScore())) {
-                    //game 2 has the higher score
+            //check that both games have a metacritic score
+            if(!_game1.getMetacriticScore().equals("null") || !_game2.getMetacriticScore().equals("null")) {
+                //if game 1 does not have a score just return game 2, vise versa
+                if(_game1.getMetacriticScore().equals("null")){
                     return _game2;
-                } else {
-                    //game 1 has the higher score
+                }else{
                     return _game1;
                 }
+            }
+            if (Integer.parseInt(_game1.getMetacriticScore()) < Integer.parseInt(_game2.getMetacriticScore())) {
+                //game 2 has the higher score
+                return _game2;
+            } else {
+                //game 1 has the higher score
+                return _game1;
             }
             //if game 2 does not have the favorite tag return game 1
         }else if(_game1.hasTag(_favoriteTag) && !_game2.hasTag(_favoriteTag)){
@@ -152,7 +158,6 @@ public class GameFactory {
         }else{
             return _game1;
         }
-        return _game2;
     }
 
     //for input guarding get an array of all valid genres
