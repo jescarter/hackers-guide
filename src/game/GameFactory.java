@@ -151,8 +151,6 @@ public class GameFactory {
         return _game1;
     }
 
-
-
     //for input guarding get an array of all valid genres
     public String[] getGenres(){
         return gameTranslator.getGenres();
