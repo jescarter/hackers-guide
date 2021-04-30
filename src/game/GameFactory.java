@@ -2,7 +2,7 @@ package game;
 
 /*
  * a model to return games sent from the game translator, after being checked
- * last updated 04/28/2021
+ * last updated 04/30/2021
  * Author(s) Ian Holder,
  */
 
