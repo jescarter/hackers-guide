@@ -47,8 +47,8 @@ public class GameFactory {
             populatePageKeepers();
         }
         //
-        int funTestingGenre = (((int) (Math.random() * this.gameGenres.length))) % this.gameGenres.length;
-        int funTestingTags = (((int) (Math.random() * this.gameTags.length))) % this.gameTags.length;
+        int funTestingGenre = (((int) (Math.random() * this.gameGenres.length)));
+        int funTestingTags = (((int) (Math.random() * this.gameTags.length)));
 
         String genreToSearchFor = gameGenres[funTestingGenre];
         String tagToSearchFor = gameTags[funTestingTags];
