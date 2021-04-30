@@ -8,7 +8,7 @@ package API;
 
 import org.json.JSONObject;
 
-public interface APICallerInft {
+public interface APICallerIntf {
     public JSONObject getGamesByGenre(String _genre, int _page);
 
     public JSONObject getGamesByTag(String _tag, int _page);

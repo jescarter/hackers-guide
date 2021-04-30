@@ -13,9 +13,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Locale;
 
-public class RAWGCaller implements APICallerInft {
+public class RAWGCaller implements APICallerIntf {
     private static final String baseURL = "https://api.rawg.io/api";
     private static final String apiKey = "6346c4bd4d004ac58323138cd49d65cb";
 

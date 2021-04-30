@@ -2,7 +2,7 @@ package Testing;
 
 /*
   unit test
-  last updated 04/27/2021
+  last updated 04/30/2021
   Author(s) Ian Holder,
  */
 
@@ -16,10 +16,12 @@ import static DataStorage.SaveDataTranslator.*;
 public class Test {
     //testing method
     public static void test(){
+        //really I should actually be testing the jsons but really with data the size of hundreds I don't know
         MockDataStorage test = new MockDataStorage();
         setDataStorage(test);
         test1();
         test2();
+        test3();
     }
 
     private static void test1(){
@@ -66,6 +68,14 @@ public class Test {
         }else{
             System.out.println("Test Failed");
         }
+    }
+
+    private static void test3(){
+        System.out.println("Test Three");
+        System.out.println("testing when passing a UserHistory that is null, error");
+        UserHistory toTest = null;
+        saveUserData(toTest);
+        //it passes giving a null pointer exception
     }
 
     //helper to fill a hash map with 100 elements
