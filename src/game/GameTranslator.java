@@ -6,15 +6,14 @@ package game;
   Author(s) Ian Holder, Emily Crabtree
  */
 
-import API.APICallerInft;
+import API.APICallerIntf;
 import API.RAWGCaller;
-import game.GameTranslatorIntf;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import resources.Game;
 
 public class GameTranslator implements GameTranslatorIntf {
-    private APICallerInft myCaller;
+    private APICallerIntf myCaller;
 
     @Override
     public Game[] getGamesByGenre(String _genre, int _page) {
@@ -140,7 +139,7 @@ public class GameTranslator implements GameTranslatorIntf {
     }
 
     //inject the caller into the translator
-    public void setMyCaller(APICallerInft _inputCaller){
+    public void setMyCaller(APICallerIntf _inputCaller){
         this.myCaller = _inputCaller;
     }
 }
